@@ -2,20 +2,19 @@ async function loadReels() {
 
   console.log("loading reels");
 
-  const url =
-  "https://api.rss2json.com/v1/api.json?rss_url=" +
-  encodeURIComponent("https://rsshub.app/instagram/user/shizzle.rap");
+  const response = await fetch(
+    "https://rsshub.app/instagram/user/shizzle.rap?format=json"
+  );
 
-  const response = await fetch(url);
   const data = await response.json();
 
   console.log(data);
 
   const grid = document.getElementById("reels-grid");
 
-  if (!data.items) return;
+  const posts = data.items.slice(0,6);
 
-  data.items.slice(0,6).forEach(post => {
+  posts.forEach(post => {
 
     const tile = document.createElement("a");
 
@@ -24,7 +23,7 @@ async function loadReels() {
     tile.className = "reel-tile";
 
     tile.innerHTML = `
-      <img src="${post.thumbnail}">
+      <img src="${post.enclosure.url}" alt="Instagram post">
       <span class="reel-play">▶</span>
     `;
 
