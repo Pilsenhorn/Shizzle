@@ -4,7 +4,7 @@ async function loadReels() {
 
   try {
 
-    const response = await fetch("data/reels.json");
+    const response = await fetch("./data/reels.json");
     const reels = await response.json();
     console.log(reels);
 
