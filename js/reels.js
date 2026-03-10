@@ -1,44 +1,36 @@
 async function loadReels() {
 
-  const MAX_REELS = 6;
+  console.log("loading reels");
 
-  try {
+  const url =
+  "https://api.rss2json.com/v1/api.json?rss_url=" +
+  encodeURIComponent("https://rsshub.app/instagram/user/shizzle.rap");
 
-    const response = await fetch("./data/reels.json");
-    const reels = await response.json();
-    console.log(reels);
+  const response = await fetch(url);
+  const data = await response.json();
 
-    const grid = document.getElementById("reels-grid");
+  console.log(data);
 
-    const latestReels = reels.slice(-MAX_REELS).reverse();
+  const grid = document.getElementById("reels-grid");
 
-    latestReels.forEach(item => {
+  if (!data.items) return;
 
-      const article = document.createElement("article");
-      article.className = "reel";
+  data.items.slice(0,6).forEach(post => {
 
-      article.innerHTML = `
-        <div class="reel-wrapper">
-          <blockquote
-            class="instagram-media"
-            data-instgrm-permalink="${item.url}"
-            data-instgrm-version="14">
-          </blockquote>
-        </div>
-      `;
+    const tile = document.createElement("a");
 
-      grid.appendChild(article);
+    tile.href = post.link;
+    tile.target = "_blank";
+    tile.className = "reel-tile";
 
-    });
+    tile.innerHTML = `
+      <img src="${post.thumbnail}">
+      <span class="reel-play">▶</span>
+    `;
 
-    setTimeout(() => {
-        if (window.instgrm) {
-            window.instgrm.Embeds.process();
-        }
-    }, 300);
-    } catch (error) {
-    console.error("Failed to load reels:", error);
-  }
+    grid.appendChild(tile);
+
+  });
 
 }
 
