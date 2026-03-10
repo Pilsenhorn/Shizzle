@@ -31,11 +31,12 @@ async function loadReels() {
 
     });
 
-    if (window.instgrm) {
-      window.instgrm.Embeds.process();
-    }
-
-  } catch (error) {
+    setTimeout(() => {
+        if (window.instgrm) {
+            window.instgrm.Embeds.process();
+        }
+    }, 300);
+    } catch (error) {
     console.error("Failed to load reels:", error);
   }
 
