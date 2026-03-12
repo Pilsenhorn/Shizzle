@@ -42,25 +42,24 @@
 
         <section id="shows">
             <!-- Zde bude obsah sekce "Koncerty",  seznam nadcházejících koncertů, odkazy na prodej vstupenek atd. -->
+             <div class="container">
+                <header class="section-header">
+                    <h2>Koncerty</h2>
+
+                </header>
+
+                <div id="shows-list"></div>
+             </div>
         </section>
 
         <section id="reels">
             <!-- Zde bude obsah sekce "Instagram", Instagram feed, IG embed -->
              <div class="container">
-                <header class="section-header">
-                    <h2 id="reels-title">Reels</h2>
-                    <p>Koukej co se zrovna děje</p>
+                <header class="reels-header">
+                    <h2>Instagram</h2>
                 </header>
-
-                <div class="grid-reels" id="reels-grid">
-                    <!-- JS sem vloží reels -->
-                </div>
-
-                <a href="https://www.instagram.com/shizzle.rap/" class="btn" target="_blank" rel="noopener">Sleduj mě na Instagramu</a>
-
-            </div>
-            
-            
+                <div id="reels-grid"></div>
+             </div>
         </section> 
 
         <section id="gallery">
@@ -68,12 +67,21 @@
         </section>
 
         <section id="discography">
-                <!-- Zde bude obsah sekce "Diskografie", seznam alb, odkazy na streamovací služby atd. -->        
+                <!-- Zde bude obsah sekce "Diskografie", seznam alb, odkazy na streamovací služby atd. -->      
+            <div class="container">
+
+                <header class="section-header">
+                    <h2>Diskografie</h2>
+                </header>
+
+                <div id="albums-grid"></div>
+
+            </div>
+ 
         </section>
 
         <section id="contact">
                 <!-- Zde bude obsah sekce "Kontakt", anchor na mailto: , odkazy na sociální sítě atd. -->
-
                 <a href="mailto:shizzle.rap@gmail.com">Napiš mi e-mail</a>
         </section>
 
@@ -83,7 +91,7 @@
     <footer>
         <!-- Zde bude obsah patičky, kontaktní informace, odkazy na sociální sítě atd., moje reklama -->    
     </footer>
-    <script async src="https://www.instagram.com/embed.js"></script>
-    <script src="js/reels.js" defer></script>
+
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
