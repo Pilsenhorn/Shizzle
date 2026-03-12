@@ -4,8 +4,6 @@
     --text-primary: #ffffff;
     --accent-primary: #ff0033;
 
-    /* --hero-bg: url('../assets/hero-bg.jpg'); */
-
         /* Layout */
     --container-width: 1100px;
     --container-padding: 1rem;
@@ -22,11 +20,6 @@
     --font-size-h2: 2rem;
 
     --line-height-body: 1.6;
-}
-
-[data-theme="album-04-2026"] {
-    --bg-primary: #1a1a1a;
-    --accent-primary: #ff6600;
 }
 
 html {
@@ -55,16 +48,53 @@ h2 {
     margin-inline: auto;
 }
 
+
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+}
+
+.nav-menu a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.logo img {
+    height: 36px;
+}
+
+
+
 .hero {
     min-height: 90vh;
     display: flex;
     align-items: center;
 
-    /* Background image 
-    background-image: url('../assets/hero-bg.jpg');
+    /* Background image */
+    background-image: url('/assets/img/hero/coverphoto.jpg');
     background-position: center;
     background-size: cover;
-    */
+    background-repeat: no-repeat;
+    
 }
 
 .section {
