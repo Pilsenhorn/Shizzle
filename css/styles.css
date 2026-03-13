@@ -288,30 +288,15 @@ HEADER & NAV
  
   display: flex;
   justify-content: center;
-}
-
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-
-    background: url(../assets/img/hero/coverphoto.jpg) center 40% / cover no-repeat;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background: linear-gradient(
+  background: 
+    linear-gradient(
     rgba(0, 0, 0, 0.2) 0%,
     rgba(0, 0, 0, 0.3) 40%,
     rgba(0, 0, 0, 0.5) 60%,
     rgba(0, 0, 0, 0.7) 80%,
     rgba(0, 0, 0, 0.9) 100%
-  );
-
-  z-index: 0;
+  ),
+    url(../assets/img/hero/coverphoto.jpg) center 40% / cover no-repeat;
 }
 
 .hero-content {
@@ -361,9 +346,24 @@ HEADER & NAV
 }
 
 
+/* =========================
+   ALBUMS & SHOWS & GRIDS DEFAULT
+   ========================= */
 
+#reels-grid,
+#albums-grid,
+#shows-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
 
-
+.album-cover {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  border-radius: 12px;
+}
 
 
 /* =========================
@@ -433,5 +433,11 @@ HEADER & NAV
     margin-left: 0;
     margin-top: 30vh;
     padding: 0 1.5rem;
+  }
+
+  #reels-grid,
+  #albums-grid,
+  #shows-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

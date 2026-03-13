@@ -1,13 +1,17 @@
 export function reelTemplate(reel) {
     return `
     <div class="reel">
-        <a href="${reel.link}" target="_blank">
+        
             <video
+                class="lazy-video"
                 preload="none"
                 poster="${reel.poster}"
                 controls
+                playsinline
             >
-                <source src="${reel.video}" type="video/mp4">
+                <a href="${reel.link}" target="_blank">
+                    <source data-src="${reel.video}" type="video/mp4">
+                </a>
             </video>
         </a>
     </div>
