@@ -5,82 +5,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shizzle</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> 
 
     <meta name="description" content="Shizzle - český rapper a hudební autor. Poslechněte si jeho nejnovější skladby a zjistěte více o jeho kariéře.">
 </head>
 <body>
-    <header>
-        <!-- Zde bude obsah hlavičky, například logo a navigace -->
-            <nav class="nav">
-                <div class="container nav-inner">
-                    <a href="#hero" class="logo"><img src="/assets/img/logo/logo.png" alt="Shizzle Logo"/></a>
-                    <ul class="nav-menu">
-                        <li><a href="#news">Novinky</a></li>
-                        <li><a href="#shows">Koncerty</a></li>
-                        <li><a href="#reels">Instagram</a></li>
-                        <li><a href="#gallery">Galerie</a></li>                   
-                <!--    <li><a href="#discography">Diskografie</a></li>    -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="header">
+        <!-- NAVIGATION -->
+        <div class="header-inner">
+            <div class="nav-left">
+                <img src="/assets/img/logo/logo.png" alt="Shizzle logo" class="nav-left-logo">
+            </div>
+            <div class="nav-center">
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="#gallery">Galerie</a></li>
                         <li><a href="#about">O mně</a></li>
                         <li><a href="#contact">Kontakt</a></li>
                     </ul>
-                </div>
-            </nav>
+                </nav>
+            </div>
+            <div class="nav-right">
+                <a href="https://www.instagram.com/shizzle.rap/" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@shizzlerap" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://open.spotify.com/artist/1n9sXo7l2mLh5j8u9v3q8e" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+            </div>
+        </div>
+
+        <button class="hamburger" 
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu">
+            ☰
+        </button>
+
+
+        <!-- MOBILE NAVIGATION -->
+
+        <nav class="mobile-menu" id="mobile-menu">
+            <ul class="mobile-nav-list">
+                <li><a href="#Gallery">Galerie</a></li>
+                <li><a href="#About">O mně</a></li>
+                <li><a href="#Contact">Kontakt</a></li>
+                <li><a href="https://www.instagram.com/shizzle.rap/" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+                <li><a href="https://www.youtube.com/@shizzlerap" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a></li>
+                <li><a href="https://open.spotify.com/artist/1n9sXo7l2mLh5j8u9v3q8e" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main>
+    <main id="main-content">
         
         <section id="hero" class="hero" aria-labelledby="hero-title">
             <!-- Zde bude obsah sekce "Hero", velký banner s obrázkem, sloganem atd. -->
-             <h1>Shizzle</h1>
-             <p>Raper</p>
-        </section>
-
-        <section id="news">
-            <!-- Zde bude obsah sekce "Novinky",  seznam novinek, odkazy na sociální sítě atd. -->      
+            <div class="hero-content">
+                <h1>Shizzle</h1>
+                <p class="hero-sub">Raper</p>
+                <div class="hero-cta">
+                    <a href="#gallery" class="btn">Poslechnout</a>
+                    <a href="#shows" class="btn">Koncerty</a>
+                </div>
+                <div class="hero-socials">
+                    <a href="https://www.instagram.com/shizzle.rap/" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@shizzlerap" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>                        
+                    <a href="https://open.spotify.com/artist/1n9sXo7l2mLh5j8u9v3q8e" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>                
+                </div>
+            </div>            
         </section>
 
         <section id="shows">
-            <!-- Zde bude obsah sekce "Koncerty",  seznam nadcházejících koncertů, odkazy na prodej vstupenek atd. -->
              <div class="container">
-                <header class="section-header">
-                    <h2>Koncerty</h2>
-
-                </header>
-
-                <div id="shows-list"></div>
+                <h2>Koncerty</h2>
+                    <div id="shows-grid"></div>
              </div>
         </section>
 
         <section id="reels">
-            <!-- Zde bude obsah sekce "Instagram", Instagram feed, IG embed -->
              <div class="container">
-                <header class="reels-header">
-                    <h2>Instagram</h2>
-                </header>
-                <div id="reels-grid"></div>
+                <h2>Instagram</h2>
+                    <div id="reels-grid"></div>
              </div>
         </section> 
 
         <section id="gallery">
-                <!-- Zde bude obsah sekce "Galerie", fotografie z koncertů, videa atd. -->
+            <div class="container">
+                <h2>Galerie</h2>
+                <div id="gallery-grid"></div>
+             </div>
         </section>
 
         <section id="discography">
-                <!-- Zde bude obsah sekce "Diskografie", seznam alb, odkazy na streamovací služby atd. -->      
             <div class="container">
-
-                <header class="section-header">
-                    <h2>Diskografie</h2>
-                </header>
-
                 <div id="albums-grid"></div>
-
             </div>
  
         </section>
 
         <section id="about" class="section" aria-labelledby="about-title">
-            <!-- Zde bude obsah sekce "O mně", biografie  -->
              <div class="container">
                 <article class="about">
                     <p>Zapomeň na drip, fet, love, hoes, autotune a generický beaty. Shizzle & Dj Háj se nesnaží zapadnout do zavedený rap game. Mají totiž vlastní pravidla hry, ve který je autenticita nad zlato.</p>
@@ -95,15 +118,27 @@
         </section>
 
         <section id="contact">
-                <!-- Zde bude obsah sekce "Kontakt", anchor na mailto: , odkazy na sociální sítě atd. -->
                 <a href="mailto:shizzle.rap@gmail.com">Napiš mi e-mail</a>
         </section>
 
 
+    
     </main>
 
-    <footer>
-        <!-- Zde bude obsah patičky, kontaktní informace, odkazy na sociální sítě atd., moje reklama -->    
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <small>© 2026 Shizzle</small>
+            <small>Všechna práva vyhrazena</small>
+            <div class="hero-socials">
+                <a href="https://www.instagram.com/shizzle.rap/" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@shizzlerap" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>                        
+                <a href="https://open.spotify.com/artist/1n9sXo7l2mLh5j8u9v3q8e" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>                
+            </div>
+            <small>Neboj se a<a href="mailto:shizzle.rap@gmail.com"> napiš mi</a></small>
+        </div>
+
     </footer>
 
     <script type="module" src="js/main.js"></script>
