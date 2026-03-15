@@ -1,6 +1,6 @@
 export const shows = [
     {
-        date: "2026-04-30",
+        date: "2026-04-10",
         city: "Praha",
         venue: "United Islands: Klubová noc",
         tickets: "#"

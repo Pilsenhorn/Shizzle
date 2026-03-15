@@ -31,80 +31,58 @@ renderList({
     containerId: "albums-grid"
 })
 
-function initConcertModal(shows){
+
+
+function initConcertModal(){
 
 const modal = document.getElementById("concert-modal")
 const close = document.querySelector(".modal-close")
 const modalShow = document.getElementById("modal-show")
-const modalTickets = document.getElementById("modal-tickets")
-const modalVideo = document.getElementById("modal-video")
+const modalTickets = document.getElementById("modal-tickets")   
 
-if(!modal || !shows.length) return
+if(!modal) return
 
-const upcoming = getUpcomingShows(shows)
-if(!upcoming.length) return
-
-const nextShow = upcoming[0]
-
-const date = new Date(nextShow.date)
-const now = new Date()
-
-const daysLeft = Math.ceil((date-now)/(1000*60*60*24))
-
-// otevřít jen pokud koncert je do 30 dní
-if(daysLeft > 30) return
-
+// naplnit modal daty z prvního koncertu
+const firstShow = getUpcomingShows(shows)[0]
+const date = new Date(firstShow.date)
 const formattedDate = date.toLocaleDateString("cs-CZ",{
-day:"numeric",
-month:"long",
-year:"numeric"
+    day: "numeric",
+    month: "long",
+    year: "numeric"
 })
 
-modalShow.innerHTML = `
-<p><strong>${formattedDate}</strong></p>
-<p>${nextShow.city}</p>
-<p>${nextShow.venue}</p>
-<p>Za ${daysLeft} dní</p>
-`
-
-modalTickets.href = nextShow.tickets
-
-// optional video
-if(nextShow.video){
-modalVideo.innerHTML = `
-<video controls playsinline>
-<source src="${nextShow.video}" type="video/mp4">
-</video>
-`
+const dayLeft = Math.ceil((date - new Date()) / (1000 * 60 * 60 * 24))
+// naplnit modal daty
+if(modalShow) {
+    modalShow.innerHTML =
+    `
+    <p>${formattedDate}</p>
+    <p>${firstShow.venue}</p>
+    <p>${dayLeft} dní do koncertu</p>
+    `
+}
+if(modalTickets){
+    modalTickets.href = firstShow.tickets
 }
 
-// otevření při prvním scrollu
-if(!localStorage.getItem("concertModalShown")){
 
-window.addEventListener("scroll",()=>{
+// otevřít modal po 1s
+setTimeout(()=>{
+    modal.classList.add("open")
+},1000)
 
-modal.classList.add("open")
-document.body.style.overflow="hidden"
-
-localStorage.setItem("concertModalShown","true")
-
-},{once:true})
-
-}
-
-// zavření
+// zavření tlačítkem
 close?.addEventListener("click",()=>{
-modal.classList.remove("open")
-document.body.style.overflow=""
+    modal.classList.remove("open")
 })
 
+// zavření kliknutím mimo modal
 modal.addEventListener("click",(e)=>{
-if(e.target===modal){
-modal.classList.remove("open")
-document.body.style.overflow=""
-}
+    if(e.target === modal){
+        modal.classList.remove("open")
+    }
 })
 
 }
 
-initConcertModal(shows)
+initConcertModal()
