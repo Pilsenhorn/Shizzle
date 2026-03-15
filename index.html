@@ -62,7 +62,6 @@
             <!-- Zde bude obsah sekce "Hero", velký banner s obrázkem, sloganem atd. -->
             <div class="hero-content">
                 <h1>Shizzle</h1>
-                <p class="hero-sub">Raper</p>
                 <div class="hero-cta">
                     <a href="#gallery" class="btn">Poslechnout</a>
                     <a href="#shows" class="btn">Koncerty</a>
@@ -141,6 +140,17 @@
 
     </footer>
 
+    
+
+    <div id="concert-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="concert-modal-title">
+        <div class="modal-content">
+            <button class="modal-close">×</button>
+            <h2 id="concert-modal-title">Nejbližší koncert</h2>
+            <div id="modal-show"></div>
+            <div id="modal-video"></div>
+            <a id="modal-tickets" class="btn" target="_blank">Kup si lupen</a>
+        </div>
+    </div>
     <script type="module" src="js/main.js"></script>
 </body>
 </html>

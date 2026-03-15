@@ -365,6 +365,47 @@ HEADER & NAV
   border-radius: 12px;
 }
 
+/* =========================
+   SHOWS
+   ========================= */
+
+.show {
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.show.date {
+  font-weight: 700;
+}
+
+.show-city {
+  font-size: 1.25rem;
+}
+
+.show-venue {
+  opacity: 0.8;
+}
+
+.show-tickets {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--hover-text);
+}
+
+.album {
+  text-align: center;
+}
+
+.album-cover {
+  border-radius: 10px;
+}
+
+.album-title {
+  margin-top: 0.5rem;
+}
+
 
 /* =========================
    FOOTER
@@ -438,6 +479,76 @@ HEADER & NAV
   #reels-grid,
   #albums-grid,
   #shows-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  #show-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  #albums-grid, #reels-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  #reels-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+
+/* =========================
+   MODAL
+   ========================= */
+
+.modal {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.8);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity 0.3s;
+
+  z-index: 9999;
+}
+
+.modal.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mnodal-content {
+  background: var(--bg);
+  color: var(--text);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 5rem;
+  right: 7rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+#modal-video video {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 1rem;
 }
