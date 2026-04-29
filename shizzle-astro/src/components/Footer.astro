@@ -1,0 +1,114 @@
+---
+import { Icon } from "astro-icon/components";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  settings: CollectionEntry<"settings">;
+}
+
+const { settings } = Astro.props;
+---
+
+<footer class="mt-(--space-lg) border-t border-(--text-primary)/10 px-(--space-sm) py-(--space-md)">
+  <div class="mx-auto max-w-7xl">
+    <div class="grid gap-(--space-md) md:grid-cols-3">
+      <div>
+        <h3 class="font-(--font-heading) text-lg">Shizzle</h3>
+        <p class="mt-(--space-xs) text-sm text-(--text-muted)">
+          Music. Performance. Atmosphere.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-wide text-(--text-muted)">
+          Navigate
+        </h4>
+
+        <ul class="mt-(--space-xs) space-y-(--space-xs) text-sm text-(--text-muted)">
+          <li><a href="#shows" class="transition hover:text-(--text-primary)">Shows</a></li>
+          <li><a href="#media" class="transition hover:text-(--text-primary)">Media</a></li>
+          <li><a href="#about" class="transition hover:text-(--text-primary)">About</a></li>
+          <li><a href="#contact" class="transition hover:text-(--text-primary)">Booking</a></li>
+        </ul>
+      </div>
+
+        <div>
+          <h4 class="text-sm font-semibold uppercase tracking-wide text-(--text-muted)">
+            Contact
+          </h4>
+
+          <p class="mt-(--space-xs) text-sm text-(--text-muted)">
+            <a href={`mailto:${settings.data.bookingEmail}`} 
+              class="transition hover:text-(--text-primary) underline-offset-2 hover:underline">
+              {settings.data.bookingEmail}
+            </a>
+          </p>
+
+
+          {/* Socials */}
+          <div class="mt-(--space-sm) flex items-center gap-(--space-sm)">
+            {settings.data.instagram && (
+              <a href={settings.data.instagram} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="text-(--text-muted) transition hover:scale-110 hover:opacity-80 hover:text-(--text-primary)"
+                aria-label="Otevřít Instagram profil"
+                >
+                <Icon name="simple-icons:instagram" class="h-5 w-5" />
+              </a>
+            )}
+
+            {settings.data.spotify && (
+              <a href={settings.data.spotify} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="text-(--text-muted) transition hover:scale-110 hover:opacity-80 hover:text-(--text-primary)"
+                aria-label="Otevřít Spotify profil"
+                >
+                <Icon name="simple-icons:spotify" class="h-5 w-5" />
+              </a>
+            )}
+
+            {settings.data.youtube && (
+              <a href={settings.data.youtube} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="text-(--text-muted) transition hover:scale-110 hover:opacity-80 hover:text-(--text-primary)"
+                aria-label="Otevřít YouTube kanál"
+                >
+                <Icon name="simple-icons:youtube" class="h-5 w-5" />
+              </a>
+            )}
+
+            {settings.data.tiktok && (
+              <a href={settings.data.tiktok} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="text-(--text-muted) transition hover:scale-110 hover:opacity-80 hover:text-(--text-primary)"
+                aria-label="Otevřít TikTok profil"
+                >
+                <Icon name="simple-icons:tiktok" class="h-5 w-5" />
+              </a>
+            )}
+
+            {settings.data.facebook && (
+              <a href={settings.data.facebook} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="text-(--text-muted) transition hover:scale-110 hover:opacity-80 hover:text-(--text-primary)"
+                aria-label="Otevřít Facebook profil"
+                >
+                <Icon name="simple-icons:facebook" class="h-5 w-5" />
+              </a>
+            )}
+          </div>
+        </div>
+    </div>
+
+    <div class="mt-(--space-md) border-t border-(--text-primary)/10 pt-(--space-sm)">
+      <p class="text-center text-xs text-(--text-muted)">
+        © 2026 Shizzle. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>

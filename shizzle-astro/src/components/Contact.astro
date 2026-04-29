@@ -1,0 +1,75 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  settings: CollectionEntry<"settings">;
+}
+
+const { settings } = Astro.props;
+const trust = settings.data.contactTrust || [];
+---
+
+<section id="contact" class="py-(--space-lg)">
+  <div class="mx-auto max-w-3xl text-center">
+
+    {/* Headline */}
+    <h2 class="text-2xl md:text-3xl font-semibold">
+      {settings.data.contactTitle || "Contact"}
+    </h2>
+
+    {/* Subtext */}
+    {settings.data.contactText && (
+      <p class="mt-(--space-sm) text-(--text-muted)">
+        {settings.data.contactText}
+      </p>
+    )}
+
+    {/* CTA stack */}
+    <div class="mt-(--space-md) flex flex-col items-center gap-(--space-sm)">
+
+      {/* Primary CTA */}
+      {settings.data.linktree && (
+        <a
+          href={settings.data.linktree}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open booking and contact links"
+          class="inline-block rounded-md bg-(--color-accent) px-(--space-md) py-(--space-xs) text-(--text-primary) transition hover:bg-(--color-accent-hover)"
+        >
+          Book / Contact
+        </a>
+      )}
+
+      {/* Secondary CTA */}
+      <a
+        href={`mailto:${settings.data.bookingEmail}`}
+        class="text-sm underline-offset-2 hover:underline"
+      >
+        {settings.data.bookingEmail}
+      </a>
+
+    </div>
+
+    {/* Trust */}
+    {trust.length > 0 && (
+      <ul class="mt-(--space-md) text-sm text-(--text-muted) space-y-1">
+        {trust.map((item: string) => (
+          <li>• {item}</li>
+        ))}
+      </ul>
+    )}
+
+    {settings.data.downloads?.map((file: { label: string; file: string }) => (
+      <a
+        href={file.file}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="underline-offset-2 hover:underline"
+      >
+        {file.label}
+      </a>
+    ))}
+      
+
+  </div>
+</section>

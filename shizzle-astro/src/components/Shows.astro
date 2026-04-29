@@ -1,0 +1,53 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  concerts: CollectionEntry<"concerts">[];
+}
+
+const { concerts } = Astro.props;
+---
+
+<section id="shows" class="py-(--space-lg)">
+  <div class="mx-auto max-w-3xl space-y-(--space-sm)">
+
+    {concerts.map((show) => {
+      const date = new Date(show.data.date);
+
+      return (
+        <div class="flex justify-between items-center border-b border-(--text-primary)/10 pb-2">
+
+          <div>
+            <p class="text-sm text-(--text-muted)">
+              {date.toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "short",
+              })}
+            </p>
+
+            <p class="font-medium">
+              {show.data.city}
+            </p>
+
+            <p class="text-sm text-(--text-muted)">
+              {show.data.venue}
+            </p>
+          </div>
+
+          {show.data.ticketUrl && (
+            <a
+              href={show.data.ticketUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm underline-offset-2 hover:underline"
+            >
+              Tickets
+            </a>
+          )}
+
+        </div>
+      );
+    })}
+
+  </div>
+</section>

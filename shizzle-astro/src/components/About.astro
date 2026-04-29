@@ -1,0 +1,20 @@
+---
+import { render, type CollectionEntry } from "astro:content";
+
+interface Props {
+  content: CollectionEntry<"pages">;
+}
+
+const { content } = Astro.props;
+const { Content } = await render(content);
+---
+
+<section id="about" class="py-20">
+  <h2 class="text-2xl font-bold mb-6">
+    {content.data.title}
+  </h2>
+
+  <div class="prose">
+    <Content />
+  </div>
+</section>

@@ -1,13 +1,21 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import NavBar from "../components/NavBar.astro";
+import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
-import { getCollection } from "astro:content";
+import Shows from "../components/Shows.astro";
 import ConcertModal from "../components/ConcertModal.astro";
+import Media from "../components/Media.astro";
+import About from "../components/About.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
 
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+
+// concerts
 const concerts = await getCollection("concerts");
-
-const upcoming = concerts
+const upcoming: CollectionEntry<"concerts">[] = concerts
   .filter((concert) => new Date(concert.data.date) >= new Date())
   .sort(
     (a, b) =>
@@ -16,59 +24,42 @@ const upcoming = concerts
   );
 
 const nextConcert = upcoming[0];
+
+//pages
+const pages = await getCollection("pages");
+const about = pages.find((p) => p.id.includes("about"));
+if (!about) {
+  throw new Error("about.md not found in content/pages");
+}
+
+
+//settings
+const settingsCollection = await getCollection("settings");
+const settings = settingsCollection[0];
+
+//social
+const social = await getCollection("social");
+
+//modal
+let showModal = false;
+
+if (nextConcert) {
+  const diff =
+    (new Date(nextConcert.data.date).getTime() - Date.now()) /
+    (1000 * 60 * 60 * 24);
+  showModal = diff <= 30; // Show modal if concert is within the next
+}
 ---
 
-<Layout title="Shizzle">
-  <NavBar />
-  <Hero />
-  {nextConcert && <ConcertModal concert={nextConcert} />}
-
-  <main class="p-8" id="concerts">
-    {nextConcert && (
-      <section class="rounded-2xl border border-white/20 p-6">
-        <h2 class="text-2xl font-semibold mb-3">
-          Nejbližší koncert
-        </h2>
-
-        <p>Město: {nextConcert.data.city}</p>
-        <p>Místo: {nextConcert.data.venue}</p>
-        <p>Datum: {nextConcert.data.date}</p>
-      </section>
-    )}
+<Layout>
+  <Header />
+  <main id="main-content">
+    <Hero />
+    <About content={about} />
+    <Shows concerts={concerts} />
+    <Media socials={social} />
+    <Contact settings={settings} />
+    <Footer settings={settings}  />
+    {showModal && <ConcertModal concert={nextConcert} />}
   </main>
 </Layout>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const btn = document.getElementById("menu-toggle");
-    const menu = document.getElementById("mobile-menu");
-
-    btn?.addEventListener("click", () => {
-      menu?.classList.toggle("hidden");
-    });
-  });
-</script>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const modal = document.getElementById("concert-modal");
-    const closeBtn = document.getElementById("close-modal");
-
-    if (!modal) return;
-
-    setTimeout(() => {
-      modal.classList.remove("hidden");
-      modal.classList.add("flex");
-    }, 1000);
-
-    closeBtn?.addEventListener("click", () => {
-      modal.classList.add("hidden");
-      modal.classList.remove("flex");
-    });
-
-    modal?.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        modal.classList.add("hidden");
-        modal.classList.remove("flex");
-      }
-    });
-  });
-</script>

@@ -1,0 +1,48 @@
+<header class="sticky left-0 top-0 z-50 w-full px-(--space-xs) pt-(--space-xs) sm:px-(--space-sm)">
+  <div class="w-full rounded-lg border border-(--text-primary)/15 bg-surface/80 backdrop-blur-md">
+    <div class="mx-auto flex w-full max-w-7xl items-center justify-between px-(--space-xs) py-(--space-xs) sm:px-(--space-sm) lg:px-(--space-md)">
+      <a href="/" class="flex shrink-0 items-center">
+        <img
+          src="/logo/logo.png"
+          alt="Shizzle logo"
+          width="40"
+          height="40"
+          decoding="async"
+          fetchpriority="high"
+          class="h-9 w-9 sm:h-10 sm:w-10"
+        />
+      </a>
+
+      <nav class="hidden items-center gap-(--space-sm) text-sm font-medium lg:flex xl:gap-(--space-md) xl:text-base">
+        <a href="#shows" class="transition hover:text-accent-hover">Shows</a>
+        <a href="#media" class="transition hover:text-accent-hover">Media</a>
+        <a href="#about" class="transition hover:text-accent-hover">About</a>
+        <a href="#contact" class="transition hover:text-accent-hover">Contact</a>
+      </nav>
+
+      <button
+        id="menu-btn"
+        class="flex shrink-0 flex-col gap-1 rounded-full p-(--space-xs) lg:hidden"
+        aria-label="Otevrit navigaci"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+      >
+        <span class="h-0.5 w-6 bg-(--text-primary)"></span>
+        <span class="h-0.5 w-6 bg-(--text-primary)"></span>
+        <span class="h-0.5 w-6 bg-(--text-primary)"></span>
+      </button>
+    </div>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="fixed left-(--space-xs) right-(--space-xs) top-20 hidden flex-col gap-(--space-xs) overflow-y-auto rounded-lg border border-(--text-primary)/15 bg-surface/95 p-(--space-xs) shadow-xl backdrop-blur-md sm:left-(--space-sm) sm:right-(--space-sm) lg:hidden"
+  >
+    <a href="#shows" class="rounded-full px-(--space-sm) py-(--space-xs) text-center text-base transition hover:bg-(--text-primary)/10">Shows</a>
+    <a href="#media" class="rounded-full px-(--space-sm) py-(--space-xs) text-center text-base transition hover:bg-(--text-primary)/10">Media</a>
+    <a href="#about" class="rounded-full px-(--space-sm) py-(--space-xs) text-center text-base transition hover:bg-(--text-primary)/10">About</a>
+    <a href="#contact" class="rounded-full bg-accent px-(--space-sm) py-(--space-xs) text-center leading-snug text-primary transition hover:bg-accent-hover)">
+      Booking
+    </a>
+  </div>
+</header>
