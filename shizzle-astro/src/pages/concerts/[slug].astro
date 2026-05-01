@@ -1,0 +1,92 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+export async function getStaticPaths() {
+  const concerts = await getCollection("concerts");
+
+  return concerts.map((c) => ({
+    params: { slug: c.id },
+    props: { concert: c },
+  }));
+}
+
+interface Props {
+  concert: CollectionEntry<"concerts">;
+}
+
+const { concert } = Astro.props;
+
+const dateISO = new Date(concert.data.date).toISOString();
+const formattedDate = new Date(concert.data.date).toLocaleDateString("cs-CZ", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+---
+
+<Layout
+    title={`${concert.data.city} koncert | Shizzle`}
+    description={concert.data.description}
+    url={`https://www.shizzle.cz/concerts/${concert.id}/`}
+    image={`https://www.shizzle.cz/api/og/${concert.id}`}
+>
+
+  <main class="mx-auto max-w-3xl px-(--space-sm) py-(--space-lg) text-left">
+
+    <h1 class="text-3xl font-semibold">
+      {concert.data.city} – {concert.data.venue}
+    </h1>
+
+    <p class="mt-(--space-sm) text-(--text-muted)">
+      {formattedDate}
+    </p>
+
+    {concert.data.support && (
+      <p class="mt-(--space-sm)">
+        Support: {concert.data.support}
+      </p>
+    )}
+
+    {concert.data.description && (
+      <p class="mt-(--space-md) leading-relaxed">
+        {concert.data.description}
+      </p>
+    )}
+
+    <div class="mt-(--space-md) flex flex-wrap gap-(--space-sm)">
+      {concert.data.ticketUrl && (
+        <a href={concert.data.ticketUrl} target="_blank" rel="noopener noreferrer" class="underline-offset-2 hover:underline">
+          Vstupenky
+        </a>
+      )}
+      {concert.data.website && (
+        <a href={concert.data.website} target="_blank" rel="noopener noreferrer" class="underline-offset-2 hover:underline">
+          Detail akce
+        </a>
+      )}
+    </div>
+
+  </main>
+
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "MusicEvent",
+      name: `Shizzle – ${concert.data.city}`,
+      startDate: dateISO,
+      location: {
+        "@type": "Place",
+        name: concert.data.venue,
+        address: concert.data.city,
+      },
+      performer: {
+        "@type": "MusicGroup",
+        name: "Shizzle",
+      },
+      url: concert.data.website || concert.data.ticketUrl,
+    })}
+  </script>
+
+</Layout>

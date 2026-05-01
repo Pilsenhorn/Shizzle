@@ -7,7 +7,7 @@ tiktok: https://www.tiktok.com/@shizzle.rap
 facebook: https://www.facebook.com/shizzle.rap/
 linktree: https://linktr.ee/shizzle.rap
 
-contactTitle: Boocking & Spolupráce
+contactTitle: Booking & Spolupráce
 contactText: Zazpívám a zarapuju i u vás, doplň si svoje texty :) 
 contactTrust:
   - Hraju na housle

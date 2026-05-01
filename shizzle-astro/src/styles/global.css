@@ -2,16 +2,18 @@
 
 :root {
   /* COLORS */
-  --color-background: #ce012c;
+  --color-background: #0b0f12;
   --color-surface: #121214;
-  --color-primary: #ffffff;
-  --color-secondary: #a1a1aa;
-  --color-accent: #6366f1;
-  --color-accent-hover: #4f46e5;
+  
+  --color-accent: #ff7a3d;
+  --color-accent-hover: #ff6a2a;
+
+  --color-primary: #1c2b33;
+  --color-secondary: #223843;
 
   /* TEXT */
-  --text-primary: #ffffff;
-  --text-muted: #a1a1aa;
+  --text-primary: #eaeaea;
+  --text-muted: #a0a8ad;
 
   /* SPACING */
   --space-xs: 0.5rem;

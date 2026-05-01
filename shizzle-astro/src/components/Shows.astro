@@ -9,19 +9,20 @@ const { concerts } = Astro.props;
 ---
 
 <section id="shows" class="py-(--space-lg)">
-  <div class="mx-auto max-w-3xl space-y-(--space-sm)">
+  <div class="mx-auto max-w-3xl space-y-(--space-sm) px-(--space-sm) text-left">
 
     {concerts.map((show) => {
       const date = new Date(show.data.date);
 
       return (
-        <div class="flex justify-between items-center border-b border-(--text-primary)/10 pb-2">
+        <article class="grid gap-(--space-sm) border-b border-(--text-primary)/10 pb-(--space-sm) sm:grid-cols-[1fr_auto] sm:items-end">
 
           <div>
             <p class="text-sm text-(--text-muted)">
-              {date.toLocaleDateString("en-GB", {
+              {date.toLocaleDateString("cs-CZ", {
                 day: "numeric",
-                month: "short",
+                month: "long",
+                year: "numeric",
               })}
             </p>
 
@@ -34,18 +35,27 @@ const { concerts } = Astro.props;
             </p>
           </div>
 
-          {show.data.ticketUrl && (
+          <div class="flex flex-wrap gap-(--space-sm)">
             <a
-              href={show.data.ticketUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`/concerts/${show.id}/`}
               class="text-sm underline-offset-2 hover:underline"
             >
-              Tickets
+              Detail
             </a>
-          )}
 
-        </div>
+            {show.data.ticketUrl && (
+              <a
+                href={show.data.ticketUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm underline-offset-2 hover:underline"
+              >
+                Vstupenky
+              </a>
+            )}
+          </div>
+
+        </article>
       );
     })}
 

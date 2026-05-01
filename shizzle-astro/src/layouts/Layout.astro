@@ -1,17 +1,29 @@
 ---
 import "../styles/global.css";
 
-const siteUrl = "www.shizzle.cz";
-const pageTitle = "Shizzle - rapový zpěvák, autor svých textů a performer";
-const pageDescription =
-	"Shizzle je rapový zpěvák, autor svých textů a performer. Jeho hudba je plná energie, emocí a autentického vyjádření. Své texty píše s vášní a upřímností, což se odráží v jeho silných a osobních skladbách. Shizzle je známý pro své živé vystoupení, které vždy zanechá publikum nadšené a plné energie.";
+interface Props {
+  title?: string;
+  description?: string;
+  url?: string;
+  image?: string;
+}
+
+const siteUrl = "https://www.shizzle.cz";
+
+const {
+  title = "Shizzle - rapový zpěvák, performer",
+  description = "Shizzle je rapový zpěvák a performer z Prahy.",
+  url = siteUrl,
+  image = `${siteUrl}/og-image.png`,
+} = Astro.props;
+
 const jsonLd = {
-	"@context": "https://schema.org",
-	"@type": "Person",
-	name: "Shizzle",
-	url: siteUrl,
-	jobTitle: "Rapový zpěvák, autor svých textů a performer",
-	description: pageDescription,
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Shizzle",
+  url: siteUrl,
+  jobTitle: "Rapový zpěvák, performer",
+  description,
 };
 ---
 
@@ -20,24 +32,23 @@ const jsonLd = {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<link rel="canonical" href={siteUrl} />
+		<link rel="icon" type="image/png" href="/logo/logo.png" />
+		<link rel="canonical" href={url} />
 		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
-		<meta name="description" content={pageDescription} />
-		<meta property="og:title" content={pageTitle} />
-		<meta property="og:description" content={pageDescription} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content={siteUrl} />
-		<meta property="og:image" content={`${siteUrl}/og-image.png`} />
+		<meta property="og:url" content={url} />
+		<meta property="og:image" content={image} />
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content={pageTitle} />
-		<meta name="twitter:description" content={pageDescription} />
-		<meta name="twitter:image" content={`${siteUrl}/og-image.png`} />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={image} />
 		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 	</head>
-	<body class="bg-background text-(--text-primary) font-(--font-base)">
+	<body class="bg-background text-left text-(--text-primary) font-(--font-base)">
 		<slot />
 		<script>
 			document.addEventListener("DOMContentLoaded", () => {

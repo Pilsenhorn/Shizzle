@@ -8,7 +8,7 @@ Mají totiž vlastní pravidla hry, ve který je autenticita nad zlato.
 
 Shizzle je trueschool raper jak poleno.
 Vykresluje svět tak, jak ho vidí; barevně, občas černě, někdy růžově, vždycky
-bez pozlátka.Nebere si servítky a za pravdu a svobodu půjde klidně do rap battlu.
+bez pozlátka. Nebere si servítky a za pravdu a svobodu půjde klidně do rap battlu.
 
 Jeho jméno už nějakou dobu rezonuje undergroundovou scénou, posledních deset let
 totiž Shizzle dobývá svět v čele brass-rapový kapely ShizzleOrchestra, o dva roky
@@ -21,7 +21,6 @@ hudbu s rapem. Bohužel jim ale nebylo dáno dokončit album společně,
 proto se deska, která vyjde
 10. dubna tohoto roku, jmenuje symbolicky *Nedokončená*.
 
-Pochodeň od Dje Ill Filla převzal Dj Háj. Ten teď kryje Shizzlova záda
 Pochodeň od Dje Ill Filla převzal Dj Háj. Ten teď kryje Shizzlova záda
 originálníma beatama, ve kterých se odráží řemeslo obou vystudovaných
 hudebníků. Když se vyleješ tak, že ti čeština bude znít jak cizí jazyk,

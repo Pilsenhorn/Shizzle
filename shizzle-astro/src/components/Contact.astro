@@ -10,10 +10,10 @@ const trust = settings.data.contactTrust || [];
 ---
 
 <section id="contact" class="py-(--space-lg)">
-  <div class="mx-auto max-w-3xl text-center">
+  <div class="mx-auto max-w-3xl px-(--space-sm) text-left">
 
     {/* Headline */}
-    <h2 class="text-2xl md:text-3xl font-semibold">
+    <h2 class="text-2xl font-semibold md:text-3xl">
       {settings.data.contactTitle || "Contact"}
     </h2>
 
@@ -25,7 +25,7 @@ const trust = settings.data.contactTrust || [];
     )}
 
     {/* CTA stack */}
-    <div class="mt-(--space-md) flex flex-col items-center gap-(--space-sm)">
+    <div class="mt-(--space-md) flex flex-col items-start gap-(--space-sm)">
 
       {/* Primary CTA */}
       {settings.data.linktree && (
@@ -52,23 +52,27 @@ const trust = settings.data.contactTrust || [];
 
     {/* Trust */}
     {trust.length > 0 && (
-      <ul class="mt-(--space-md) text-sm text-(--text-muted) space-y-1">
+      <ul class="mt-(--space-md) list-disc space-y-1 pl-(--space-sm) text-sm text-(--text-muted)">
         {trust.map((item: string) => (
-          <li>• {item}</li>
+          <li>{item}</li>
         ))}
       </ul>
     )}
 
-    {settings.data.downloads?.map((file: { label: string; file: string }) => (
-      <a
-        href={file.file}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="underline-offset-2 hover:underline"
-      >
-        {file.label}
-      </a>
-    ))}
+    {settings.data.downloads && (
+      <div class="mt-(--space-sm) flex flex-col items-start gap-(--space-xs)">
+        {settings.data.downloads.map((file: { label: string; file: string }) => (
+          <a
+            href={file.file}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm underline-offset-2 hover:underline"
+          >
+            {file.label}
+          </a>
+        ))}
+      </div>
+    )}
       
 
   </div>

@@ -8,8 +8,8 @@ interface Props {
 const { socials } = Astro.props;
 ---
 
-<section id="media" class="py-(--space-lg)">
-  <div class="grid grid-cols-3 md:grid-cols-6 gap-(--space-sm)">
+<section id="media" class="px-(--space-sm) py-(--space-lg)">
+  <div class="mx-auto grid max-w-7xl grid-cols-3 gap-(--space-sm) md:grid-cols-6">
     {socials.map((item) => (
       <a
         href={item.data.url}
@@ -20,7 +20,7 @@ const { socials } = Astro.props;
         <img
           src={item.data.thumbnail}
           alt={item.data.title || "Instagram reel"}
-          class="w-full h-full object-cover transition hover:scale-105"
+          class="aspect-square h-full w-full object-cover transition hover:scale-105"
         />
       </a>
     ))}

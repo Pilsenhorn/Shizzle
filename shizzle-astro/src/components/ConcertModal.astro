@@ -6,61 +6,136 @@ interface Props {
 }
 
 const { concert } = Astro.props;
+
+const formattedDate = new Date(concert.data.date).toLocaleDateString("cs-CZ", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
 ---
 
 <div
   id="concert-modal"
-  class="fixed inset-0 z-50 hidden items-center justify-center bg-background/70 px-(--space-sm)"
+  class="fixed inset-0 z-50 hidden items-center justify-center 
+  backdrop-blur-md bg-black/40 px-(--space-sm)
+  opacity-0 transition duration-300"
 >
-  <div class="relative w-full max-w-md rounded-lg border border-(--text-primary)/10 bg-surface p-(--space-sm) text-(--text-primary)">
+  <div
+    id="modal-content"
+    class="relative w-full max-w-md rounded-xl 
+    border border-white/10 
+    bg-white/5 backdrop-blur-xl 
+    p-(--space-md) text-(--text-primary) 
+    shadow-2xl
+    scale-95 opacity-0 transition duration-300"
+    style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.1)"
+  >
     <button
       id="close-modal"
-      class="absolute right-(--space-sm) top-(--space-sm) text-(--text-muted) transition hover:text-(--text-primary)"
-      aria-label="Zavrit modal"
+      class="absolute right-(--space-sm) top-(--space-sm) 
+      rounded-full bg-white/10 p-2 
+      backdrop-blur 
+      text-(--text-muted)
+      transition hover:bg-white/20 hover:text-(--text-primary)"
+      aria-label="Zavřít modal"
     >
-      x
+      ×
     </button>
 
-    <h2 class="mb-(--space-sm) font-(--font-heading) text-2xl">
-      Nejblizsi koncert
+    <h2 class="mb-(--space-sm) font-(--font-heading) text-lg">
+      Nejbližší koncert
     </h2>
 
-    <p class="font-semibold">{concert.data.city}</p>
-    <p class="mt-(--space-xs) text-(--text-muted)">{concert.data.venue}</p>
-    <p class="mt-(--space-xs) text-sm text-(--text-muted)">{concert.data.date}</p>
+    <p class="text-xl font-semibold">
+      {concert.data.city}
+    </p>
 
-    {concert.data.ticketUrl && (
-      <a
-        href={concert.data.ticketUrl}
-        class="mt-(--space-sm) inline-block rounded-md bg-accent px-(--space-sm) py-(--space-xs) text-primary transition hover:bg-accent-hover">
-        Vstupenky
-      </a>
+    <p class="mt-(--space-xs) text-(--text-muted)">
+      {concert.data.venue}
+    </p>
+
+    <p class="mt-(--space-xs) text-sm text-(--text-muted)">
+      {formattedDate}
+    </p>
+
+    {concert.data.support && (
+      <p class="mt-(--space-sm) text-sm text-(--text-muted)">
+        Support: {concert.data.support}
+      </p>
     )}
+
+    {concert.data.description && (
+      <p class="mt-(--space-sm) text-sm leading-relaxed text-(--text-muted)">
+        {concert.data.description}
+      </p>
+    )}
+
+    <div class="mt-(--space-md) flex flex-col gap-(--space-sm)">
+
+      {concert.data.ticketUrl && (
+        <a
+          href={concert.data.ticketUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block rounded-md 
+          bg-(--color-accent) px-(--space-md) py-(--space-xs) 
+          text-left text-(--text-primary) 
+          transition hover:bg-(--color-accent-hover)"
+        >
+          Vstupenky
+        </a>
+      )}
+
+      {concert.data.website && (
+        <a
+          href={concert.data.website}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-left text-sm underline text-(--text-muted) hover:text-(--text-primary)"
+        >
+          Detail akce
+        </a>
+      )}
+
+    </div>
   </div>
 </div>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const modal = document.getElementById("concert-modal");
-    const closeBtn = document.getElementById("close-modal");
+<script is:inline>
+  const modal = document.getElementById("concert-modal");
+  const content = document.getElementById("modal-content");
+  const closeBtn = document.getElementById("close-modal");
 
-    if (!modal) return;
-
+  if (modal && content) {
     setTimeout(() => {
       modal.classList.remove("hidden");
       modal.classList.add("flex");
+
+      requestAnimationFrame(() => {
+        modal.classList.remove("opacity-0");
+        modal.classList.add("opacity-100");
+
+        content.classList.remove("opacity-0", "scale-95");
+        content.classList.add("opacity-100", "scale-100");
+      });
     }, 1000);
 
-    closeBtn?.addEventListener("click", () => {
-      modal.classList.add("hidden");
-      modal.classList.remove("flex");
-    });
+    function closeModal() {
+      modal.classList.add("opacity-0");
+      content.classList.add("opacity-0", "scale-95");
+
+      setTimeout(() => {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+      }, 300);
+    }
+
+    closeBtn?.addEventListener("click", closeModal);
 
     modal.addEventListener("click", (event) => {
       if (event.target === modal) {
-        modal.classList.add("hidden");
-        modal.classList.remove("flex");
+        closeModal();
       }
     });
-  });
+  }
 </script>

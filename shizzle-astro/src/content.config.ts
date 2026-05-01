@@ -1,13 +1,15 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
-
 const concerts = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/concerts" }),
   schema: z.object({
     date: z.string(),
     city: z.string(),
     venue: z.string(),
+    website: z.string().optional(),
+    support: z.string().optional(),
+    description: z.string().optional(),
     ticketUrl: z.string().optional(),
     featured: z.boolean().optional(),
   }),
@@ -26,11 +28,12 @@ const albums = defineCollection({
 const social = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/social" }),
   schema: z.object({
+    platform: z.string().optional(),
     url: z.string(),
     thumbnail: z.string(),
     title: z.string().optional(),
   }),
-})
+});
 
 const pages = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/pages" }),
@@ -64,8 +67,6 @@ const settings = defineCollection({
       .optional(),
   }),
 });
-
-
 
 export const collections = {
   concerts,
