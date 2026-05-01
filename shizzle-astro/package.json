@@ -20,7 +20,6 @@
     "astro": "^6.1.4",
     "astro-icon": "^1.1.5",
     "lucide-react": "^1.7.0",
-    "satori": "^0.26.0",
     "tailwindcss": "^4.2.2"
   }
 }

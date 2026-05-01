@@ -105,8 +105,10 @@ const formattedDate = new Date(concert.data.date).toLocaleDateString("cs-CZ", {
   const modal = document.getElementById("concert-modal");
   const content = document.getElementById("modal-content");
   const closeBtn = document.getElementById("close-modal");
+  const storageKey = "shizzle-concert-modal-dismissed";
+  const dismissedUntil = Number(window.localStorage.getItem(storageKey) || 0);
 
-  if (modal && content) {
+  if (modal && content && dismissedUntil < Date.now()) {
     setTimeout(() => {
       modal.classList.remove("hidden");
       modal.classList.add("flex");
@@ -121,6 +123,10 @@ const formattedDate = new Date(concert.data.date).toLocaleDateString("cs-CZ", {
     }, 1000);
 
     function closeModal() {
+      window.localStorage.setItem(
+        storageKey,
+        String(Date.now() + 1000 * 60 * 60 * 24 * 7)
+      );
       modal.classList.add("opacity-0");
       content.classList.add("opacity-0", "scale-95");
 

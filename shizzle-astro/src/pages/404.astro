@@ -1,0 +1,35 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { getCollection } from "astro:content";
+
+const settingsCollection = await getCollection("settings");
+const settings = settingsCollection[0];
+---
+
+<Layout
+  title="Stránka nenalezena | Shizzle"
+  description="Tahle stránka na webu Shizzle neexistuje."
+  url="https://www.shizzle.cz/404/"
+>
+  <Header />
+
+  <main class="mx-auto min-h-[70vh] max-w-3xl px-(--space-sm) py-(--space-lg) text-left">
+    <p class="text-sm uppercase tracking-wide text-(--text-muted)">404</p>
+    <h1 class="mt-(--space-xs) text-4xl font-semibold md:text-6xl">
+      Tady nic nehraje.
+    </h1>
+    <p class="mt-(--space-sm) max-w-xl leading-relaxed text-(--text-muted)">
+      Stránka neexistuje nebo se přesunula. Nejlepší cesta zpátky vede na hlavní stránku.
+    </p>
+    <a
+      href="/"
+      class="mt-(--space-md) inline-block rounded-md bg-(--color-accent) px-(--space-md) py-(--space-xs) text-(--text-primary) transition hover:bg-(--color-accent-hover)"
+    >
+      Zpět na web
+    </a>
+  </main>
+
+  {settings && <Footer settings={settings} />}
+</Layout>
