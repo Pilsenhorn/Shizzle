@@ -10,70 +10,85 @@ const trust = settings.data.contactTrust || [];
 ---
 
 <section id="contact" class="py-(--space-lg)">
-  <div class="mx-auto max-w-3xl px-(--space-sm) text-left">
+  <div class="mx-auto max-w-7xl px-(--space-sm) lg:px-(--space-lg)">
+    <div class="grid gap-(--space-lg) lg:grid-cols-2 lg:items-center">
 
-    {/* Headline */}
-    <h2 class="text-2xl font-semibold md:text-3xl">
-      {settings.data.contactTitle || "Contact"}
-    </h2>
+      {/* Left side - Content */}
+      <div class="text-left">
 
-    {/* Subtext */}
-    {settings.data.contactText && (
-      <p class="mt-(--space-sm) text-(--text-muted)">
-        {settings.data.contactText}
-      </p>
-    )}
+        {/* Headline */}
+        <h2 class="text-2xl font-semibold md:text-3xl">
+          {settings.data.contactTitle || "Contact"}
+        </h2>
 
-    {/* CTA stack */}
-    <div class="mt-(--space-md) flex flex-col items-start gap-(--space-sm)">
+        {/* Subtext */}
+        {settings.data.contactText && (
+          <p class="mt-(--space-sm) text-(--text-muted)">
+            {settings.data.contactText}
+          </p>
+        )}
 
-      {/* Primary CTA */}
-      {settings.data.linktree && (
-        <a
-          href={settings.data.linktree}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Open booking and contact links"
-          class="inline-block rounded-md bg-(--color-accent) px-(--space-md) py-(--space-xs) text-(--text-primary) transition hover:bg-(--color-accent-hover)"
-        >
-          Book / Contact
-        </a>
-      )}
+        {/* CTA stack */}
+        <div class="mt-(--space-md) flex flex-col sm:flex-row items-start gap-(--space-sm)">
 
-      {/* Secondary CTA */}
-      <a
-        href={`mailto:${settings.data.bookingEmail}`}
-        class="text-sm underline-offset-2 hover:underline"
-      >
-        {settings.data.bookingEmail}
-      </a>
+          {/* Primary CTA */}
+          {settings.data.linktree && (
+            <a
+              href={settings.data.linktree}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open booking and contact links"
+              class="inline-block rounded-md bg-(--color-accent) px-(--space-md) py-(--space-xs) text-(--text-primary) transition hover:bg-(--color-accent-hover) hover:scale-105 hover:text-(--color-background)"
+            >
+              Book / Contact
+            </a>
+          )}
+
+          {/* Secondary CTA */}
+          <a
+            href={`mailto:${settings.data.bookingEmail}`}
+            class="inline-block rounded-md border border-(--text-primary)/30 px-(--space-md) py-(--space-xs) text-(--text-primary) transition hover:bg-(--text-primary)/10"
+          >
+            {settings.data.bookingEmail}
+          </a>
+
+        </div>
+        
+        
+        {/* Trust */}
+        {trust.length > 0 && (
+          <ul class="mt-(--space-md) list-disc space-y-1 pl-(--space-sm) text-sm text-(--text-muted)">
+            {trust.map((item: string) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        )}
+       
+
+        {settings.data.downloads && (
+          <div class="mt-(--space-sm) flex flex-col items-start gap-(--space-xs)">
+            {settings.data.downloads.map((file: { label: string; file: string }) => (
+              <a
+                href={file.file}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm underline-offset-2 hover:underline"
+              >
+                {file.label}
+              </a>
+            ))}
+          </div>
+        )}
+
+      </div>
+
+      {/* Right side - Photo placeholder */}
+      <div class="hidden lg:block">
+        <div class="aspect-square bg-(--color-surface) rounded-lg flex items-center justify-center text-(--text-muted)">
+          <span class="text-lg">Photo Placeholder</span>
+        </div>
+      </div>
 
     </div>
-
-    {/* Trust */}
-    {trust.length > 0 && (
-      <ul class="mt-(--space-md) list-disc space-y-1 pl-(--space-sm) text-sm text-(--text-muted)">
-        {trust.map((item: string) => (
-          <li>{item}</li>
-        ))}
-      </ul>
-    )}
-
-    {settings.data.downloads && (
-      <div class="mt-(--space-sm) flex flex-col items-start gap-(--space-xs)">
-        {settings.data.downloads.map((file: { label: string; file: string }) => (
-          <a
-            href={file.file}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-sm underline-offset-2 hover:underline"
-          >
-            {file.label}
-          </a>
-        ))}
-      </div>
-    )}
-      
-
   </div>
 </section>

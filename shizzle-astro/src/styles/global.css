@@ -2,18 +2,20 @@
 
 :root {
   /* COLORS */
-  --color-background: #0b0f12;
-  --color-surface: #121214;
+  --color-background: #0C181E;
+  --color-surface: #26373A;
   
-  --color-accent: #ff7a3d;
-  --color-accent-hover: #ff6a2a;
+  --color-accent: #26373A;
+  --color-accent-hover: #72472B;
 
+  /*
   --color-primary: #1c2b33;
   --color-secondary: #223843;
+  */
 
   /* TEXT */
-  --text-primary: #eaeaea;
-  --text-muted: #a0a8ad;
+  --text-primary: #953C12;
+  --text-muted: #BA7641;
 
   /* SPACING */
   --space-xs: 0.5rem;

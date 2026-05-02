@@ -92,6 +92,7 @@ export async function GET({ params }: APIContext) {
 
   const cached = cache.get(slug);
   if (cached) {
+    // @ts-ignore
     return new Response(cached, {
       headers: {
         "Content-Type": "image/png",
@@ -128,8 +129,9 @@ export async function GET({ params }: APIContext) {
       }
     }
 
-    cache.set(slug, png);
+    cache.set(slug, Uint8Array.from(png));
 
+    // @ts-ignore
     return new Response(png, {
       headers: {
         "Content-Type": "image/png",

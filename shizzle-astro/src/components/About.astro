@@ -10,12 +10,12 @@ const { Content } = await render(content);
 ---
 
 <section id="about" class="px-(--space-sm) py-(--space-lg)">
-  <div class="mx-auto max-w-3xl text-left">
+  <div class="mx-auto max-w-3xl lg:max-w-7xl lg:px-(--space-lg)">
     <h2 class="mb-(--space-sm) text-2xl font-bold">
       {content.data.title}
     </h2>
 
-    <div class="space-y-(--space-sm) leading-relaxed text-(--text-muted)">
+    <div class="space-y-(--space-sm) leading-relaxed text-(--text-muted) text-xl">
       <Content />
     </div>
   </div>
