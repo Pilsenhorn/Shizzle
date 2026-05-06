@@ -9,7 +9,6 @@ linktree: https://linktr.ee/shizzle.rap
 
 contactTitle: Booking & Spolupráce
 contactText: Chceš energii, co nezůstane stát na místě? Ozvi se. Přijedu, zahraju, rozhejbu.
-contactText: Chceš energii, co nezůstane stát na místě? Ozvi se. Přijedu, zahraju, rozhejbu.
 contactTrust:
   - Žádný playback, reálný live performance
   - Publikum není kulisa, ale součást show

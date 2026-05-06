@@ -15,20 +15,22 @@ const settings = settingsCollection[0];
 >
   <Header />
 
-  <main class="mx-auto min-h-[70vh] max-w-3xl px-(--space-sm) py-(--space-lg) text-left">
-    <p class="text-sm uppercase tracking-wide text-(--text-muted)">404</p>
-    <h1 class="mt-(--space-xs) text-4xl font-semibold md:text-6xl">
-      Tady nic nehraje.
-    </h1>
-    <p class="mt-(--space-sm) max-w-xl leading-relaxed text-(--text-muted)">
-      Stránka neexistuje nebo se přesunula. Nejlepší cesta zpátky vede na hlavní stránku.
-    </p>
-    <a
-      href="/"
-      class="mt-(--space-md) inline-block rounded-md bg-(--color-accent) px-(--space-md) py-(--space-xs) text-(--text-primary) transition hover:bg-(--color-accent-hover)"
-    >
-      Zpět na web
-    </a>
+  <main class="mx-auto flex min-h-[70svh] max-w-7xl items-center px-(--space-sm) py-(--space-lg) text-left md:px-(--space-md) lg:px-(--space-lg)">
+    <div class="max-w-3xl">
+      <p class="text-sm uppercase tracking-wide text-(--text-muted)">404</p>
+      <h1 class="mt-(--space-xs) text-4xl font-semibold md:text-6xl lg:text-7xl">
+        Tady nic nehraje.
+      </h1>
+      <p class="mt-(--space-sm) max-w-xl text-base leading-relaxed text-(--text-muted) md:text-lg">
+        Stránka neexistuje nebo se přesunula. Nejlepší cesta zpátky vede na hlavní stránku.
+      </p>
+      <a
+        href="/"
+        class="mt-(--space-md) inline-flex min-h-11 items-center justify-center rounded-md bg-(--color-accent) px-(--space-md) py-(--space-xs) text-(--text-primary) transition hover:bg-(--color-accent-hover) hover:text-(--color-background)"
+      >
+        Zpět na web
+      </a>
+    </div>
   </main>
 
   {settings && <Footer settings={settings} />}

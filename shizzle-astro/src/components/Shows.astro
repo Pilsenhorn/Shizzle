@@ -9,16 +9,16 @@ const { concerts } = Astro.props;
 ---
 
 <section id="shows" class="py-(--space-lg)">
-  <div class="mx-auto max-w-3xl space-y-(--space-sm) px-(--space-sm) text-left">
+  <div class="mx-auto max-w-7xl space-y-(--space-sm) px-(--space-sm) text-left md:px-(--space-md) lg:px-(--space-lg)">
 
     {concerts.map((show) => {
       const date = new Date(show.data.date);
 
       return (
-        <article class="grid gap-(--space-sm) border-b border-(--text-primary)/10 pb-(--space-sm) sm:grid-cols-[1fr_auto] sm:items-end">
+        <article class="grid gap-(--space-sm) border-b border-(--text-primary)/10 pb-(--space-sm) md:grid-cols-[1fr_auto] md:items-end md:gap-(--space-md) lg:pb-(--space-md)">
 
           <div>
-            <p class="text-sm text-(--text-muted)">
+            <p class="text-sm text-(--text-muted) lg:text-base">
               {date.toLocaleDateString("cs-CZ", {
                 day: "numeric",
                 month: "long",
@@ -26,19 +26,19 @@ const { concerts } = Astro.props;
               })}
             </p>
 
-            <p class="font-medium">
+            <p class="text-xl font-medium md:text-2xl">
               {show.data.city}
             </p>
 
-            <p class="text-sm text-(--text-muted)">
+            <p class="text-sm text-(--text-muted) lg:text-base">
               {show.data.venue}
             </p>
           </div>
 
-          <div class="flex flex-wrap gap-(--space-sm)">
+          <div class="flex flex-col gap-(--space-xs) md:flex-row md:items-center md:justify-end md:gap-(--space-sm)">
             <a
               href={`/concerts/${show.id}/`}
-              class="text-sm underline-offset-2 hover:underline"
+              class="inline-flex min-h-10 items-center justify-center rounded-md border border-(--text-primary)/20 px-(--space-sm) text-sm underline-offset-2 transition hover:bg-(--text-primary)/10 hover:underline md:min-h-0 md:border-0 md:px-0"
             >
               Detail
             </a>
@@ -48,7 +48,7 @@ const { concerts } = Astro.props;
                 href={show.data.ticketUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-sm underline-offset-2 hover:underline"
+                class="inline-flex min-h-10 items-center justify-center rounded-md bg-(--color-accent) px-(--space-sm) text-sm text-(--text-primary) underline-offset-2 transition hover:bg-(--color-accent-hover) hover:text-(--color-background) hover:underline md:min-h-0 md:bg-transparent md:px-0 md:hover:bg-transparent md:hover:text-(--text-primary)"
               >
                 Vstupenky
               </a>

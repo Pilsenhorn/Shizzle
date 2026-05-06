@@ -27,54 +27,65 @@ const formattedDate = new Date(concert.data.date).toLocaleDateString("cs-CZ", {
 ---
 
 <Layout
-    title={`${concert.data.city} koncert | Shizzle`}
-    description={concert.data.description}
-    url={`https://www.shizzle.cz/concerts/${concert.id}/`}
-    image={`https://www.shizzle.cz/api/og/${concert.id}`}
+  title={`${concert.data.city} koncert | Shizzle`}
+  description={concert.data.description}
+  url={`https://www.shizzle.cz/concerts/${concert.id}/`}
+  image={`https://www.shizzle.cz/api/og/${concert.id}`}
 >
+  <main class="mx-auto max-w-7xl px-(--space-sm) py-(--space-lg) text-left md:px-(--space-md) lg:px-(--space-lg)">
+    <article class="max-w-3xl">
+      <p class="text-sm uppercase tracking-wide text-(--text-muted)">Koncert</p>
 
-  <main class="mx-auto max-w-3xl px-(--space-sm) py-(--space-lg) text-left">
+      <h1 class="mt-(--space-xs) text-3xl font-semibold md:text-5xl lg:text-6xl">
+        {concert.data.city} - {concert.data.venue}
+      </h1>
 
-    <h1 class="text-3xl font-semibold">
-      {concert.data.city} – {concert.data.venue}
-    </h1>
-
-    <p class="mt-(--space-sm) text-(--text-muted)">
-      {formattedDate}
-    </p>
-
-    {concert.data.support && (
-      <p class="mt-(--space-sm)">
-        Support: {concert.data.support}
+      <p class="mt-(--space-sm) text-base text-(--text-muted) md:text-lg">
+        {formattedDate}
       </p>
-    )}
 
-    {concert.data.description && (
-      <p class="mt-(--space-md) leading-relaxed">
-        {concert.data.description}
-      </p>
-    )}
-
-    <div class="mt-(--space-md) flex flex-wrap gap-(--space-sm)">
-      {concert.data.ticketUrl && (
-        <a href={concert.data.ticketUrl} target="_blank" rel="noopener noreferrer" class="underline-offset-2 hover:underline">
-          Vstupenky
-        </a>
+      {concert.data.support && (
+        <p class="mt-(--space-sm) text-base md:text-lg">
+          Support: {concert.data.support}
+        </p>
       )}
-      {concert.data.website && (
-        <a href={concert.data.website} target="_blank" rel="noopener noreferrer" class="underline-offset-2 hover:underline">
-          Detail akce
-        </a>
-      )}
-    </div>
 
+      {concert.data.description && (
+        <p class="mt-(--space-md) text-base leading-relaxed text-(--text-muted) md:text-lg">
+          {concert.data.description}
+        </p>
+      )}
+
+      <div class="mt-(--space-md) flex flex-col gap-(--space-sm) md:flex-row md:items-center">
+        {concert.data.ticketUrl && (
+          <a
+            href={concert.data.ticketUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex min-h-11 items-center justify-center rounded-md bg-(--color-accent) px-(--space-md) py-(--space-xs) text-(--text-primary) transition hover:bg-(--color-accent-hover) hover:text-(--color-background)"
+          >
+            Vstupenky
+          </a>
+        )}
+        {concert.data.website && (
+          <a
+            href={concert.data.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex min-h-11 items-center justify-center rounded-md border border-(--text-primary)/20 px-(--space-sm) text-sm underline-offset-2 transition hover:bg-(--text-primary)/10 hover:underline md:min-h-0 md:border-0 md:px-0"
+          >
+            Detail akce
+          </a>
+        )}
+      </div>
+    </article>
   </main>
 
   <script type="application/ld+json">
     {JSON.stringify({
       "@context": "https://schema.org",
       "@type": "MusicEvent",
-      name: `Shizzle – ${concert.data.city}`,
+      name: `Shizzle - ${concert.data.city}`,
       startDate: dateISO,
       location: {
         "@type": "Place",
@@ -88,5 +99,4 @@ const formattedDate = new Date(concert.data.date).toLocaleDateString("cs-CZ", {
       url: concert.data.website || concert.data.ticketUrl,
     })}
   </script>
-
 </Layout>

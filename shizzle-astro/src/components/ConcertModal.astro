@@ -16,37 +16,26 @@ const formattedDate = new Date(concert.data.date).toLocaleDateString("cs-CZ", {
 
 <div
   id="concert-modal"
-  class="fixed inset-0 z-50 hidden items-center justify-center 
-  backdrop-blur-md bg-black/40 px-(--space-sm)
-  opacity-0 transition duration-300"
+  class="fixed inset-0 z-50 hidden items-end justify-center bg-black/40 px-(--space-sm) py-(--space-sm) opacity-0 backdrop-blur-md transition duration-300 md:items-center md:px-(--space-md)"
 >
   <div
     id="modal-content"
-    class="relative w-full max-w-md rounded-xl 
-    border border-white/10 
-    bg-white/5 backdrop-blur-xl 
-    p-(--space-md) text-(--text-primary) 
-    shadow-2xl
-    scale-95 opacity-0 transition duration-300"
+    class="relative w-full max-w-md scale-95 rounded-lg border border-white/10 bg-white/5 p-(--space-sm) text-(--text-primary) opacity-0 shadow-2xl backdrop-blur-xl transition duration-300 md:p-(--space-md)"
     style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.1)"
   >
     <button
       id="close-modal"
-      class="absolute right-(--space-sm) top-(--space-sm) 
-      rounded-full bg-white/10 p-2 
-      backdrop-blur 
-      text-(--text-muted)
-      transition hover:bg-white/20 hover:text-(--text-primary)"
+      class="absolute right-(--space-sm) top-(--space-sm) rounded-full bg-white/10 p-2 text-(--text-muted) backdrop-blur transition hover:bg-white/20 hover:text-(--text-primary)"
       aria-label="Zavřít modal"
     >
       ×
     </button>
 
-    <h2 class="mb-(--space-sm) font-(--font-heading) text-lg">
+    <h2 class="mb-(--space-sm) pr-(--space-md) font-(--font-heading) text-lg md:text-xl">
       Nejbližší koncert
     </h2>
 
-    <p class="text-xl font-semibold">
+    <p class="text-xl font-semibold md:text-2xl">
       {concert.data.city}
     </p>
 
@@ -70,17 +59,13 @@ const formattedDate = new Date(concert.data.date).toLocaleDateString("cs-CZ", {
       </p>
     )}
 
-    <div class="mt-(--space-md) flex flex-col gap-(--space-sm)">
-
+    <div class="mt-(--space-md) flex flex-col gap-(--space-sm) md:flex-row md:items-center">
       {concert.data.ticketUrl && (
         <a
           href={concert.data.ticketUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-block rounded-md 
-          bg-(--color-accent) px-(--space-md) py-(--space-xs) 
-          text-left text-(--text-primary) 
-          transition hover:bg-(--color-accent-hover)"
+          class="inline-flex min-h-11 items-center justify-center rounded-md bg-(--color-accent) px-(--space-md) py-(--space-xs) text-center text-(--text-primary) transition hover:bg-(--color-accent-hover) hover:text-(--color-background)"
         >
           Vstupenky
         </a>
@@ -91,12 +76,11 @@ const formattedDate = new Date(concert.data.date).toLocaleDateString("cs-CZ", {
           href={concert.data.website}
           target="_blank"
           rel="noopener noreferrer"
-          class="text-left text-sm underline text-(--text-muted) hover:text-(--text-primary)"
+          class="inline-flex min-h-11 items-center justify-center rounded-md border border-(--text-primary)/20 px-(--space-sm) text-center text-sm underline-offset-2 text-(--text-muted) transition hover:bg-(--text-primary)/10 hover:text-(--text-primary) hover:underline md:min-h-0 md:border-0 md:px-0"
         >
           Detail akce
         </a>
       )}
-
     </div>
   </div>
 </div>

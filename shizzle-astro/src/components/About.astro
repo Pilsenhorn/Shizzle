@@ -9,13 +9,13 @@ const { content } = Astro.props;
 const { Content } = await render(content);
 ---
 
-<section id="about" class="px-(--space-sm) py-(--space-lg)">
-  <div class="mx-auto max-w-3xl lg:max-w-7xl lg:px-(--space-lg)">
-    <h2 class="mb-(--space-sm) text-2xl font-bold">
+<section id="about" class="px-(--space-sm) py-(--space-lg) md:px-(--space-md) lg:px-(--space-lg)">
+  <div class="mx-auto max-w-7xl">
+    <h2 class="mb-(--space-sm) text-2xl font-bold md:text-3xl lg:text-4xl">
       {content.data.title}
     </h2>
 
-    <div class="space-y-(--space-sm) leading-relaxed text-(--text-muted) text-xl">
+    <div class="max-w-3xl space-y-(--space-sm) text-base leading-relaxed text-(--text-muted) md:text-lg lg:max-w-4xl lg:text-xl">
       <Content />
     </div>
   </div>
