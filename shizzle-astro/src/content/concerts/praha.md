@@ -1,10 +1,10 @@
 ---
-date: "2026-05-30"
+date: "2026-06-06"
 city: "Praha"
-venue: "Paladium stage"
+venue: "HYB4 E.0 Sál"
 
-website: "https://www.prahazijehudbou.cz/artists/eecfe4e6-d20c-400f-9221-d043f6e04619/"
-
+website: "https://www.kampushybernska.cz/program/hyb4-hudba-fragments-vol-5"
+ticketUrl: "https://goout.net/cs/listky/fragments-vol-5/nkylb/"
 
 description: "Zapomeň na drip, fet, love, hoes, autotune a generický beaty. Shizzle se nesnaží zapadnout do zavedený rap game. Má totiž vlastní pravidla hry, ve který je autenticita nad zlato."
 

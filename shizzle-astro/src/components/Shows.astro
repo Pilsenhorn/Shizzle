@@ -8,56 +8,109 @@ interface Props {
 const { concerts } = Astro.props;
 ---
 
-<section id="shows" class="py-(--space-lg)">
-  <div class="mx-auto max-w-7xl space-y-(--space-sm) px-(--space-sm) text-left md:px-(--space-md) lg:px-(--space-lg)">
+<section
+  id="shows"
+  class="px-(--space-sm) py-(--space-lg) md:px-(--space-md) lg:px-(--space-lg)"
+>
+  <div class="mx-auto max-w-7xl">
 
-    {concerts.map((show) => {
-      const date = new Date(show.data.date);
+    <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 
-      return (
-        <article class="grid gap-(--space-sm) border-b border-(--text-primary)/10 pb-(--space-sm) md:grid-cols-[1fr_auto] md:items-end md:gap-(--space-md) lg:pb-(--space-md)">
+      {concerts.map((show) => {
+        const date = new Date(show.data.date);
 
-          <div>
-            <p class="text-sm text-(--text-muted) lg:text-base">
-              {date.toLocaleDateString("cs-CZ", {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              })}
-            </p>
+        return (
+          <a
+            href={show.data.website || show.data.ticketUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="
+              group
+              flex
+              min-h-[340px]
+              flex-col
+              justify-between
 
-            <p class="text-xl font-medium md:text-2xl">
-              {show.data.city}
-            </p>
+              rounded-xl
+              border border-(--text-primary)/10
+              bg-(--color-surface)
 
-            <p class="text-sm text-(--text-muted) lg:text-base">
-              {show.data.venue}
-            </p>
-          </div>
+              p-5
 
-          <div class="flex flex-col gap-(--space-xs) md:flex-row md:items-center md:justify-end md:gap-(--space-sm)">
-            <a
-              href={`/concerts/${show.id}/`}
-              class="inline-flex min-h-10 items-center justify-center rounded-md border border-(--text-primary)/20 px-(--space-sm) text-sm underline-offset-2 transition hover:bg-(--text-primary)/10 hover:underline md:min-h-0 md:border-0 md:px-0"
-            >
-              Detail
-            </a>
+              transition-all
+              duration-300
 
-            {show.data.ticketUrl && (
-              <a
-                href={show.data.ticketUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex min-h-10 items-center justify-center rounded-md bg-(--color-accent) px-(--space-sm) text-sm text-(--text-primary) underline-offset-2 transition hover:bg-(--color-accent-hover) hover:text-(--color-background) hover:underline md:min-h-0 md:bg-transparent md:px-0 md:hover:bg-transparent md:hover:text-(--text-primary)"
+              hover:-translate-y-1
+              hover:border-(--text-primary)/20
+              hover:bg-(--color-accent)
+            "
+          >
+            {/* top */}
+            <div>
+
+              <p class="text-sm text-(--text-muted)">
+                {date.toLocaleDateString("cs-CZ", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
+              </p>
+
+              <h3 class="mt-2 text-2xl font-medium">
+                {show.data.city}
+              </h3>
+
+              <p class="mt-1 text-sm text-(--text-muted)">
+                {show.data.venue}
+              </p>
+
+              {show.data.support && (
+                <p class="mt-3 text-sm text-(--text-muted)">
+                  {show.data.support}
+                </p>
+              )}
+
+              {show.data.description && (
+                <p class="mt-4 line-clamp-4 text-sm text-(--text-muted)">
+                  {show.data.description}
+                </p>
+              )}
+            </div>
+
+            {/* bottom */}
+            <div class="mt-6 flex items-center justify-between">
+
+              <span
+                class="
+                  text-sm
+                  font-medium
+                  uppercase
+                  tracking-wide
+                  text-(--text-primary)
+                "
               >
-                Vstupenky
-              </a>
-            )}
-          </div>
+                Detail akce
+              </span>
 
-        </article>
-      );
-    })}
-
+              {show.data.ticketUrl && (
+                <span
+                  class="
+                    rounded-full
+                    border
+                    border-(--text-primary)/20
+                    px-3
+                    py-1
+                    text-xs
+                    uppercase
+                  "
+                >
+                  Tickets
+                </span>
+              )}
+            </div>
+          </a>
+        );
+      })}
+    </div>
   </div>
 </section>

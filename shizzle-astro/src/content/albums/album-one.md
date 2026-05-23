@@ -1,8 +1,7 @@
 ---
-title: "Shizzle Live"
-year: 2026
-cover: "/images/album-cover.jpg"
-spotify: "https://spotify.com"
+title: "Na minutku"
+year: 2022
+cover: "/media/albums/Na_minutku_artwork.jpg"
+spotify: "https://open.spotify.com/album/4QLGZ9TuM2jZoQDza3LZCs"
 ---
 
-Live album.

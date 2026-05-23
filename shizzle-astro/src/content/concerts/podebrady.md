@@ -1,9 +1,9 @@
 ---
-date: "2026-05-30"
-city: "Praha"
-venue: "Paladium stage"
+date: "2026-07-10"
+city: "Poděbrady"
+venue: "Barvy léta"
 
-website: "https://www.prahazijehudbou.cz/artists/eecfe4e6-d20c-400f-9221-d043f6e04619/"
+website: "https://www.barvyleta.cz/?page=program"
 
 
 description: "Zapomeň na drip, fet, love, hoes, autotune a generický beaty. Shizzle se nesnaží zapadnout do zavedený rap game. Má totiž vlastní pravidla hry, ve který je autenticita nad zlato."
