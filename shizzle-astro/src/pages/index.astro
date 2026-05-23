@@ -10,33 +10,45 @@ import Contact from "../components/Contact.astro";
 import Footer from "../components/Footer.astro";
 import StickyCTA from "../components/StickyCTA.astro";
 import Music from "../components/Music.astro";
+import SpotifyPlayer from "../components/SpotifyPlayer.astro";
 
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
-
-// concerts
+//concerts
 const concerts = await getCollection("concerts");
+
 const today = new Date();
-today.setHours(0, 0, 0, 0); 
+today.setHours(0, 0, 0, 0);
+
 const upcoming = concerts
-  .filter((concert) => new Date(concert.data.date) >= today)
+  .filter((concert) => {
+    const concertDate = new Date(
+      `${concert.data.date}T00:00:00`
+    );
+
+    return concertDate >= today;
+  })
   .sort(
     (a, b) =>
-      new Date(a.data.date).getTime() -
-      new Date(b.data.date).getTime()
+      new Date(`${a.data.date}T00:00:00`).getTime() -
+      new Date(`${b.data.date}T00:00:00`).getTime()
   );
 
 const nextConcert = upcoming[0];
 
-//modal
+// modal logic
 let showModal = false;
 
 if (nextConcert) {
   const diff =
-    (new Date(nextConcert.data.date).getTime() - Date.now()) /
+    (
+      new Date(`${nextConcert.data.date}T00:00:00`).getTime() -
+      today.getTime()
+    ) /
     (1000 * 60 * 60 * 24);
-  showModal = diff <= 30;
+
+  showModal = diff >= 0 && diff <= 30;
 }
 
 //albums
@@ -69,6 +81,7 @@ console.log(upcoming)
     <Shows concerts={upcoming} />
     <Media socials={social} />
     <Music albums={albums} />
+    <SpotifyPlayer />
     <About content={about} />
     <Contact settings={settings} />
     <Footer settings={settings}  />
