@@ -1,32 +1,82 @@
 ---
-import type { CollectionEntry } from "astro:content";
+const accessToken = import.meta.env.INSTAGRAM_ACCESS_TOKEN;
+const limit = 6;
 
-interface Props {
-  socials: CollectionEntry<"social">[];
+let posts: any[] = [];
+let error: string | null = null;
+
+try {
+  if (!accessToken) {
+    throw new Error("INSTAGRAM_ACCESS_TOKEN is not configured");
+  }
+
+  const url = new URL("https://graph.instagram.com/me/media");
+
+  url.searchParams.set(
+    "fields",
+    "id,caption,media_type,media_url,thumbnail_url,permalink,timestamp"
+  );
+
+  url.searchParams.set("limit", String(limit));
+  url.searchParams.set("access_token", accessToken);
+
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => null);
+
+    throw new Error(
+      errorData?.error?.message ||
+        `Instagram API returned ${response.status}`
+    );
+  }
+
+  const data = await response.json();
+
+  posts = Array.isArray(data.data) ? data.data : [];
+} catch (err) {
+  console.error("Instagram API error:", err);
+
+  error =
+    err instanceof Error
+      ? err.message
+      : "Instagram feed se nepodařilo načíst.";
 }
-
-const { socials } = Astro.props;
 ---
 
-<section id="media" class="px-(--space-sm) py-(--space-lg) md:px-(--space-md) lg:px-(--space-lg)">
+<section
+  id="media"
+  class="px-(--space-sm) py-(--space-lg) md:px-(--space-md) lg:px-(--space-lg)"
+>
   <div class="mx-auto max-w-7xl">
-    <div class="grid grid-cols-3 gap-1 md:grid-cols-4 md:gap-2 lg:grid-cols-6">
-      {socials.map((item) => (
-        <a
-          href={item.data.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="group aspect-4/8 overflow-hidden rounded-sm bg-(--color-surface) transition duration-300 hover:scale-[1.02] md:rounded-md"
-        >
-          <img
-            src={item.data.thumbnail}
-            alt={item.data.title || "Instagram reel"}
-            loading="lazy"
-            class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
-          />
-        </a>
-      ))}
-    </div>
-    
+
+    {error ? (
+      <p class="py-(--space-md) text-center text-sm text-(--text-muted)">
+        Instagram feed se momentálně nepodařilo načíst.
+      </p>
+    ) : (
+      <div class="grid grid-cols-3 gap-1 md:grid-cols-4 md:gap-2 lg:grid-cols-6">
+        {posts.map((post) => (
+          <a
+            href={post.permalink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group aspect-square overflow-hidden rounded-sm bg-(--color-surface) transition duration-300 hover:scale-[1.02] md:rounded-md"
+          >
+            <img
+              src={
+                post.media_type === "VIDEO"
+                  ? post.thumbnail_url
+                  : post.media_url
+              }
+              alt={post.caption || "Instagram"}
+              loading="lazy"
+              class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+            />
+          </a>
+        ))}
+      </div>
+    )}
+
   </div>
 </section>

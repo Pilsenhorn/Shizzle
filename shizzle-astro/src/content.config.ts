@@ -21,7 +21,11 @@ const albums = defineCollection({
     title: z.string(),
     year: z.number(),
     cover: z.string(),
-    spotify: z.string().optional(),
+    links: z.object({
+      spotify: z.string().optional(),
+      appleMusic: z.string().optional(),
+      youtube: z.string().optional(),
+    }).optional(),
   }),
 });
 
@@ -37,9 +41,7 @@ const social = defineCollection({
 
 const pages = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/pages" }),
-  schema: z.object({
-    title: z.string(),
-  }),
+  schema: z.object({}),
 });
 
 const settings = defineCollection({

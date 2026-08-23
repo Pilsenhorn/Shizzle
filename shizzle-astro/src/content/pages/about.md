@@ -1,6 +1,7 @@
 ---
-title: Kdo jsem ? 
+
 ---
+Nějak se s tím nemůžu sžít.
 
 Zapomeň na drip, fet, love, hoes, autotune a generický beaty.
 Shizzle se nesnaží zapadnout do zavedený rap game.

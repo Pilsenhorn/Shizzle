@@ -12,45 +12,130 @@ const { albums } = Astro.props;
   id="music"
   class="px-(--space-sm) py-(--space-lg) md:px-(--space-md) lg:px-(--space-lg)"
 >
-  <div class="mx-auto max-w-7xl">
+  <div class="mx-auto flex max-w-7xl flex-col items-center">
 
-    <div class="mb-(--space-md)">
-      <h2 class="text-2xl md:text-3xl font-semibold">
-        Alba
+    <div class="mb-(--space-md) w-full text-center">
+      <h2 class="text-2xl font-semibold md:text-3xl">
+        Poslechni si
       </h2>
     </div>
 
-    <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+    <div
+      class="grid w-full grid-cols-2 justify-items-center gap-4 md:grid-cols-3 lg:grid-cols-4"
+    >
       {albums.map((album) => (
-        <a
-          href={album.data.spotify}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="
-            group
-            overflow-hidden
-            rounded-md
-            bg-(--color-surface)
-            transition
-            duration-300
-            hover:scale-[1.02]
-          "
+        <article
+          class="group w-full max-w-64 overflow-hidden rounded-md bg-(--color-surface)"
         >
-          <img
-            src={album.data.cover}
-            alt={album.data.title}
-            loading="lazy"
-            class="
-              aspect-square
-              w-full
-              object-cover
-              transition
-              duration-300
-              group-hover:scale-105
-            "
-          />
 
-          <div class="p-3">
+          <!-- COVER -->
+          <div class="rounded-md relative aspect-square overflow-hidden">
+
+            <img
+              src={album.data.cover}
+              alt={album.data.title}
+              loading="lazy"
+              class="h-full w-full object-cover transition duration-300 group-hover:scale-105 group-hover:brightness-50"
+            />
+
+            <!-- PLATFORM LINKS -->
+            <div
+              class="
+                absolute inset-0
+                flex items-center justify-center
+                gap-4
+                opacity-0
+                transition duration-300
+                group-hover:opacity-100
+              "
+            >
+
+              {album.data.links?.spotify && (
+                <a
+                  href={album.data.links.spotify}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Poslechnout ${album.data.title} na Spotify`}
+                  class="
+                    flex h-11 w-11 items-center justify-center
+                    rounded-full
+                    bg-white/10
+                    text-white
+                    backdrop-blur-sm
+                    transition
+                    hover:scale-110
+                    hover:bg-white/20
+                  "
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    class="h-5 w-5 fill-current text-(--text-primary)"
+                  >
+                    <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.59 14.42a.75.75 0 0 1-1.03.25c-2.82-1.72-6.37-2.11-10.55-1.16a.75.75 0 1 1-.33-1.46c4.58-1.04 8.5-.59 11.66 1.34.35.22.46.68.25 1.03Zm1.38-3.07a.94.94 0 0 1-1.29.31c-3.23-1.98-8.15-2.55-11.97-1.39a.94.94 0 1 1-.55-1.8c4.36-1.32 9.8-.68 13.5 1.58.44.27.58.85.31 1.3Zm.12-3.2C14.22 7.98 8.06 7.79 4.47 8.88a1.13 1.13 0 1 1-.66-2.16c4.12-1.25 10.97-1 15.13 1.47a1.13 1.13 0 0 1-.85 1.96Z"/>
+                </svg>
+                </a>
+              )}
+
+              {album.data.links?.youtube && (
+                <a
+                  href={album.data.links.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Poslechnout ${album.data.title} na YouTube`}
+                  class="
+                    flex h-11 w-11 items-center justify-center
+                    rounded-full
+                    bg-white/10
+                    text-white
+                    backdrop-blur-sm
+                    transition
+                    hover:scale-110
+                    hover:bg-white/20
+                  "
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    class="h-5 w-5 fill-current text-(--text-primary)"
+                  >
+                    <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"/>
+                </svg>
+                </a>
+              )}
+
+              {album.data.links?.appleMusic && (
+                <a
+                  href={album.data.links.appleMusic}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Poslechnout ${album.data.title} na Apple Music`}
+                  class="
+                    flex h-11 w-11 items-center justify-center
+                    rounded-full
+                    bg-white/10
+                    text-white
+                    backdrop-blur-sm
+                    transition
+                    hover:scale-110
+                    hover:bg-white/20
+                  "
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    class="h-5 w-5 fill-current text-(--text-primary)"
+                  >
+                    <path d="M16.5 3.5c.8-1 1.3-2.2 1.2-3.5-1.2.1-2.6.8-3.4 1.8-.7.8-1.3 2.1-1.1 3.3 1.3.1 2.6-.6 3.3-1.6ZM19.9 12.8c0-2.8 2.3-4.2 2.4-4.3-1.3-1.9-3.4-2.1-4.1-2.2-1.7-.2-3.3 1-4.2 1s-2.2-1-3.6-1c-1.8 0-3.5 1.1-4.4 2.7-1.9 3.3-.5 8.2 1.3 10.9.9 1.3 1.9 2.7 3.3 2.6 1.3-.1 1.8-.9 3.4-.9s2 .9 3.4.9c1.4 0 2.3-1.3 3.2-2.6 1-1.5 1.4-3 1.4-3.1-.1 0-2.1-.8-2.1-3ZM15.5 5.1c.8-1 1.4-2.3 1.2-3.6-1.2.1-2.6.8-3.4 1.8-.7.8-1.3 2.1-1.1 3.3 1.3.1 2.6-.6 3.3-1.5Z"/>
+                </svg>
+                </a>
+              )}
+
+            </div>
+          </div>
+
+          <!-- INFO -->
+          <div class="p-3 text-left">
             <p class="font-medium">
               {album.data.title}
             </p>
@@ -59,7 +144,8 @@ const { albums } = Astro.props;
               {album.data.year}
             </p>
           </div>
-        </a>
+
+        </article>
       ))}
     </div>
   </div>
