@@ -14,103 +14,213 @@ const { concerts } = Astro.props;
 >
   <div class="mx-auto max-w-7xl">
 
-    <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    {/* Heading */}
+    <div class="mb-(--space-md)">
+      <h2 class="text-center text-2xl font-semibold md:text-3xl">
+        Přijď na ochutnávku
+      </h2>
 
+      <p class="mt-(--space-xs) text-center text-sm text-(--text-muted)">
+        Živě, bez filtru.
+      </p>
+    </div>
+
+    {/* Carousel */}
+    <div
+      class="
+        flex
+        gap-4
+        overflow-x-auto
+        overflow-y-visible
+        overscroll-x-contain
+        snap-x
+        snap-mandatory
+        px-2
+        py-4
+        scrollbar-none
+      "
+    >
       {concerts.map((show) => {
         const date = new Date(show.data.date);
 
         return (
-          <a
-            href={show.data.website || show.data.ticketUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <div
             class="
-              group
-              flex
-              min-h-85
-              flex-col
-              justify-between
-
-              rounded-xl
-              border border-(--text-primary)/10
-              bg-(--color-surface)
-
-              p-5
-
-              transition-all
-              duration-300
-
-              hover:-translate-y-1
-              hover:border-(--text-primary)/20
-              hover:bg-(--color-accent)
+              min-w-[85%]
+              snap-start
+              sm:min-w-[320px]
+              lg:min-w-90
             "
           >
-            {/* top */}
-            <div>
-
-              <p class="text-sm text-(--text-muted)">
-                {date.toLocaleDateString("cs-CZ", {
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                })}
-              </p>
-
-              <h3 class="mt-2 text-2xl font-medium">
-                {show.data.city}
-              </h3>
-
-              <p class="mt-1 text-sm text-(--text-muted)">
-                {show.data.venue}
-              </p>
-
-              {show.data.support && (
-                <p class="mt-3 text-sm text-(--text-muted)">
-                  {show.data.support}
-                </p>
-              )}
-
-              {show.data.description && (
-                <p class="mt-4 line-clamp-4 text-sm text-(--text-muted)">
-                  {show.data.description}
-                </p>
-              )}
-            </div>
-
-            {/* bottom */}
-            <div class="mt-6 flex items-center justify-between">
-
-              <span
-                class="
-                  text-sm
-                  font-medium
-                  uppercase
-                  tracking-wide
-                  text-(--text-primary)
-                "
-              >
-                Detail akce
-              </span>
-
-              {show.data.ticketUrl && (
-                <span
+            <a
+              href={show.data.website || show.data.ticketUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="
+                group
+                flex
+                min-h-85
+                w-full
+                flex-col
+                justify-between
+                rounded-xl
+               
+                bg-(--color-surface)
+                p-5
+                transition-all
+                duration-300
+                hover:-translate-y-1
+                hover:scale-105
+                hover:border-(--text-primary)
+                hover:bg-(--color-accent)
+              "
+            >
+              {/* Top */}
+              <div>
+                <p
                   class="
-                    rounded-full
-                    border
-                    border-(--text-primary)/20
-                    px-3
-                    py-1
-                    text-xs
-                    uppercase
+                    text-sm
+                    text-(--text-muted)
+                    transition-colors
+                    duration-300
+                    group-hover:text-(--text-primary)
                   "
                 >
-                  Tickets
+                  {date.toLocaleDateString("cs-CZ", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </p>
+
+                <h3 class="mt-2 text-2xl font-medium">
+                  {show.data.city}
+                </h3>
+
+                <p
+                  class="
+                    mt-1
+                    text-sm
+                    text-(--text-muted)
+                    transition-colors
+                    duration-300
+                    group-hover:text-(--text-primary)
+                  "
+                >
+                  {show.data.venue}
+                </p>
+
+                {show.data.support && (
+                  <p
+                    class="
+                      mt-3
+                      text-sm
+                      text-(--text-muted)
+                      transition-colors
+                      duration-300
+                      group-hover:text-(--text-primary)
+                    "
+                  >
+                    {show.data.support}
+                  </p>
+                )}
+
+                {show.data.description && (
+                  <p
+                    class="
+                      mt-4
+                      line-clamp-4
+                      text-sm
+                      leading-relaxed
+                      text-(--text-muted)
+                      transition-colors
+                      duration-300
+                      group-hover:text-(--text-primary)
+                    "
+                  >
+                    {show.data.description}
+                  </p>
+                )}
+              </div>
+
+              {/* Bottom */}
+              <div class="mt-6 flex items-center justify-between gap-3">
+                <span
+                  class="
+                    text-sm
+                    inline-block
+                    font-medium
+                    uppercase
+                    tracking-wide
+                    text-(--text-primary)
+                    transition-transform
+                    duration-300
+                    hover:-translate-y-1
+                    hover:scale-105
+                  "
+                >
+                  Odkaz na akci →
                 </span>
-              )}
-            </div>
-          </a>
+
+                {show.data.ticketUrl && (
+                  <span
+                    class="
+                      inline-block
+                      rounded-full
+                      border
+                      border-(--text-primary)
+                      px-3
+                      py-1
+                      text-sm
+                      font-medium
+                      tracking-wide
+                      uppercase
+                      transition-all
+                      duration-300
+                      hover:-translate-y-1
+                      hover:scale-105
+                      hover:border-(--text-primary)
+                      hover:bg-(--color-accent)
+                    "
+                  >
+                    Vstupenky
+                  </span>
+                )}
+              </div>
+            </a>
+          </div>
         );
       })}
     </div>
+
+    {/* Scroll hint */}
+    {concerts.length > 1 && (
+      <div
+        class="
+          mt-(--space-xs)
+          flex
+          items-center
+          justify-center
+          gap-2
+          text-xs
+          text-(--text-muted)
+        "
+      >
+        <span>←</span>
+        <span>procházet koncerty</span>
+        <span>→</span>
+      </div>
+    )}
+
   </div>
 </section>
+
+<style>
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+</style>

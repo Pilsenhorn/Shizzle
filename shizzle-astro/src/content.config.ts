@@ -54,6 +54,8 @@ const settings = defineCollection({
     tiktok: z.string(),
     facebook: z.string(),
     linktree: z.string().optional(),
+    ico: z.string().optional(),
+    zr: z.string().optional(),
 
     contactTitle: z.string().optional(),
     contactText: z.string().optional(),

@@ -31,9 +31,17 @@ const formattedDate = new Date(concert.data.date).toLocaleDateString("cs-CZ", {
       ×
     </button>
 
-    <h2 class="mb-(--space-sm) pr-(--space-md) font-(--font-heading) text-lg md:text-xl">
+    <h2 id="modal-title" class="mb-(--space-sm) pr-(--space-md) font-(--font-heading) text-lg md:text-xl">
       Nejbližší koncert
     </h2>
+
+    <button
+      type="button"
+      id="concert-modal-close"
+      aria-label="Zavřít detail koncertu"
+    >
+      ×
+    </button>
 
     <p class="text-xl font-semibold md:text-2xl">
       {concert.data.city}

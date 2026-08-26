@@ -6,13 +6,15 @@ youtube: https://www.youtube.com/@shizzlerap
 tiktok: https://www.tiktok.com/@shizzle.rap
 facebook: https://www.facebook.com/shizzle.rap/
 linktree: https://linktr.ee/shizzle.rap
+ico: "IČ: 124 792 52"
+zr: "Zapsán v Živnostenském rejstříku v Praze."
 
-contactTitle: Booking & Spolupráce
-contactText: Chceš energii, co nezůstane stát na místě? Ozvi se. Přijedu, zahraju, rozhejbu.
+contactTitle: Napiš mi do klubu
+contactText: Vyhodili mě ze Zbytečně Smutného Orchestru, ZSO.
 contactTrust:
-  - Žádný playback, reálný live performance
-  - Publikum není kulisa, ale součást show
-  - Každá akce má vlastní flow
+  - Žádný playback, reálný ukázka jak nehrát na hoboj
+  - Žádné publikum není kulisa, ale součást show
+  - Každý koncert je plný stresu a překvapení, co kdo zase posere..
 
 downloads:
   - label: Stage Plan (PDF)

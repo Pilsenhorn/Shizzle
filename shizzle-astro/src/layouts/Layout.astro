@@ -11,7 +11,7 @@ interface Props {
 const siteUrl = "https://www.shizzle.cz";
 
 const {
-  title = "Shizzle - rapový zpěvák, performer",
+  title = "Shizzle - rapový zpěvák",
   description = "Shizzle je rapový zpěvák a performer z Prahy.",
   url = siteUrl,
   image = `${siteUrl}/og-image.png`,
@@ -49,6 +49,24 @@ const jsonLd = {
 		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 	</head>
 	<body class="bg-background text-left text-(--text-primary) font-(--font-base)">
+		<a
+			href="#main-content"
+			class="
+				sr-only
+				focus:not-sr-only
+				focus:fixed
+				focus:left-4
+				focus:top-4
+				focus:z-9999
+				focus:rounded-md
+				focus:bg-(--color-accent)
+				focus:px-4
+				focus:py-2
+				focus:text-(--color-background)
+			"
+			>
+			Přeskočit na hlavní obsah
+			</a>
 		<slot />
 		<script>
 			document.addEventListener("DOMContentLoaded", () => {
