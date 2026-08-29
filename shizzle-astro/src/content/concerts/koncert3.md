@@ -3,7 +3,7 @@ date: "2026-10-08"
 city: "Brno"
 venue: "Metro music bar"
 
-website: ""
+website: "ajnljandfl"
 
 support: "AI Jacobi, The Porch guys"
 

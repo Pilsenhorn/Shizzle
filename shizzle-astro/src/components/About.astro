@@ -11,8 +11,11 @@ const { Content } = await render(content);
 
 <section id="about" class="px-(--space-sm) py-(--space-lg) md:px-(--space-md) lg:px-(--space-lg)">
   <div class="mx-auto max-w-7xl">
-    <h2 class="mb-(--space-sm) text-2xl font-bold md:text-3xl lg:text-4xl">
-      {content.data.title}
+    <h2 
+      class="mb-(--space-sm) text-2xl font-bold md:text-3xl lg:text-4xl"
+      aria-label={content.data.title}
+    >
+      {content.data.title || "O mně"}
     </h2>
 
     <div class="max-w-7xl space-y-(--space-sm) leading-relaxed text-(--text-muted) md:text-lg lg:text-xl">
