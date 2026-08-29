@@ -23,41 +23,12 @@ const { albums } = Astro.props;
 
     {/* Carousel */}
     <div
-      class="
-        flex
-        gap-4
-        overflow-x-auto
-        overflow-y-visible
-        overscroll-x-contain
-        snap-x
-        snap-mandatory
-        px-2
-        py-4
-        scrollbar-none
-      "
-    >
+      class="flex gap-4 overflow-x-auto overflow-y-visible overscroll-x-contain snap-x snap-mandatory px-2 py-4 scrollbar-none">
       {albums.map((album) => (
         <div
-          class="
-            min-w-[75%]
-            snap-start
-            sm:min-w-70
-            lg:min-w-[320px]
-          "
-        >
+          class="min-w-[75%] snap-start sm:min-w-70 lg:min-w-90">
           <article
-            class="
-              group
-              w-full
-              overflow-hidden
-              rounded-md
-              bg-(--color-surface)
-              transition-all
-              duration-300
-              hover:-translate-y-1
-              hover:scale-105
-            "
-          >
+            class="group w-full overflow-hidden rounded-xl bg-(--color-surface) transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02]">
 
             {/* COVER */}
             <div class="relative aspect-square overflow-hidden rounded-md">
@@ -66,32 +37,11 @@ const { albums } = Astro.props;
                 src={album.data.cover}
                 alt={album.data.title}
                 loading="lazy"
-                class="
-                  h-full
-                  w-full
-                  object-cover
-                  transition-all
-                  duration-300
-                  group-hover:scale-105
-                  group-hover:brightness-50
-                "
-              />
+                class="h-full w-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:brightness-50"/>
 
               {/* PLATFORM LINKS */}
               <div
-                class="
-                  absolute
-                  inset-0
-                  flex
-                  items-center
-                  justify-center
-                  gap-4
-                  opacity-0
-                  transition-opacity
-                  duration-300
-                  group-hover:opacity-100
-                "
-              >
+                class="absolute inset-0 flex items-center justify-center gap-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
 
                 {album.data.links?.spotify && (
                   <a

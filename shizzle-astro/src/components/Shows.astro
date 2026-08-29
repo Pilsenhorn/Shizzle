@@ -46,9 +46,9 @@ const { concerts } = Astro.props;
         return (
           <div
             class="
-              min-w-[85%]
+              min-w-[75%]
               snap-start
-              sm:min-w-[320px]
+              sm:min-w-70
               lg:min-w-90
             "
           >
@@ -59,7 +59,7 @@ const { concerts } = Astro.props;
               class="
                 group
                 flex
-                min-h-85
+                aspect-4/5
                 w-full
                 flex-col
                 justify-between
@@ -70,7 +70,7 @@ const { concerts } = Astro.props;
                 transition-all
                 duration-300
                 hover:-translate-y-1
-                hover:scale-105
+                hover:scale-[1.02]
                 hover:border-(--text-primary)
                 hover:bg-(--color-accent)
               "
@@ -79,7 +79,7 @@ const { concerts } = Astro.props;
               <div>
                 <p
                   class="
-                    text-sm
+                    text-md
                     text-(--text-muted)
                     transition-colors
                     duration-300
@@ -93,14 +93,14 @@ const { concerts } = Astro.props;
                   })}
                 </p>
 
-                <h3 class="mt-2 text-2xl font-medium">
+                <h3 class="mt-2 text-3xl font-medium">
                   {show.data.city}
                 </h3>
 
                 <p
                   class="
                     mt-1
-                    text-sm
+                    text-md
                     text-(--text-muted)
                     transition-colors
                     duration-300
@@ -114,7 +114,7 @@ const { concerts } = Astro.props;
                   <p
                     class="
                       mt-3
-                      text-sm
+                      text-md
                       text-(--text-muted)
                       transition-colors
                       duration-300
@@ -130,7 +130,7 @@ const { concerts } = Astro.props;
                     class="
                       mt-4
                       line-clamp-4
-                      text-sm
+                      text-md
                       leading-relaxed
                       text-(--text-muted)
                       transition-colors
@@ -147,7 +147,7 @@ const { concerts } = Astro.props;
               <div class="mt-6 flex items-center justify-between gap-3">
                 <span
                   class="
-                    text-sm
+                    text-xs
                     inline-block
                     font-medium
                     uppercase
@@ -171,7 +171,7 @@ const { concerts } = Astro.props;
                       border-(--text-primary)
                       px-3
                       py-1
-                      text-sm
+                      text-xs
                       font-medium
                       tracking-wide
                       uppercase
