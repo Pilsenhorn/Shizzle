@@ -153,13 +153,14 @@ const trust = settings.data.contactTrust || [];
                 justify-center
                 rounded-md
                 border
-                border-(--text-primary)/30
+                border-(--text-primary)
                 px-(--space-md)
                 py-(--space-xs)
                 text-center
                 text-(--text-primary)
                 transition
-                hover:bg-(--text-primary)/10
+                hover:bg-(--text-primary)
+                hover:text-(--color-background)
               "
             >
               {settings.data.bookingEmail}
@@ -178,6 +179,7 @@ const trust = settings.data.contactTrust || [];
                 pl-(--space-sm)
                 text-sm
                 leading-relaxed
+                text-left
                 text-(--text-muted)
                 md:text-base
               "
@@ -193,12 +195,13 @@ const trust = settings.data.contactTrust || [];
           {settings.data.downloads && (
             <div
               class="
-                mt-(--space-sm)
+                mt-(--space-md)
                 flex
                 flex-col
                 items-stretch
-                gap-(--space-xs)
-                md:items-start
+                gap-(--space-sm)
+                md:flex-row
+                md:items-center
               "
             >
               {settings.data.downloads.map(
@@ -208,21 +211,20 @@ const trust = settings.data.contactTrust || [];
                     target="_blank"
                     rel="noopener noreferrer"
                     class="
-                      inline-flex
-                      min-h-10
-                      items-center
-                      rounded-md
-                      border
-                      border-(--text-primary)/20
-                      px-(--space-sm)
-                      text-sm
-                      underline-offset-2
-                      transition
-                      hover:bg-(--text-primary)/10
-                      hover:underline
-                      md:min-h-0
-                      md:border-0
-                      md:px-0
+                       inline-flex
+                        min-h-11
+                        items-center
+                        justify-center
+                        rounded-md
+                        bg-(--color-accent)
+                        px-(--space-md)
+                        py-(--space-xs)
+                        text-center
+                        text-(--text-primary)
+                        transition
+                        hover:scale-[1.02]
+                        hover:bg-(--color-accent-hover)
+                        hover:text-(--color-background)
                     "
                   >
                     {file.label}
@@ -235,7 +237,7 @@ const trust = settings.data.contactTrust || [];
         </div>
 
 
-        <!-- RIGHT SIDE -->
+        <!-- RIGHT SIDE Obrázek se zobrazuje až od tabletu a větším displeji -->
         <div
           class="
             relative
