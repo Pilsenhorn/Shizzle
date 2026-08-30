@@ -11,6 +11,6 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [icon(), sitemap()],
   site: "https://www.shizzle.cz",
+  integrations: [icon(), sitemap()],
 });

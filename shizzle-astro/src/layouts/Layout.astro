@@ -11,43 +11,135 @@ interface Props {
 const siteUrl = "https://www.shizzle.cz";
 
 const {
-  title = "Shizzle - rapový zpěvák",
-  description = "Shizzle je rapový zpěvák a performer z Prahy.",
+  title = "Shizzle | Rap",
+  description = "Shizzle je český rapper a hudební umělec. Poslechni si jeho hudbu, podívej se na videa a zjisti, kde hraje nejbližší koncert.",
   url = siteUrl,
-  image = `${siteUrl}/og-image.png`,
+  image = `${siteUrl}/og-image.webp`,
 } = Astro.props;
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Shizzle",
-  url: siteUrl,
-  jobTitle: "Rapový zpěvák, performer",
-  description,
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+      name: "Shizzle",
+      alternateName: "Shizzle Rap",
+      url: siteUrl,
+      image: `${siteUrl}/pictures/Shizzle.webp`,
+      jobTitle: "Rapper, hudební umělec",
+      description,
+      sameAs: [
+        "https://www.facebook.com/shizzle.rap/",
+        "https://www.instagram.com/shizzle.rap/",
+        "https://www.tiktok.com/@shizzle.rap",
+        "https://open.spotify.com/artist/76Imp4Czna96agKFe8cJfH",
+        "https://www.youtube.com/@shizzlerap",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "Shizzle",
+      description,
+      inLanguage: "cs-CZ",
+      publisher: {
+        "@id": `${siteUrl}/#person`,
+      },
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${url}#webpage`,
+      url,
+      name: title,
+      description,
+      inLanguage: "cs-CZ",
+      isPartOf: {
+        "@id": `${siteUrl}/#website`,
+      },
+      about: {
+        "@id": `${siteUrl}/#person`,
+      },
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        url: image,
+      },
+    },
+    {
+      "@type": "MusicAlbum",
+      "@id": `${siteUrl}/#album-na-minutku`,
+      name: "Na minutku",
+      byArtist: {
+        "@id": `${siteUrl}/#person`,
+      },
+      datePublished: "2022",
+      image: `${siteUrl}/media/albums/Na_minutku_artwork.webp`,
+      sameAs: [
+        "https://open.spotify.com/album/4QLGZ9TuM2jZoQDza3LZCs",
+        "https://music.youtube.com/playlist?list=PLTN4aJbdNDojSbQoEjchw6oAU9cIwJp-q",
+        "https://music.apple.com/us/album/na-minutku/1610406820",
+      ],
+    },
+    {
+      "@type": "MusicAlbum",
+      "@id": `${siteUrl}/#Nedokončená`,
+      name: "Nedokončená",
+      byArtist: {
+        "@id": `${siteUrl}/#person`,
+      },
+      datePublished: "2026",
+      image: `${siteUrl}/media/albums/Na_minutku_artwork.webp`,
+      sameAs: [
+        "https://open.spotify.com/album/0mAvmrJdSphacPexTTv4yN",
+        "https://music.youtube.com/playlist?list=PLTN4aJbdNDoh8gowfbpNP3nkUFTRWyWe2",
+        "https://music.apple.com/sk/album/nedokon%C4%8Den%C3%A1/1879814642",
+      ],
+    }
+  ],
 };
 ---
 
 <!doctype html>
 <html lang="cs">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" type="image/png" href="/logo/logo.png" />
-		<link rel="canonical" href={url} />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-		<meta name="description" content={description} />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content={url} />
-		<meta property="og:image" content={image} />
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content={title} />
-		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content={image} />
-		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-	</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{title}</title>
+
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="canonical" href={url} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:alt" content="Shizzle – rap" />
+    <meta property="og:locale" content="cs_CZ" />
+    <meta property="og:site_name" content="Shizzle" />
+
+    <!-- X / Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    <meta name="twitter:image:alt" content="Shizzle – rap" />
+
+    <!-- Astro -->
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Structured data -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(jsonLd)}
+    />
+  </head>
 	<body class="bg-background text-left text-(--text-primary) font-(--font-base)">
 		<a
 			href="#main-content"
