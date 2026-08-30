@@ -29,15 +29,6 @@ const albums = defineCollection({
   }),
 });
 
-const social = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/social" }),
-  schema: z.object({
-    platform: z.string().optional(),
-    url: z.string(),
-    thumbnail: z.string(),
-    title: z.string().optional(),
-  }),
-});
 
 const pages = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/pages" }),
@@ -76,6 +67,5 @@ export const collections = {
   concerts,
   albums,
   pages,
-  social,
   settings,
 };
