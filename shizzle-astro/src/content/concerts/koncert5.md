@@ -1,15 +1,19 @@
 ---
-date: "2026-17-10"
-city: "Praha"
-venue: "Klubovna"
+date: ""
+city: ""
+venue: ""
 
-website: "https://www.barvyleta.cz/?page=program"
+website: ""
 
-description: "Zapomeň na drip, fet, love, hoes, autotune a generický beaty. Shizzle se nesnaží zapadnout do zavedený rap game. Má totiž vlastní pravidla hry, ve který je autenticita nad zlato."
+description: ""
 
-support: "AI Jacobi, VKZ"
+support: ""
 
 ticketUrl: ""
 
 featured: true
 ---
+
+<!-- 
+datum koncertu je US - rok - měsíc - den
+-->

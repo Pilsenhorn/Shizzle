@@ -1,27 +1,17 @@
 <header class="sticky left-0 top-0 z-50 w-full px-(--space-xs) pt-(--space-xs) md:px-(--space-sm)">
   <div class="w-full rounded-lg border border-(--text-primary)/15 bg-surface/80 backdrop-blur-md">
     <div class="mx-auto flex w-full max-w-7xl items-center justify-between px-(--space-xs) py-(--space-xs) md:px-(--space-sm) lg:px-(--space-md)">
-      <a href="/" class="flex shrink-0 items-center">
-        <img
-          src="/logo/shizzle-logo.webp"
-          alt="Shizzle logo"
-          width="1774"
-          height="887"
-          decoding="async"
-          class="h-9 w-auto md:h-10 lg:h-11"
-        />
-      </a>
 
       <nav class="hidden items-center gap-(--space-lg) text-sm font-medium md:flex lg:gap-(--space-md) lg:text-base">
         <a href="#shows" class="transition hover:text-(--color-accent-hover)">Koncerty</a>
-        <a href="#media" class="transition hover:text-(--color-accent-hover)">Media</a>
+        <a href="#media" class="transition hover:text-(--color-accent-hover)">Diskografie</a>
         <a href="#about" class="transition hover:text-(--color-accent-hover)">O mně</a>
         <a href="#contact" class="transition hover:text-(--color-accent-hover)">Booking</a>
       </nav>
 
       <button
         id="menu-btn"
-        class="flex shrink-0 flex-col gap-1 rounded-full p-(--space-xs) md:hidden"
+        class="ml-auto flex shrink-0 flex-col gap-1 rounded-full p-(--space-xs) md:hidden"
         aria-label="Otevřít navigaci"
         aria-controls="mobile-menu"
         aria-expanded="false"
@@ -35,10 +25,27 @@
 
   <div
     id="mobile-menu"
-    class="fixed left-(--space-xs) right-(--space-xs) top-20 hidden flex-col gap-(--space-xs) overflow-y-auto rounded-lg border border-(--text-primary)/15 bg-surface/95 p-(--space-xs) shadow-xl backdrop-blur-md md:hidden"
+    class="
+      fixed
+      right-(--space-xs)
+      top-20
+      hidden
+      w-64
+      flex-col
+      gap-(--space-xs)
+      overflow-y-auto
+      rounded-lg
+      border
+      border-(--text-primary)/15
+      bg-surface/95
+      p-(--space-xs)
+      shadow-xl
+      backdrop-blur-md
+      md:hidden
+    "
   >
     <a href="#shows" class="rounded-full px-(--space-sm) py-(--space-xs) text-left text-base transition hover:bg-(--text-primary)/10">Koncerty</a>
-    <a href="#media" class="rounded-full px-(--space-sm) py-(--space-xs) text-left text-base transition hover:bg-(--text-primary)/10">Media</a>
+    <a href="#media" class="rounded-full px-(--space-sm) py-(--space-xs) text-left text-base transition hover:bg-(--text-primary)/10">Diskografie</a>
     <a href="#about" class="rounded-full px-(--space-sm) py-(--space-xs) text-left text-base transition hover:bg-(--text-primary)/10">O mně</a>
     <a href="#contact" class="rounded-full bg-(--color-accent) px-(--space-sm) py-(--space-xs) text-left leading-snug text-(--text-primary) transition hover:bg-(--color-accent-hover)">
       Booking

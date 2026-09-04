@@ -14,3 +14,6 @@ support: "AL Jacobi"
 featured: true
 ---
 
+<!-- 
+datum koncertu je US - rok - měsíc - den
+-->

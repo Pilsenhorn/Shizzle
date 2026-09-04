@@ -161,24 +161,57 @@ const { albums } = Astro.props;
       ))}
     </div>
 
-    {/* Scroll hint */}
-    {albums.length > 1 && (
-      <div
+    {/* Carousel controls */}
+    <div class="mb-4 hidden justify-center gap-2 md:flex">
+      <button
+        id="shows-prev"
+        type="button"
+        aria-label="Předchozí koncert"
         class="
-          mt-(--space-xs)
           flex
+          h-10
+          w-10
           items-center
           justify-center
-          gap-2
-          text-xs
-          text-(--text-muted)
+          rounded-full
+          border
+          border-(--text-primary)
+          text-lg
+          transition-all
+          duration-300
+          hover:bg-(--color-accent)
+          disabled:cursor-not-allowed
+          disabled:opacity-30
         "
       >
-        <span>←</span>
-        <span>procházet alba</span>
-        <span>→</span>
-      </div>
-    )}
+        ←
+      </button>
+
+      <button
+        id="shows-next"
+        type="button"
+        aria-label="Další koncert"
+        class="
+          flex
+          h-10
+          w-10
+          items-center
+          justify-center
+          rounded-full
+          border
+          border-(--text-primary)
+          text-lg
+          transition-all
+          duration-300
+          hover:bg-(--color-accent)
+          disabled:cursor-not-allowed
+          disabled:opacity-30
+        "
+      >
+        →
+      </button>
+    </div>
+    
 
   </div>
 </section>

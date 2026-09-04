@@ -1,16 +1,19 @@
 ---
-date: "2026-09-03"
-city: "Plzeň"
-venue: "Pilsen Busking Fest"
+date: ""
+city: ""
+venue: ""
 
-website: "http://buskingfest.cz/"
+website: ""
 
 description: ""
 
 support: ""
 
-ticketUrl: "lonlnlkj"
+ticketUrl: ""
 
 featured: true
 ---
 
+<!-- 
+datum koncertu je US - rok - měsíc - den
+-->

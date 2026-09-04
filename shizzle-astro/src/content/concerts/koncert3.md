@@ -13,3 +13,7 @@ description: "Událost ještě není :)"
 
 featured: true
 ---
+
+<!-- 
+datum koncertu je US - rok - měsíc - den
+-->
