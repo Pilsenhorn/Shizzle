@@ -1,21 +1,145 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
 
 interface Props {
   settings: CollectionEntry<"settings">;
 }
 
 const { settings } = Astro.props;
+
+const emailSubject = encodeURIComponent(`
+Booking request
+`);
+
+const emailBody = encodeURIComponent(`
+Dobrý den,
+
+mám zájem o booking Shizzle.
+
+Datum akce:
+Místo:
+Typ akce:
+`);
+
+const mailtoUrl = `mailto:${settings.data.bookingEmail}?subject=${emailSubject}&body=${emailBody}`;
 ---
 
-{settings.data.linktree && (
-  <a
-    href={settings.data.linktree}
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Booking kontakt"
-    class="fixed right-[-3.2rem] bottom-8 z-50 -rotate-90 rounded-t-xl rounded-b-none border border-white/10 bg-[rgba(38,55,58,0.72)] px-6 py-3 text-sm font-medium uppercase tracking-wide text-(--text-primary) shadow-2xl backdrop-blur-md transition-all duration-300 hover:right-[-2.8rem] hover:bg-(--color-accent-hover) hover:text-white md:px-8 md:py-4 md:text-base"
-  >
-    Book Me
-  </a>
-)}
+<div
+  class="
+    fixed
+    right-4
+    bottom-4
+    z-50
+    hidden
+    flex-col
+    items-center
+    gap-4
+    md:flex
+  "
+>
+  {/* Book Me */}
+  {settings.data.bookingEmail && (
+    <div class="relative h-36 w-14">
+      <a
+        href={mailtoUrl}
+        aria-label="Booking kontakt"
+        class="
+          absolute
+          left-1/2
+          top-1/2
+          -translate-x-1/2
+          -translate-y-1/2
+          -rotate-90
+          whitespace-nowrap
+          rounded-t-xl
+          rounded-b-none
+          border
+          border-white/10
+          bg-[rgba(38,55,58,0.72)]
+          px-6
+          py-3
+          text-sm
+          font-medium
+          uppercase
+          tracking-wide
+          text-(--text-primary)
+          shadow-2xl
+          backdrop-blur-md
+          transition-all
+          duration-300
+          hover:bg-(--color-accent-hover)
+          hover:text-white
+          md:px-8
+          md:py-4
+          md:text-base
+        "
+      >
+        Book Me
+      </a>
+    </div>
+  )}
+
+  {/* Social links */}
+  <div class="flex flex-col items-center gap-4">
+    {settings.data.facebook && (
+      <a
+        href={settings.data.facebook}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-(--text-muted) transition hover:scale-110 hover:text-(--text-primary)"
+        aria-label="Otevřít Facebook profil"
+      >
+        <Icon name="simple-icons:facebook" class="h-5 w-5" />
+      </a>
+    )}
+
+    {settings.data.instagram && (
+      <a
+        href={settings.data.instagram}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-(--text-muted) transition hover:scale-110 hover:text-(--text-primary)"
+        aria-label="Otevřít Instagram profil"
+      >
+        <Icon name="simple-icons:instagram" class="h-5 w-5" />
+      </a>
+    )}
+
+    {settings.data.tiktok && (
+      <a
+        href={settings.data.tiktok}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-(--text-muted) transition hover:scale-110 hover:text-(--text-primary)"
+        aria-label="Otevřít TikTok profil"
+      >
+        <Icon name="simple-icons:tiktok" class="h-5 w-5" />
+      </a>
+    )}
+
+    {settings.data.spotify && (
+      <a
+        href={settings.data.spotify}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-(--text-muted) transition hover:scale-110 hover:text-(--text-primary)"
+        aria-label="Otevřít Spotify profil"
+      >
+        <Icon name="simple-icons:spotify" class="h-5 w-5" />
+      </a>
+    )}
+
+    {settings.data.youtube && (
+      <a
+        href={settings.data.youtube}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-(--text-muted) transition hover:scale-110 hover:text-(--text-primary)"
+        aria-label="Otevřít YouTube kanál"
+      >
+        <Icon name="simple-icons:youtube" class="h-5 w-5" />
+      </a>
+    )}
+  </div>
+</div>
