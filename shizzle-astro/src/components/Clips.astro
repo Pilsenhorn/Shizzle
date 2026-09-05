@@ -1,0 +1,64 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  clips: CollectionEntry<"clips">[];
+}
+
+const { clips } = Astro.props;
+---
+
+<section
+  id="clips"
+  class="px-(--space-sm) py-(--space-lg) md:px-(--space-md) lg:px-(--space-lg)"
+>
+  <div class="mx-auto max-w-7xl">
+
+    <div class="mb-(--space-md)">
+      <h2 class="text-center text-2xl font-semibold md:text-3xl">
+        Videoklipy
+      </h2>
+    </div>
+
+    <div class="grid gap-(--space-md) md:grid-cols-2">
+      {clips.map((clip) => (
+        <article
+          class="overflow-hidden rounded-xl border border-(--text-primary)/10 bg-(--color-surface)"
+        >
+
+          <!-- YouTube video -->
+          <div class="aspect-video">
+            <iframe
+              src={`https://www.youtube.com/embed/${clip.data.videoID}`}
+              title={clip.data.title}
+              class="h-full w-full rounded-2xl"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+
+          <!-- Text -->
+          <div class="p-(--space-sm)">
+            <h3 class="text-lg font-semibold">
+              {clip.data.title}
+            </h3>
+
+            <p class="mt-2 text-sm text-(--text-muted)">
+              {clip.data.description}
+            </p>
+
+            <button
+              type="button"
+              class="mt-(--space-sm) text-sm font-medium transition hover:text-(--color-accent-hover)"
+            >
+              Přečíst si příběh
+            </button>
+          </div>
+
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>

@@ -61,6 +61,19 @@ const settings = defineCollection({
       )
       .optional(),
   }),
+  
+});
+
+const clips = defineCollection({
+  loader: glob({
+    pattern: "**/*.md",
+    base: "./src/content/clips",
+  }),
+  schema: z.object({
+    title: z.string(),
+    videoID: z.string(),
+    description: z.string().optional(),
+  }),
 });
 
 export const collections = {
@@ -68,4 +81,5 @@ export const collections = {
   albums,
   pages,
   settings,
+  clips,
 };

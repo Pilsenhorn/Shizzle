@@ -4,13 +4,13 @@ import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import Shows from "../components/Shows.astro";
 import ConcertModal from "../components/ConcertModal.astro";
-import Media from "../components/Media.astro";
 import About from "../components/About.astro";
 import Contact from "../components/Contact.astro";
 import Footer from "../components/Footer.astro";
 import StickyCTA from "../components/StickyCTA.astro";
-import Music from "../components/Music.astro";
 import SpotifyPlayer from "../components/SpotifyPlayer.astro";
+import Media from "../components/Media.astro";
+import Clips from "../components/Clips.astro";
 
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
@@ -51,9 +51,6 @@ if (nextConcert) {
   showModal = diff >= 0 && diff <= 30;
 }
 
-//albums
-const albums = await getCollection("albums");
-
 //pages
 const pages = await getCollection("pages");
 const about = pages.find((p) => p.id.includes("about"));
@@ -78,7 +75,6 @@ const settings = settingsCollection[0];
     <Hero />
     <Shows concerts={upcoming} />
     <Media />
-    <Music albums={albums} />
     <SpotifyPlayer />
     <About content={about} />
     <Contact settings={settings} />

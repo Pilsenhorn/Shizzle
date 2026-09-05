@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Music from '../components/Music.astro';
+import StickyCTA from '../components/StickyCTA.astro';
+import Clips from '../components/Clips.astro';
+import ConcertModal from "../components/ConcertModal.astro";
+
+import { getCollection } from "astro:content";
+
+const albums = await getCollection("albums");
+const clips = await getCollection("clips");
+
+//concerts
+const concerts = await getCollection("concerts");
+
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+
+const upcoming = concerts
+  .filter((concert) => {
+    const concertDate = new Date(
+      `${concert.data.date}T00:00:00`
+    );
+
+    return concertDate >= today;
+  })
+  .sort(
+    (a, b) =>
+      new Date(`${a.data.date}T00:00:00`).getTime() -
+      new Date(`${b.data.date}T00:00:00`).getTime()
+  );
+
+const nextConcert = upcoming[0];
+
+// modal logic
+let showModal = false;
+
+if (nextConcert) {
+  const diff =
+    (
+      new Date(`${nextConcert.data.date}T00:00:00`).getTime() -
+      today.getTime()
+    ) /
+    (1000 * 60 * 60 * 24);
+
+  showModal = diff >= 0 && diff <= 30;
+}
+
+
+const settingsCollection = await getCollection("settings");
+const settings = settingsCollection[0];
+---
+
+<Layout 
+  title="Diskografie | Shizzle"
+  description="Diskografie rappera Shizzle."
+>
+  <Header />
+  <main>
+    <Music albums={albums} />
+    <Clips clips={clips} />
+    
+    
+    <StickyCTA settings={settings} />
+    {showModal && <ConcertModal concert={nextConcert} />}
+
+  </main>
+  <Footer settings={settings} />
+</Layout>

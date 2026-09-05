@@ -1,9 +1,8 @@
 Přidat:
 
-https://open.spotify.com/artist/76Imp4Czna96agKFe8cJfH?si=un5ocKxSR8yzybxyhE1Wbg
+https://open.spotify.com/artist/76Imp4Czna96agKFe8cJfH?si=un5ocKxSR8yzybxyhE1Wbg - **hotovo**
 
 https://www.youtube.com/watch?v=OIAhbzOEvGU
-
 https://www.youtube.com/watch?v=Dgeecf6urzE
 https://www.youtube.com/watch?v=CvK3BvsBA_g
 https://www.youtube.com/watch?v=bDINXnRFRNg
@@ -19,3 +18,7 @@ https://www.youtube.com/watch?v=QCzU3pvOv9Y&pp=0gcJCRoMAYcqIYzv
 3.) Karty s koncertama mi přijdou, že jsou moc na výšku, snížil bych = **pracuje se na tom. Hlavně budou jiný, vyřešit jestli jde udělat carousel i na img s textem**
 
 4.) Daj se rámečky, ve kterých jsou texty (nyní oblé obdélníky) předělat na jiný tvar? Viděl bych to na něco méně pravidelného.. třebo komiksový hranatý bubliny nebo tak něco v tom stylu = ano, uděláme - **pracuje se na tom**.
+
+5. Rozdělit web na podstránky, nastavit header. **hotovo**
+6. Přidat ty klipy do wraperu ve wraperu.
+7. připravit wraper s klipama na budoucí rozšíření o pdf texty.
