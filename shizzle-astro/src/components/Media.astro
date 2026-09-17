@@ -1,41 +1,72 @@
 ---
-const accessToken = import.meta.env.INSTAGRAM_ACCESS_TOKEN;
-const limit = 6;
+interface InstagramPost {
+  id: string;
+  timestamp: string;
+  permalink: string;
+  mediaType: "IMAGE" | "VIDEO";
+  mediaUrl: string;
+  thumbnailUrl?: string;
+  caption?: string;
+  sizes?: {
+    small?: {
+      width: number;
+      height: number;
+      mediaUrl: string;
+    };
+    medium?: {
+      width: number;
+      height: number;
+      mediaUrl: string;
+    };
+    large?: {
+      width: number;
+      height: number;
+      mediaUrl: string;
+    };
+    full?: {
+      width: number;
+      height: number;
+      mediaUrl: string;
+    };
+  };
+}
 
-let posts: any[] = [];
+interface BeholdFeed {
+  biography?: string;
+  profilePictureUrl?: string;
+  website?: string;
+  followersCount?: number;
+  followsCount?: number;
+  posts: InstagramPost[];
+}
+
+const feedUrl =
+  import.meta.env.BEHOLD_FEED_URL?.trim();
+
+let feed: BeholdFeed | null = null;
 let error: string | null = null;
 
 try {
-  if (!accessToken) {
-    throw new Error("INSTAGRAM_ACCESS_TOKEN is not configured");
-  }
-
-  const url = new URL("https://graph.instagram.com/me/media");
-
-  url.searchParams.set(
-    "fields",
-    "id,caption,media_type,media_url,thumbnail_url,permalink,timestamp"
-  );
-
-  url.searchParams.set("limit", String(limit));
-  url.searchParams.set("access_token", accessToken);
-
-  const response = await fetch(url);
-
-  if (!response.ok) {
-    const errorData = await response.json().catch(() => null);
-
+  if (!feedUrl) {
     throw new Error(
-      errorData?.error?.message ||
-        `Instagram API returned ${response.status}`
+      "Missing BEHOLD_FEED_URL environment variable"
     );
   }
 
-  const data = await response.json();
+  const response = await fetch(feedUrl);
 
-  posts = Array.isArray(data.data) ? data.data : [];
+  if (!response.ok) {
+    throw new Error(
+      `Behold feed returned ${response.status}`
+    );
+  }
+
+  feed = await response.json();
 } catch (err) {
-  console.error("Instagram API error:", err);
+  console.error(
+    "Behold Instagram feed error:",
+    err
+  );
 
   error =
     err instanceof Error
@@ -50,32 +81,62 @@ try {
 >
   <div class="mx-auto max-w-7xl">
 
+    <div class="mb-(--space-md)">
+      <h2 class="text-center text-3xl font-semibold">
+        Sleduj mě
+      </h2>
+    </div>
+
     {error ? (
-      <p class="py-(--space-md) text-center text-sm text-(--text-muted)">
+      <p class="text-center text-sm opacity-60">
         Instagram feed se momentálně nepodařilo načíst.
       </p>
-    ) : (
-      <div class="grid grid-cols-3 gap-1 md:grid-cols-4 md:gap-2 lg:grid-cols-6">
-        {posts.map((post) => (
-          <a
-            href={post.permalink}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group aspect-square overflow-hidden rounded-sm bg-(--color-surface) transition duration-300 hover:scale-[1.02] md:rounded-md"
-          >
-            <img
-              src={
-                post.media_type === "VIDEO"
-                  ? post.thumbnail_url
-                  : post.media_url
-              }
-              alt={post.caption || "Instagram"}
-              loading="lazy"
-              class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
-            />
-          </a>
-        ))}
+    ) : feed?.posts?.length ? (
+      <div
+        class="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"
+      >
+        {feed.posts.map((post) => {
+          const imageUrl =
+            post.mediaType === "VIDEO"
+              ? post.thumbnailUrl
+              : post.sizes?.large?.mediaUrl ??
+                post.sizes?.medium?.mediaUrl ??
+                post.mediaUrl;
+
+          return (
+            <a
+              href={post.permalink}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Otevřít příspěvek na Instagramu"
+              class="group relative z-0 aspect-4/5 overflow-hidden rounded-2xl transition-transform duration-300 hover:z-10 hover:scale-105"
+            >
+              {imageUrl && (
+                <img
+                  src={imageUrl}
+                  alt={
+                    post.caption ||
+                    "Instagram příspěvek"
+                  }
+                  width="1000"
+                  height="800"
+                  loading="lazy"
+                  decoding="async"
+                  class="h-full w-full object-cover"
+                />
+              )}
+
+              <div
+                class="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20"
+              ></div>
+            </a>
+          );
+        })}
       </div>
+    ) : (
+      <p class="text-center text-sm opacity-60">
+        Žádné příspěvky.
+      </p>
     )}
 
   </div>

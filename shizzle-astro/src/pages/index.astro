@@ -10,10 +10,10 @@ import Footer from "../components/Footer.astro";
 import StickyCTA from "../components/StickyCTA.astro";
 import SpotifyPlayer from "../components/SpotifyPlayer.astro";
 import Media from "../components/Media.astro";
-import Clips from "../components/Clips.astro";
+
 
 import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
+
 
 //concerts
 const concerts = await getCollection("concerts");
@@ -77,7 +77,6 @@ const settings = settingsCollection[0];
     <Media />
     <SpotifyPlayer />
     <About content={about} />
-    <Contact settings={settings} />
     <Footer settings={settings}  />
     <StickyCTA settings={settings} />
     {showModal && <ConcertModal concert={nextConcert} />}
