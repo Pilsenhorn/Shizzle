@@ -29,16 +29,20 @@ const { concerts } = Astro.props;
     <div
       id="shows-carousel"
       class="
-        flex
-        gap-4
+        grid
+        grid-flow-col
+        auto-cols-[85%]
+        gap-2
         overflow-x-auto
         overflow-y-visible
         overscroll-x-contain
         snap-x
         snap-mandatory
-        px-2
         py-4
         scrollbar-none
+        sm:auto-cols-[calc((100%-16px)/3)]
+        md:auto-cols-[calc((100%-24px)/4)]
+        lg:auto-cols-[calc((100%-40px)/6)]
       "
     >
       {concerts.map((show) => {
@@ -47,10 +51,16 @@ const { concerts } = Astro.props;
         return (
           <div
             class="
-              min-w-[75%]
-              snap-start
-              sm:min-w-70
-              lg:min-w-90
+              group
+              relative
+              z-0
+              aspect-4/6
+              overflow-hidden
+              rounded-2xl
+              transition-transform
+              duration-300
+              hover:z-10
+              hover:scale-105
             "
           >
             <a
@@ -60,7 +70,7 @@ const { concerts } = Astro.props;
               class="
                 group
                 flex
-                aspect-4/5
+                h-full
                 w-full
                 flex-col
                 justify-between
@@ -147,8 +157,8 @@ const { concerts } = Astro.props;
               <div class="mt-6 flex items-center justify-between gap-3">
                 <span
                   class="
-                    text-xs
                     inline-block
+                    text-xs
                     font-medium
                     uppercase
                     tracking-wide
@@ -173,8 +183,8 @@ const { concerts } = Astro.props;
                       py-1
                       text-xs
                       font-medium
-                      tracking-wide
                       uppercase
+                      tracking-wide
                       transition-all
                       duration-300
                       hover:-translate-y-1
