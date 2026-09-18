@@ -1,5 +1,5 @@
 ---
-const isDiscography = Astro.url.pathname === '/discography';
+const isDiscography = Astro.url.pathname.replace(/\/$/, '') === '/discography';
 ---
 
 <header class="sticky left-0 top-0 z-50 w-full px-(--space-xs) pt-(--space-xs) md:px-(--space-sm)">
