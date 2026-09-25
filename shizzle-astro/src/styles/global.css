@@ -48,7 +48,6 @@ img,
 svg,
 video {
   display: block;
-  max-width: 100%;
 }
 
 :focus-visible {

@@ -11,12 +11,9 @@ const { settings } = Astro.props;
 
 <footer class="mt-(--space-lg) border-t border-(--text-primary)/10 px-(--space-sm) py-(--space-md) md:px-(--space-md) lg:px-(--space-lg)">
   <div class="mx-auto max-w-7xl">
-    <div class="grid gap-(--space-md) md:grid-cols-3 lg:gap-(--space-lg)">
+    <div class="grid gap-(--space-sm) md:grid-cols-3 lg:gap-(--space-lg)">
 
-      <div class="order-1 text-center md:text-left md:order-1">
-        <h4 class="text-sm font-semibold uppercase tracking-wide text-(--text-muted)">
-          Kontakt
-        </h4>
+      <div class="order-2 flex flex-col items-center justify-end md:order-1">
 
         <p class="mt-(--space-xs) text-sm text-(--text-muted) wrap:anywhere">
           <a
@@ -26,15 +23,9 @@ const { settings } = Astro.props;
             {settings.data.bookingEmail}
           </a>
         </p>
-        <p class="mt-(--space-xs) text-sm text-(--text-muted) wrap:anywhere">
-          {settings.data.ico}
-        </p>
 
-        <p class="mt-(--space-xs) text-sm text-(--text-muted) wrap:anywhere">
-          {settings.data.zr}
-        </p>
-
-
+        {/* Social media links can be added here if needed */}
+        {/* 
         <div class="mt-(--space-sm) flex items-center justify-center gap-(--space-sm) md:justify-start">
           {settings.data.facebook && (
             <a
@@ -96,20 +87,28 @@ const { settings } = Astro.props;
             </a>
           )}
         </div>
+        */}
       </div>
 
-      <div class="text-center order-3 md:order-2">
+      <div class="order-1 text-center md:order-2">
         <h3>
           <img
-          src="/logo/shizzle-logo.webp"
+          src="/logo/Logo2.webp"
           alt="Shizzle"
-          class="mx-auto w-80 md:w-96 lg:w-120"
+          class="mx-auto w-full max-w-100 md:max-w-140 lg:max-w-160"
           loading="eager"
         />
         </h3>
       </div>
 
-      <div class="text-center order-2 md:order-3 md:text-right ">
+      <div class="order-3 flex flex-col justify-end text-center md:order-3">
+        <p class="mt-(--space-xs) text-sm text-(--text-muted) wrap:anywhere">
+          {settings.data.ico}
+        </p>
+
+        {/* Navigation links can be added here if needed */}
+
+        {/*
         <h4 class="text-sm font-semibold uppercase tracking-wide text-(--text-muted)">
           Navigace
         </h4>
@@ -122,12 +121,14 @@ const { settings } = Astro.props;
           <li><a href="/#contact" class="transition hover:text-(--text-primary)">Booking</a></li>
           -->
         </ul>
+        */}
+
       </div>
 
 
     </div>
 
-    <div class="mt-(--space-md) border-t border-(--text-primary)/10 pt-(--space-sm)">
+    <div class="mt-(--space-sm) border-t border-(--text-primary)/10 pt-(--space-sm)">
       <p class="text-center text-xs text-(--text-muted)">
         © 2026 Shizzle. Všechna práva vyhrazena.
       </p>

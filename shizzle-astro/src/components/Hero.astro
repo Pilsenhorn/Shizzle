@@ -1,75 +1,93 @@
-
 <section
   class="
     relative
     flex
-    min-h-155
+    w-full
     items-center
-    justify-center
+    justify-end
     overflow-hidden
-    px-(--space-sm)
-    pt-24
-    pb-(--space-md)
-    md:min-h-[80svh]
-    md:px-(--space-md)
-    md:py-(--space-lg)
-    lg:min-h-[88vh]
-    lg:px-(--space-lg)
-    "
-  >  
-  <div class="
-        absolute
-        inset-0 
-        opacity-25 
-        md:opacity-20 
-        lg:opacity-30
-        "
-      >
-    <img
-      src="/pictures/Shizzle.webp"
-      alt="Shizzle"
-      width="1536"
-      height="1024"
-      fetchpriority="high"
-      loading="eager"
-      class="
-        h-full
-        w-full
-        object-contain
-        object-[50%_35%]
-        md:object-bottom-right
-      "
-    />
-  </div>
 
-  <div class="
-        relative
-        z-10 
-        mx-auto 
-        w-full 
-        max-w-7xl 
-        text-center
-        "
-      >
-    <div class="mx-auto max-w-3xl">
+  "
+>
+
+  {/* 1. vrstva - fotografie */}
+  <img
+    src="/pictures/Hero/2_Shizzle_hlava.webp"
+    alt="Shizzle"
+    width="1536"
+    height="1024"
+    fetchpriority="high"
+    loading="eager"
+    class="
+      relative
+      z-10
+      h-auto
+      w-[90vw]
+      max-w-5xl 
+      opacity-80
+    "
+    />
+
+  {/* 2. vrstva - filtr / textura */}
+  <img
+    src="/pictures/Hero/Filtr.webp"
+    alt=""
+    aria-hidden="true"
+    class="
+      pointer-events-none
+      absolute
+      inset-0
+      z-20
+      h-full
+      w-full
+      object-cover
+      opacity-50
+    "
+  />
+
+  {/* 3. vrstva - logo */}
+  <div
+    class="
+      absolute
+      inset-0
+      z-30
+      flex
+      w-full
+      items-center
+      justify-center
+      p-4
+      text-center
+      sm:p-8
+    "
+  >
+    <div class="w-full max-w-sm sm:max-w-xl md:max-w-2xl lg:max-w-7xl">
       <h1>
         <img
-          src="/logo/shizzle-logo.webp"
+          src="/logo/Logo2.webp"
           alt="Shizzle"
           width="1774"
           height="887"
-          class="
-            mx-auto
-            w-full 
-            max-w-96
-            md:w-120 
-            lg:w-156
-            "
+          class="h-auto w-full drop-shadow-lg"
           loading="eager"
         />
       </h1>
-
-
     </div>
   </div>
+
+  {/* Přechod Hero → další sekce */}
+  <div
+    class="
+      pointer-events-none
+      absolute
+      inset-x-0
+      bottom-0
+      z-40
+      h-24
+      bg-linear-to-b
+      from-transparent
+      to-(--color-background)
+      md:h-32
+    "
+  ></div>
+
 </section>

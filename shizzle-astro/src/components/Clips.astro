@@ -35,18 +35,28 @@ const { clips } = Astro.props;
               loading="lazy"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen
-            ></iframe>
+            >   
+            </iframe>            
+            <button
+              type="button"
+              class="mt-(--space-sm) text-sm font-medium transition hover:text-(--color-accent-hover)">
+              Přečíst si příběh
+            </button>
           </div>
 
-          <!-- Text -->
-          <div class="p-(--space-sm)">
+       
+          
+         
+          {/*<div class="p-(--space-sm)">
+            
             <h3 class="text-lg font-semibold">
               {clip.data.title}
             </h3>
 
             <p class="mt-2 text-sm text-(--text-muted)">
               {clip.data.description}
-            </p>
+            </p> 
+            
 
             <button
               type="button"
@@ -54,7 +64,7 @@ const { clips } = Astro.props;
             >
               Přečíst si příběh
             </button>
-          </div>
+          </div>*/}
 
         </article>
       ))}
