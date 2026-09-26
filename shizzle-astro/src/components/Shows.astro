@@ -10,9 +10,45 @@ const { concerts } = Astro.props;
 
 <section
   id="shows"
-  class="px-(--space-sm) py-(--space-lg) md:px-(--space-md) lg:px-(--space-lg)"
+  class="
+    relative
+    overflow-hidden
+    bg-[url('/pictures/Koncerty/1_Zeď.png')]
+    bg-cover
+    bg-center
+    bg-no-repeat
+    px-(--space-sm) py-(--space-lg) md:px-(--space-md) lg:px-(--space-lg)"
 >
-  <div class="mx-auto max-w-7xl">
+  <div 
+    class="
+      pointer-events-none
+      absolute
+      inset-x-0
+      top-0
+      z-0
+      h-40
+      bg-linear-to-b 
+      from-(--color-background) 
+      via-(--color-background)/99
+      to-transparent
+      md:h-32
+    ">
+  </div>
+    <div
+    class="
+      pointer-events-none
+      absolute
+      inset-x-0
+      bottom-0
+      z-0
+      h-24
+      bg-linear-to-t
+      from-(--color-background)
+      to-transparent
+      md:h-32
+    "
+  ></div>
+  <div class="relative z-10 mx-auto max-w-7xl">
 
     {/* Heading */}
     <div class="mb-(--space-md)">

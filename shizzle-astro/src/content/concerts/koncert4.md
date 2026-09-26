@@ -2,7 +2,7 @@
 date: "2026-10-14"
 city: "Plzeň"
 venue: "Divadlo Pod lampou"
-
+image: /pictures/Koncerty/2_bublina tmavě oranžová.png
 website: "https://www.facebook.com/events/1532212974798804"
 
 description: ""

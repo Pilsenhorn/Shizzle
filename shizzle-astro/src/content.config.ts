@@ -7,6 +7,7 @@ const concerts = defineCollection({
     date: z.string(),
     city: z.string(),
     venue: z.string(),
+    image: z.string(),
     website: z.string().optional(),
     support: z.string().optional(),
     description: z.string().optional(),
