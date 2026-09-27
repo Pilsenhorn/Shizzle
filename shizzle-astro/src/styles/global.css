@@ -54,3 +54,12 @@ video {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
 }
+
+.hide-srcollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-srcollbar::-webkit-scrollbar {
+  display: none;
+}

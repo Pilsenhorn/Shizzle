@@ -1,16 +1,16 @@
 ---
-date: "2026-10-08"
-city: "Brno"
-venue: "Metro music bar"
-image: /pictures/Koncerty/2_bublina oranžová.png
+date: "2026-10-14"
+city: "Plzeň"
+venue: "Divadlo Pod lampou"
+image: /pictures/Koncerty/2_orange.png
 
-website: "ajnljandfl"
+website: "https://www.facebook.com/events/1532212974798804"
 
-support: "AI Jacobi, The Porch guys"
+description: ""
 
 ticketUrl: ""
 
-description: "Událost ještě není :)"
+support: "AL Jacobi"
 
 featured: true
 ---

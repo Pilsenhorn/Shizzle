@@ -1,8 +1,10 @@
 <section
+  id="hero"
   class="
     relative
     flex
     w-full
+    min-h-svh
     items-center
     justify-end
     overflow-hidden
@@ -11,22 +13,33 @@
 >
 
   {/* 1. vrstva - fotografie */}
-  <img
-    src="/pictures/Hero/2_Shizzle_hlava.webp"
-    alt="Shizzle"
-    width="1536"
-    height="1024"
-    fetchpriority="high"
-    loading="eager"
-    class="
-      relative
-      z-10
-      h-auto
-      w-[90vw]
-      max-w-5xl 
-      opacity-80
-    "
+  <picture>
+    <source
+      media="(max-width: 767px)"
+      srcset="/pictures/Hero/2_Shizzle_hlava_mobile.png"
     />
+
+    <img
+      src="/pictures/Hero/2_Shizzle_hlava.webp"
+      alt="Shizzle"
+      width="1536"
+      height="1024"
+      fetchpriority="high"
+      loading="eager"
+      class="
+        absolute
+        right-0
+        top-0
+        z-10
+        h-auto
+        w-[90vw]
+        max-w-none
+        opacity-80
+        md:h-full
+        md:w-auto
+      "
+    />
+  </picture>
 
   {/* 2. vrstva - filtr / textura */}
   <img
@@ -86,8 +99,13 @@
       bg-linear-to-b
       from-transparent
       to-(--color-background)
+      sm:h-28
       md:h-32
     "
   ></div>
+  <div 
+    id="hero-end"
+    class="pointer-events-none absolute bottom-[85vh] h-px w-px">
+  </div>
 
 </section>

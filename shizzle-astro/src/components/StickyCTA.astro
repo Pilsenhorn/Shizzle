@@ -26,6 +26,7 @@ const mailtoUrl = `mailto:${settings.data.bookingEmail}?subject=${emailSubject}&
 ---
 
 <div
+  id="sticky-cta"
   class="
     fixed
     right-4
@@ -141,4 +142,28 @@ const mailtoUrl = `mailto:${settings.data.bookingEmail}?subject=${emailSubject}&
       </a>
     )}
   </div>
+
+  <script>
+    const cta = document.querySelector("#sticky-cta");
+    const heroEnd = document.querySelector("#hero-end");
+
+    if (cta) {
+      if (!heroEnd) {
+        cta.classList.remove("opacity-0");
+        cta.classList.add("opacity-100");
+      } else {
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            cta.classList.toggle("opacity-0", entry.isIntersecting);
+            cta.classList.toggle("opacity-100", !entry.isIntersecting);
+          },
+          {
+            threshold: 0,
+          },
+        );
+
+        observer.observe(heroEnd);
+      }
+    }
+  </script>
 </div>

@@ -1,14 +1,16 @@
 ---
-date: "2026-09-12"
-city: "Těnovice"
-venue: "TFENEKUTE - Festival nezávislé kultury"
-image: /pictures/Koncerty/2_bublina bílá.png
+date: "2026-10-08"
+city: "Brno"
+venue: "Metro music bar"
+image: /pictures/Koncerty/2_white.png
 
-website: "http://www.facebook.com/events/4344812769063607"
+website: "ajnljandfl"
 
-description: ""
+support: "AI Jacobi, The Porch guys"
 
 ticketUrl: ""
+
+description: "Událost ještě není :)"
 
 featured: true
 ---

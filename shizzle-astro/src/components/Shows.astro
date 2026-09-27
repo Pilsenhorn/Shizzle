@@ -6,6 +6,12 @@ interface Props {
 }
 
 const { concerts } = Astro.props;
+
+// VRSTVA 1 – hlavní background
+const backgroundImage = "/pictures/Koncerty/1_wall.png";
+
+// VRSTVA 2 – doplňující transparentní fotografie
+const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
 ---
 
 <section
@@ -13,46 +19,129 @@ const { concerts } = Astro.props;
   class="
     relative
     overflow-hidden
-    bg-[url('/pictures/Koncerty/1_Zeď.png')]
-    bg-cover
-    bg-center
-    bg-no-repeat
-    px-(--space-sm) py-(--space-lg) md:px-(--space-md) lg:px-(--space-lg)"
+    bg-(--color-background)
+    px-(--space-sm)
+    py-(--space-lg)
+    md:min-h-[85svh]
+    md:px-(--space-md)
+    lg:px-(--space-lg)
+  "
 >
-  <div 
+  {/* =========================================================
+      VRSTVA 1
+      Hlavní background 
+      ========================================================= */}
+
+  {backgroundImage && (
+    <img
+      src={backgroundImage}
+      alt=""
+      aria-hidden="true"
+      class="
+        pointer-events-none
+        absolute
+        inset-0
+        z-0
+        h-full
+        w-full
+        object-cover
+        object-[center_bottom]
+        scale-[1.45]
+        md:scale-100
+        md:object-[center_80%]
+      "
+    />
+  )}
+
+  {/* =========================================================
+      VRSTVA 2
+      Shizzle white spray  
+      ========================================================= */}
+
+  {foregroundImage && (
+    <img
+      src={foregroundImage}
+      alt=""
+      aria-hidden="true"
+      class="
+        pointer-events-none
+        absolute
+        right-30
+        bottom-0
+        z-10
+        h-auto
+        w-[55%]
+      "
+    />
+  )}
+
+  {/* =========================================================
+      HORNÍ GRADIENT
+      ========================================================= */}
+
+  <div
     class="
       pointer-events-none
       absolute
       inset-x-0
       top-0
-      z-0
-      h-40
-      bg-linear-to-b 
-      from-(--color-background) 
-      via-(--color-background)/99
+      z-20
+      h-24
+      bg-linear-to-b
+      from-(--color-background)
       to-transparent
-      md:h-32
-    ">
-  </div>
-    <div
+      
+    "
+  ></div>
+
+  {/* =========================================================
+      DOLNÍ GRADIENT
+      ========================================================= */}
+
+  <div
     class="
       pointer-events-none
       absolute
       inset-x-0
       bottom-0
-      z-0
-      h-24
+      z-20
+      h-32
       bg-linear-to-t
       from-(--color-background)
       to-transparent
-      md:h-32
+      
     "
   ></div>
-  <div class="relative z-10 mx-auto max-w-7xl">
 
+  {/* =========================================================
+      VRSTVA 3
+      Obsah koncertů
+      ========================================================= */}
+
+  <div
+    class="
+      relative
+      z-30
+      mx-auto
+      flex
+      w-full
+      max-w-360
+      flex-col
+      items-center
+    "
+  >
     {/* Heading */}
+
     <div class="mb-(--space-md)">
-      <h2 class="text-center uppercase text-2xl font-semibold md:text-3xl">
+      <h2
+        class="
+          text-center
+          text-2xl
+          font-semibold
+          uppercase
+          md:text-3xl
+        "
+      >
         co na srdci, to na jazyku...
       </h2>
 
@@ -61,272 +150,303 @@ const { concerts } = Astro.props;
       </p>
     </div>
 
-    {/* Carousel */}
-    <div
-      id="shows-carousel"
-      class="
-        grid
-        grid-flow-col
-        auto-cols-[85%]
-        gap-2
-        overflow-x-auto
-        overflow-y-visible
-        overscroll-x-contain
-        snap-x
-        snap-mandatory
-        py-4
-        scrollbar-none
-        sm:auto-cols-[calc((100%-16px)/3)]
-        md:auto-cols-[calc((100%-24px)/4)]
-        lg:auto-cols-[calc((100%-40px)/6)]
-      "
-    >
+{/* =======================================================
+        TŘI BUBLINY
+======================================================= */}
+
+
+      <div class="relative w-full">
+
+         {/* LEVÁ ŠIPKA */}
+         <button 
+            id="concert-prev"
+            type="button"
+            aria-label="Předchozí koncert"
+            class="
+              absolute
+              left-0
+              top-1/2
+              z-40
+              -translate-y-1/2
+              md:block
+              md:left-[-3.5%]
+             
+              ">
+              <img
+                src="/pictures/Koncerty/2_leva_sipka.png"
+                alt=""
+                aria-hidden="true"
+                class="
+                  h-12
+                  w-auto 
+                  md:h-20"
+              />
+          </button>
+      
+      {/* CAROUSEL */}
+      <div
+        id="concert-carousel"
+        class="
+          
+          flex
+          w-full
+          snap-x
+          snap-mandatory
+          gap-4
+          overflow-hidden
+          scroll-smooth
+          px-[12%]
+  
+          md:px-[7%]
+        "
+      >
       {concerts.map((show) => {
-        const date = new Date(show.data.date);
+        const date = new Date(`${show.data.date}T00:00:00`);
 
         return (
-          <div
+          <a
+            href={show.data.website || show.data.ticketUrl || "#"}
+            target={show.data.website || show.data.ticketUrl ? "_blank" : undefined}
+            rel={
+              show.data.website || show.data.ticketUrl
+                ? "noopener noreferrer"
+                : undefined
+            }
             class="
               group
               relative
-              z-0
-              aspect-4/6
-              overflow-hidden
-              rounded-2xl
+              flex
+              w-[55vw]
+              min-w-[55vw]
+              shrink-0
+              snap-center
+              items-center
+              justify-center
               transition-transform
               duration-300
-              hover:z-10
+              hover:z-40
               hover:scale-105
+
+              md:w-[50%]
+              md:min-w-[50%]
             "
           >
-            <a
-              href={show.data.website || show.data.ticketUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            {/* -------------------------------------------------
+                BUBLINA
+                wrapper.
+                ------------------------------------------------- */}
+
+            <img
+              src={show.data.image}
+              alt=""
+              aria-hidden="true"
               class="
-                group
-                flex
-                h-full
+                pointer-events-none
+                block
+                h-auto
                 w-full
+              "
+              loading="lazy"
+            />
+
+            {/* -------------------------------------------------
+                TEXT UVNITŘ BUBLINY
+                ------------------------------------------------- */}
+
+            <div
+              class="
+                absolute
+                inset-0
+                flex
                 flex-col
-                justify-between
-                rounded-xl
-                bg-(--color-surface)
-                p-5
-                transition-all
-                duration-300
-                hover:-translate-y-1
-                hover:scale-[1.02]
-                hover:border-(--text-primary)
-                hover:bg-(--color-accent)
+                items-center
+                justify-center
+                px-[18%]
+                py-[16%]
+                text-center
               "
             >
-              {/* Top */}
-              <div>
+              {/* Datum */}
+
+              <p
+                class="
+                  text-xs
+                  text-(--text-muted)
+                  transition-colors
+                  duration-300
+                  group-hover:text-(--text-primary)
+                  md:text-2xl
+                "
+              >
+                {date.toLocaleDateString("cs-CZ", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
+              </p>
+
+              {/* Město */}
+
+              <h3
+                class="
+                  mt-1
+                  text-2xl
+                  font-semibold
+                  text-(--text-primary)
+                  md:text-3xl
+                "
+              >
+                {show.data.city}
+              </h3>
+
+              {/* Venue */}
+
+              <p
+                class="
+                  mt-1
+                  text-sm
+                  text-(--text-muted)
+                  md:text-lg
+                "
+              >
+                {show.data.venue}
+              </p>
+
+              {/* Support */}
+
+              {show.data.support && (
                 <p
                   class="
-                    text-md
+                    mt-2
+                    text-xs
                     text-(--text-muted)
-                    transition-colors
-                    duration-300
-                    group-hover:text-(--text-primary)
+                    md:text-lg
                   "
                 >
-                  {date.toLocaleDateString("cs-CZ", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  })}
+                  {show.data.support}
                 </p>
+              )}
 
-                <h3 class="mt-2 text-3xl font-medium">
-                  {show.data.city}
-                </h3>
+              {/* Description */}
 
+              {show.data.description && (
                 <p
                   class="
-                    mt-1
-                    text-md
+                    mt-2
+                    line-clamp-3
+                    text-xs
+                    leading-relaxed
                     text-(--text-muted)
-                    transition-colors
-                    duration-300
-                    group-hover:text-(--text-primary)
+                    md:text-sm
                   "
                 >
-                  {show.data.venue}
+                  {show.data.description}
                 </p>
+              )}
 
-                {show.data.support && (
-                  <p
-                    class="
-                      mt-3
-                      text-md
-                      text-(--text-muted)
-                      transition-colors
-                      duration-300
-                      group-hover:text-(--text-primary)
-                    "
-                  >
-                    {show.data.support}
-                  </p>
-                )}
+              {/* Ticket */}
 
-                {show.data.description && (
-                  <p
-                    class="
-                      mt-4
-                      line-clamp-4
-                      text-md
-                      leading-relaxed
-                      text-(--text-muted)
-                      transition-colors
-                      duration-300
-                      group-hover:text-(--text-primary)
-                    "
-                  >
-                    {show.data.description}
-                  </p>
-                )}
-              </div>
-
-              {/* Bottom */}
-              <div class="mt-6 flex items-center justify-between gap-3">
+              {show.data.ticketUrl && (
                 <span
                   class="
-                    inline-block
-                    text-xs
+                    mt-3
+                    rounded-full
+                    border
+                    border-(--text-primary)
+                    px-3
+                    py-1
+                    text-[10px]
                     font-medium
                     uppercase
                     tracking-wide
                     text-(--text-primary)
-                    transition-transform
+                    transition-all
                     duration-300
-                    hover:-translate-y-1
-                    hover:scale-105
+                    group-hover:bg-(--color-accent)
+                    md:text-xs
                   "
                 >
-                  Odkaz na akci →
+                  Vstupenky
                 </span>
-
-                {show.data.ticketUrl && (
-                  <span
-                    class="
-                      inline-block
-                      rounded-full
-                      border
-                      border-(--text-primary)
-                      px-3
-                      py-1
-                      text-xs
-                      font-medium
-                      uppercase
-                      tracking-wide
-                      transition-all
-                      duration-300
-                      hover:-translate-y-1
-                      hover:scale-105
-                      hover:border-(--text-primary)
-                      hover:bg-(--color-accent)
-                    "
-                  >
-                    Vstupenky
-                  </span>
-                )}
-              </div>
-            </a>
-          </div>
+              )}
+            </div>
+          </a>
         );
       })}
     </div>
 
-    {/* Carousel controls */}
-    <div class="mb-4 hidden justify-center gap-2 md:flex">
-      <button
-        id="shows-prev"
-        type="button"
-        aria-label="Předchozí koncert"
-        class="
-          flex
-          h-10
-          w-10
-          items-center
-          justify-center
-          rounded-full
-          border
-          border-(--text-primary)
-          text-lg
-          transition-all
-          duration-300
-          hover:bg-(--color-accent)
-          disabled:cursor-not-allowed
-          disabled:opacity-30
-        "
-      >
-        ←
-      </button>
-
-      <button
-        id="shows-next"
+    {/* PRAVÁ ŠIPKA */}
+    <button
+        id="concert-next"
         type="button"
         aria-label="Další koncert"
         class="
-          flex
-          h-10
-          w-10
-          items-center
-          justify-center
-          rounded-full
-          border
-          border-(--text-primary)
-          text-lg
-          transition-all
-          duration-300
-          hover:bg-(--color-accent)
-          disabled:cursor-not-allowed
-          disabled:opacity-30
-        "
-      >
-        →
-      </button>
+            absolute
+            right-[2.5%]
+            top-1/2
+            z-40
+            -translate-y-1/2
+            md:block
+            md:right-[-3.5%]
+        ">
+        <img
+          src="/pictures/Koncerty/2_prava_sipka.png"
+          alt=""
+          aria-hidden="true"
+          class="
+            h-10 
+            w-auto 
+            md:h-20"
+          />
+    </button>
     </div>
+{/* =======================================================
+        CAROUSEL CONTROLS     
+======================================================= */}
+        <script>
+          const carousel = document.querySelector("#concert-carousel");
+          const prevButton = document.querySelector("#concert-prev");
+          const nextButton = document.querySelector("#concert-next");
+
+          if (
+            carousel instanceof HTMLElement &&
+            prevButton instanceof HTMLButtonElement &&
+            nextButton instanceof HTMLButtonElement
+          ) {
+            const slides = Array.from(carousel.children).filter(
+              (child): child is HTMLElement => child instanceof HTMLElement,
+            );
+
+            let currentIndex = 0;
+
+            const goToSlide = (index: number) => {
+              if (!slides.length) return;
+
+              if (index < 0) {
+                currentIndex = slides.length - 1;
+              } else if (index >= slides.length) {
+                currentIndex = 0;
+              }
+                else {
+                  currentIndex = index;
+                }
+              
+
+              carousel.scrollTo({
+                left: slides[currentIndex].offsetLeft - carousel.offsetLeft,
+                behavior: "smooth",
+              });
+            };
+
+            prevButton.addEventListener("click", () => {
+              goToSlide(currentIndex - 1);
+            });
+
+            nextButton.addEventListener("click", () => {
+              goToSlide(currentIndex + 1);
+            });
+          }
+        </script>
 
   </div>
 </section>
-
-<script>
-  const carousel = document.querySelector("#shows-carousel");
-  const prevButton = document.querySelector("#shows-prev");
-  const nextButton = document.querySelector("#shows-next");
-
-  if (
-    carousel instanceof HTMLElement &&
-    prevButton instanceof HTMLButtonElement &&
-    nextButton instanceof HTMLButtonElement
-  ) {
-    const scrollAmount = () => carousel.clientWidth * 0.8;
-
-    prevButton.addEventListener("click", () => {
-      carousel.scrollBy({
-        left: -scrollAmount(),
-        behavior: "smooth",
-      });
-    });
-
-    nextButton.addEventListener("click", () => {
-      carousel.scrollBy({
-        left: scrollAmount(),
-        behavior: "smooth",
-      });
-    });
-  }
-</script>
-
-<style>
-  .scrollbar-none {
-    scrollbar-width: none;
-  }
-
-  .scrollbar-none::-webkit-scrollbar {
-    display: none;
-  }
-</style>
