@@ -32,10 +32,13 @@ const mailtoUrl = `mailto:${settings.data.bookingEmail}?subject=${emailSubject}&
     right-4
     bottom-4
     z-50
-    hidden
+    flex
     flex-col
     items-center
     gap-4
+    opacity-0
+    transition-opacity
+    duration-300
     md:flex
   "
 >
@@ -148,7 +151,7 @@ const mailtoUrl = `mailto:${settings.data.bookingEmail}?subject=${emailSubject}&
     const cta = document.querySelector("#sticky-cta");
     const heroEnd = document.querySelector("#hero-end");
 
-    if (cta) {
+    if (cta instanceof HTMLElement) {
       if (!heroEnd) {
         cta.classList.remove("opacity-0");
         cta.classList.add("opacity-100");
