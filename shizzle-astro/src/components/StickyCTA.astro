@@ -39,7 +39,6 @@ const mailtoUrl = `mailto:${settings.data.bookingEmail}?subject=${emailSubject}&
     opacity-0
     transition-opacity
     duration-300
-    md:flex
   "
 >
   {/* Book Me */}
@@ -147,27 +146,27 @@ const mailtoUrl = `mailto:${settings.data.bookingEmail}?subject=${emailSubject}&
     )}
   </div>
 
-  <script>
-    const cta = document.querySelector("#sticky-cta");
-    const heroEnd = document.querySelector("#hero-end");
+<script>
+  const cta = document.querySelector("#sticky-cta");
+  const heroEnd = document.querySelector("#hero-end");
 
-    if (cta instanceof HTMLElement) {
-      if (!heroEnd) {
-        cta.classList.remove("opacity-0");
-        cta.classList.add("opacity-100");
-      } else {
-        const observer = new IntersectionObserver(
-          ([entry]) => {
-            cta.classList.toggle("opacity-0", entry.isIntersecting);
-            cta.classList.toggle("opacity-100", !entry.isIntersecting);
-          },
-          {
-            threshold: 0,
-          },
-        );
+  if (
+    cta instanceof HTMLElement &&
+    heroEnd instanceof HTMLElement
+  ) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const shouldShow = !entry.isIntersecting;
 
-        observer.observe(heroEnd);
-      }
-    }
-  </script>
+        cta.classList.toggle("opacity-0", !shouldShow);
+        cta.classList.toggle("opacity-100", shouldShow);
+      },
+      {
+        threshold: 0,
+      },
+    );
+
+    observer.observe(heroEnd);
+  }
+</script>
 </div>
