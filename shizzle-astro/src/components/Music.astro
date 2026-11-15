@@ -23,12 +23,12 @@ const { albums } = Astro.props;
 
     {/* Carousel */}
     <div
-      class="flex gap-4 overflow-x-auto overflow-y-visible overscroll-x-contain snap-x snap-mandatory px-2 py-4 scrollbar-none">
+      class="flex justify-center gap-4 overflow-x-auto overflow-y-visible overscroll-x-contain snap-x snap-mandatory px-2 py-4 scrollbar-none">
       {albums.map((album) => (
         <div
           class="w-[44%] shrink-0 snap-start sm:min-w-70 lg:min-w-90">
           <article
-            class="group w-full overflow-hidden rounded-xl bg-(--color-surface) transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02]">
+            class="group w-full overflow-hidden rounded-xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02]">
 
             {/* COVER */}
             <div class="relative aspect-square overflow-hidden rounded-md">
@@ -147,7 +147,8 @@ const { albums } = Astro.props;
 
             {/* INFO */}
             
-            {/* <div class="p-3 text-left">
+            
+            <div class="p-3 text-left">
               <p class="font-medium">
                 {album.data.title}
               </p>
@@ -156,13 +157,14 @@ const { albums } = Astro.props;
                 {album.data.year}
               </p>
             </div>
-            */}
+            
           </article>
         </div>
       ))}
     </div>
 
-    {/* Carousel controls */}
+    {/*
+    Carousel controls 
     <div class="mb-4 hidden justify-center gap-2 md:flex">
       <button
         id="shows-prev"
@@ -212,7 +214,7 @@ const { albums } = Astro.props;
         →
       </button>
     </div>
-    
+    */}
 
   </div>
 </section>

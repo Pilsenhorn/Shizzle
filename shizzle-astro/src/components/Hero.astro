@@ -8,38 +8,44 @@
     items-center
     justify-end
     overflow-hidden
-
-  "
->
+  ">
 
   {/* 1. vrstva - fotografie */}
-  <picture>
-    <source
-      media="(max-width: 767px)"
-      srcset="/pictures/Hero/2_Shizzle_hlava_mobile.png"
-    />
+<picture>
+  <source
+    media="(min-width: 1024px)"
+    srcset="/pictures/Hero/2_Shizzle_hlava.webp"
+  />
 
-    <img
-      src="/pictures/Hero/2_Shizzle_hlava.webp"
-      alt="Shizzle"
-      width="1536"
-      height="1024"
-      fetchpriority="high"
-      loading="eager"
-      class="
-        absolute
-        right-0
-        top-0
-        z-10
-        h-auto
-        w-[90vw]
-        max-w-none
-        opacity-80
-        md:h-full
-        md:w-auto
-      "
-    />
-  </picture>
+  <source
+    media="(max-width: 768px)"
+    srcset="/pictures/Hero/2_Shizzle_hlava_mobile.png"
+  />
+
+  <img
+    src="/pictures/Hero/2_Shizzle_hlava.webp"
+    alt="Shizzle"
+    width="1536"
+    height="1024"
+    fetchpriority="high"
+    loading="eager"
+    class="
+      absolute
+      right-0
+      top-0
+      z-10
+      h-auto
+      w-full
+      max-w-none
+      opacity-80
+      md:h-full
+      md:w-full
+      md:object-cover
+      lg:h-full
+      lg:w-auto
+    "
+  />
+</picture>
 
   {/* 2. vrstva - filtr / textura */}
   <img
@@ -73,7 +79,7 @@
       sm:p-8
     "
   >
-    <div class="w-full max-w-sm sm:max-w-xl md:max-w-2xl lg:max-w-7xl">
+    <div class="w-full sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-7xl">
       <h1>
         <img
           src="/logo/Logo2.webp"
@@ -100,7 +106,7 @@
       from-transparent
       to-(--color-background)
       sm:h-28
-      md:h-32
+      md:h-64
     "
   ></div>
   <div 

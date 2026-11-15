@@ -7,10 +7,7 @@ interface Props {
 
 const { concerts } = Astro.props;
 
-// VRSTVA 1 – hlavní background
 const backgroundImage = "/pictures/Koncerty/1_wall.png";
-
-// VRSTVA 2 – Shizzle white spray
 const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
 ---
 
@@ -18,62 +15,167 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
   id="shows"
   class="
     relative
+    isolate
     overflow-hidden
-    bg-(--color-background)
+
+    min-h-[75svh]
     px-(--space-sm)
     py-(--space-lg)
+    landscape:min-h-[60svh]
+
+    sm:min-h-[85svh]
+    sm:landscape:min-h-[65svh]
+
     md:min-h-[85svh]
     md:px-(--space-md)
+    md:landscape:min-h-[85svh]
+
+    lg:min-h-[75svh]
+    lg:landscape:min-h-[75svh]
     lg:px-(--space-lg)
+
+    xl:min-h-[90svh]
+    xl:landscape:min-h-[90svh]
   "
 >
   {/* =========================================================
-      VRSTVA 1
-      Hlavní background
+      OBRAZOVÁ KOMPOZICE
       ========================================================= */}
 
-  {backgroundImage && (
+  <div
+    class="
+      pointer-events-none
+      absolute
+      left-1/2
+      -top-[8svh]
+      z-0
+      w-screen
+      -translate-x-1/2
+
+      landscape:-top-[5svh]
+
+      sm:-top-[12svh]
+      sm:landscape:-top-[12svh]
+
+      md:-top-[12svh]
+      md:landscape:-top-[12svh]
+
+      lg:-top-[15svh]
+      lg:landscape:-top-[15svh]
+
+      xl:-top-[20svh]
+      xl:landscape:-top-[20svh]
+    "
+  >
     <img
       src={backgroundImage}
       alt=""
       aria-hidden="true"
-      class="
-        pointer-events-none
-        absolute
-        inset-0
-        z-0
-        h-full
-        w-full
-        object-cover
-        object-[center_bottom]
-        scale-[1.45]
-        md:scale-100
-        md:object-[center_80%]
-      "
+      class="block h-[110svh] w-full max-w-none"
     />
-  )}
 
-  {/* =========================================================
-      VRSTVA 2
-      Shizzle white spray
-      ========================================================= */}
-
-  {foregroundImage && (
     <img
       src={foregroundImage}
       alt=""
       aria-hidden="true"
       class="
-        pointer-events-none
         absolute
-        right-0
-        bottom-0
-        z-10
+        right-[2%]
+        top-[35%]
+        z-20
         h-auto
-        w-[45%]
+        w-[28%]
+        max-w-none
       "
     />
-  )}
+  </div>
+
+  {/* =========================================================
+      ŠIPKY – SAMOSTATNÁ VRSTVA UKOTVENÁ K FOTOGRAFII
+
+      Stejné rozměry a pozice jako obrazová kompozice.
+      Šipky proto nejsou závislé na carouselu.
+      ========================================================= */}
+
+  <div
+    class="
+      pointer-events-none
+      absolute
+      left-1/2
+      -top-[8svh]
+      z-40
+      h-[110svh]
+      w-screen
+      -translate-x-1/2
+
+      landscape:-top-[5svh]
+
+      sm:-top-[12svh]
+      sm:landscape:-top-[12svh]
+
+      md:-top-[12svh]
+      md:landscape:-top-[12svh]
+
+      lg:-top-[15svh]
+      lg:landscape:-top-[15svh]
+
+      xl:-top-[20svh]
+      xl:landscape:-top-[20svh]
+    "
+  >
+    {/* LEVÁ ŠIPKA */}
+
+    <button
+      id="concert-prev"
+      type="button"
+      aria-label="Předchozí koncert"
+      class="
+        pointer-events-auto
+        absolute
+        hidden
+        lg:block
+
+        lg:left-2
+        lg:top-1/2
+        lg:-translate-y-1/2
+
+        xl:left-4
+        2xl:left-8
+      "
+    >
+      <img
+        src="/pictures/Koncerty/2_leva_sipka.png"
+        alt=""
+        aria-hidden="true"
+        class="h-16 w-auto lg:h-18 xl:h-20 2xl:h-26"
+      />
+    </button>
+
+    {/* PRAVÁ ŠIPKA */}
+
+<button
+  class="
+    pointer-events-auto
+    absolute
+    hidden
+    lg:block
+
+    lg:right-2
+    lg:top-1/2
+    lg:-translate-y-1/2
+
+    xl:right-4
+    2xl:right-8
+  "
+>
+      <img
+        src="/pictures/Koncerty/2_prava_sipka.png"
+        alt=""
+        aria-hidden="true"
+        class="h-16 w-auto lg:h-18 xl:h-20 2xl:h-26"
+      />
+    </button>
+  </div>
 
   {/* =========================================================
       HORNÍ GRADIENT
@@ -86,10 +188,11 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
       inset-x-0
       top-0
       z-20
-      h-24
+      h-32
       bg-linear-to-b
       from-(--color-background)
       to-transparent
+      md:h-32
     "
   ></div>
 
@@ -108,12 +211,12 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
       bg-linear-to-t
       from-(--color-background)
       to-transparent
+      md:h-32
     "
   ></div>
 
   {/* =========================================================
-      VRSTVA 3
-      Obsah koncertů
+      OBSAH KONCERTŮ
       ========================================================= */}
 
   <div
@@ -128,9 +231,7 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
       items-center
     "
   >
-    {/* =======================================================
-        HEADING
-        ======================================================= */}
+    {/* HEADING */}
 
     <div class="mb-(--space-md)">
       <h2
@@ -139,57 +240,22 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
           text-2xl
           font-semibold
           uppercase
-          md:text-3xl
+          md:text-4xl
+          lg:text-5xl
+          xl:text-6xl
         "
       >
         co na srdci, to na jazyku...
       </h2>
 
-      <p class="mt-(--space-xs) text-center text-sm text-white">
+      <p class="mt-(--space-xs) text-center leading-wide text-sm text-white md:text-base lg:text-lg xl:text-xl">
         ...živě, bez filtru
       </p>
     </div>
 
-    {/* =======================================================
-        CAROUSEL WRAPPER
-        ======================================================= */}
+    {/* CAROUSEL */}
 
     <div class="relative w-full">
-
-      {/* =====================================================
-          LEVÁ ŠIPKA
-          Pouze desktop
-          ===================================================== */}
-
-      <button
-        id="concert-prev"
-        type="button"
-        aria-label="Předchozí koncert"
-        class="
-          absolute
-          left-0
-          top-1/2
-          z-40
-          hidden
-          -translate-y-1/2
-          lg:block
-          lg:left-[-14%]
-        "
-      >
-        <img
-          src="/pictures/Koncerty/2_leva_sipka.png"
-          alt=""
-          aria-hidden="true"
-          class="h-24 w-auto"
-        />
-      </button>
-
-      {/* =====================================================
-          CAROUSEL
-          Mobile + tablet = swipe
-          Desktop = JS + šipky
-          ===================================================== */}
-
       <div
         id="concert-carousel"
         class="
@@ -253,26 +319,17 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
                 ${index === 2 ? "lg:-translate-y-8" : ""}
               `}
             >
-              {/* =================================================
-                  BUBLINA
-                  ================================================= */}
+              {/* BUBLINA */}
 
               <img
                 src={show.data.image}
                 alt=""
                 aria-hidden="true"
-                class="
-                  pointer-events-none
-                  block
-                  h-auto
-                  w-full
-                "
+                class="pointer-events-none block h-auto w-full"
                 loading="lazy"
               />
 
-              {/* =================================================
-                  TEXT UVNITŘ BUBLINY
-                  ================================================= */}
+              {/* TEXT UVNITŘ BUBLINY */}
 
               <div
                 class="
@@ -287,8 +344,6 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
                   text-center
                 "
               >
-                {/* Datum */}
-
                 <p
                   class="
                     text-xs
@@ -307,8 +362,6 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
                   })}
                 </p>
 
-                {/* Město */}
-
                 <h3
                   class="
                     mt-1
@@ -317,12 +370,11 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
                     text-(--text-primary)
                     md:text-3xl
                     lg:text-3xl
+                    xl:text-4xl
                   "
                 >
                   {show.data.city}
                 </h3>
-
-                {/* Venue */}
 
                 <p
                   class="
@@ -331,12 +383,11 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
                     text-(--text-muted)
                     md:text-base
                     lg:text-lg
+                    xl:text-xl
                   "
                 >
                   {show.data.venue}
                 </p>
-
-                {/* Support */}
 
                 {show.data.support && (
                   <p
@@ -346,13 +397,12 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
                       text-(--text-muted)
                       md:text-sm
                       lg:text-lg
+                      xl:text-xl
                     "
                   >
                     {show.data.support}
                   </p>
                 )}
-
-                {/* Description */}
 
                 {show.data.description && (
                   <p
@@ -363,13 +413,13 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
                       leading-relaxed
                       text-(--text-muted)
                       md:text-sm
+                      lg:text-lg
+                      xl:text-xl
                     "
                   >
                     {show.data.description}
                   </p>
                 )}
-
-                {/* Ticket */}
 
                 {show.data.ticketUrl && (
                   <span
@@ -389,6 +439,8 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
                       duration-300
                       group-hover:bg-(--color-accent)
                       md:text-xs
+                      lg:text-sm
+                      xl:text-base
                     "
                   >
                     Vstupenky
@@ -399,39 +451,11 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
           );
         })}
       </div>
-
-      {/* =====================================================
-          PRAVÁ ŠIPKA
-          Pouze desktop
-          ===================================================== */}
-
-      <button
-        id="concert-next"
-        type="button"
-        aria-label="Další koncert"
-        class="
-          absolute
-          right-0
-          top-1/2
-          z-40
-          hidden
-          -translate-y-1/2
-          lg:block
-          lg:right-[-14%]
-        "
-      >
-        <img
-          src="/pictures/Koncerty/2_prava_sipka.png"
-          alt=""
-          aria-hidden="true"
-          class="h-24 w-auto"
-        />
-      </button>
-
     </div>
 
     {/* =======================================================
         CAROUSEL JS
+        ID ŠIPEK ZŮSTÁVAJÍ ZACHOVANÁ
         ======================================================= */}
 
     <script>
@@ -475,6 +499,5 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
         });
       }
     </script>
-
   </div>
 </section>
