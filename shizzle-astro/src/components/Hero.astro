@@ -10,16 +10,18 @@
     overflow-hidden
   ">
 
-  {/* 1. vrstva - fotografie */}
+{/* 1. vrstva - fotografie */}
 <picture>
+  {/* Mobilní portrait */}
   <source
-    media="(min-width: 1024px)"
-    srcset="/pictures/Hero/2_Shizzle_hlava.webp"
+    media="(max-width: 768px) and (orientation: portrait)"
+    srcset="/pictures/Hero/2_Shizzle_hlava_mobile.png"
   />
 
+  {/* Landscape a desktop */}
   <source
-    media="(max-width: 768px)"
-    srcset="/pictures/Hero/2_Shizzle_hlava_mobile.png"
+    media="(orientation: landscape)"
+    srcset="/pictures/Hero/2_Shizzle_hlava.webp"
   />
 
   <img
@@ -31,22 +33,17 @@
     loading="eager"
     class="
       absolute
-      right-0
-      top-0
+      inset-0
       z-10
-      h-auto
+      h-full
       w-full
       max-w-none
+      object-cover
+      object-center
       opacity-80
-      md:h-full
-      md:w-full
-      md:object-cover
-      lg:h-full
-      lg:w-auto
     "
   />
 </picture>
-
   {/* 2. vrstva - filtr / textura */}
   <img
     src="/pictures/Hero/Filtr.webp"
@@ -111,7 +108,7 @@
   ></div>
   <div 
     id="hero-end"
-    class="pointer-events-none absolute bottom-[85vh] h-px w-px">
+    class="pointer-events-none h-px w-full">
   </div>
 
 </section>

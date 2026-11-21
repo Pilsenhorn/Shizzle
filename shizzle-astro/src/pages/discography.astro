@@ -61,7 +61,7 @@ const settings = settingsCollection[0];
   <main>
     <Music albums={albums} />
     <Clips clips={clips} />
-    <StickyCTA settings={settings} />
+    <StickyCTA settings={settings} showImmediately={true} />
     {showModal && <ConcertModal concert={nextConcert} />}
 
   </main>

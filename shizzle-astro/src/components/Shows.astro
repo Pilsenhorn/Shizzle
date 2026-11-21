@@ -21,7 +21,7 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
     min-h-[75svh]
     px-(--space-sm)
     py-(--space-lg)
-    landscape:min-h-[60svh]
+    landscape:min-h-0
 
     sm:min-h-[85svh]
     sm:landscape:min-h-[65svh]
@@ -31,8 +31,8 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
     md:landscape:min-h-[85svh]
 
     lg:min-h-[75svh]
-    lg:landscape:min-h-[75svh]
     lg:px-(--space-lg)
+    lg:landscape:min-h-[75svh]
 
     xl:min-h-[90svh]
     xl:landscape:min-h-[90svh]
@@ -44,13 +44,14 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
 
   <div
     class="
+      shows-visual-frame
       pointer-events-none
       absolute
       left-1/2
       -top-[8svh]
       z-0
+      aspect-2048/1477
       w-screen
-      -translate-x-1/2
 
       landscape:-top-[5svh]
 
@@ -71,8 +72,23 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
       src={backgroundImage}
       alt=""
       aria-hidden="true"
-      class="block h-[110svh] w-full max-w-none"
+      class="block h-full w-full object-contain"
     />
+
+    {/* Gradient je pevně navázaný na spodní hranu fotografie. */}
+    <div
+      class="
+        pointer-events-none
+        absolute
+        inset-x-0
+        bottom-0
+        z-10
+        h-[22%]
+        bg-linear-to-t
+        from-(--color-background)
+        to-transparent
+      "
+    ></div>
 
     <img
       src={foregroundImage}
@@ -91,22 +107,19 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
   </div>
 
   {/* =========================================================
-      ŠIPKY – SAMOSTATNÁ VRSTVA UKOTVENÁ K FOTOGRAFII
-
-      Stejné rozměry a pozice jako obrazová kompozice.
-      Šipky proto nejsou závislé na carouselu.
+      ŠIPKY – STEJNÝ POMĚR A POZICE JAKO FOTOGRAFIE
       ========================================================= */}
 
   <div
     class="
+      shows-visual-frame
       pointer-events-none
       absolute
       left-1/2
       -top-[8svh]
-      z-40
-      h-[110svh]
+      z-0
+      aspect-2048/1477
       w-screen
-      -translate-x-1/2
 
       landscape:-top-[5svh]
 
@@ -123,8 +136,6 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
       xl:landscape:-top-[20svh]
     "
   >
-    {/* LEVÁ ŠIPKA */}
-
     <button
       id="concert-prev"
       type="button"
@@ -151,23 +162,24 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
       />
     </button>
 
-    {/* PRAVÁ ŠIPKA */}
+    <button
+      id="concert-next"
+      type="button"
+      aria-label="Další koncert"
+      class="
+        pointer-events-auto
+        absolute
+        hidden
+        lg:block
 
-<button
-  class="
-    pointer-events-auto
-    absolute
-    hidden
-    lg:block
+        lg:right-2
+        lg:top-1/2
+        lg:-translate-y-1/2
 
-    lg:right-2
-    lg:top-1/2
-    lg:-translate-y-1/2
-
-    xl:right-4
-    2xl:right-8
-  "
->
+        xl:right-4
+        2xl:right-8
+      "
+    >
       <img
         src="/pictures/Koncerty/2_prava_sipka.png"
         alt=""
@@ -197,25 +209,6 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
   ></div>
 
   {/* =========================================================
-      DOLNÍ GRADIENT
-      ========================================================= */}
-
-  <div
-    class="
-      pointer-events-none
-      absolute
-      inset-x-0
-      bottom-0
-      z-20
-      h-32
-      bg-linear-to-t
-      from-(--color-background)
-      to-transparent
-      md:h-32
-    "
-  ></div>
-
-  {/* =========================================================
       OBSAH KONCERTŮ
       ========================================================= */}
 
@@ -231,8 +224,6 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
       items-center
     "
   >
-    {/* HEADING */}
-
     <div class="mb-(--space-md)">
       <h2
         class="
@@ -252,8 +243,6 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
         ...živě, bez filtru
       </p>
     </div>
-
-    {/* CAROUSEL */}
 
     <div class="relative w-full">
       <div
@@ -319,8 +308,6 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
                 ${index === 2 ? "lg:-translate-y-8" : ""}
               `}
             >
-              {/* BUBLINA */}
-
               <img
                 src={show.data.image}
                 alt=""
@@ -328,8 +315,6 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
                 class="pointer-events-none block h-auto w-full"
                 loading="lazy"
               />
-
-              {/* TEXT UVNITŘ BUBLINY */}
 
               <div
                 class="
@@ -453,11 +438,6 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
       </div>
     </div>
 
-    {/* =======================================================
-        CAROUSEL JS
-        ID ŠIPEK ZŮSTÁVAJÍ ZACHOVANÁ
-        ======================================================= */}
-
     <script>
       const carousel = document.querySelector("#concert-carousel");
       const prevButton = document.querySelector("#concert-prev");
@@ -483,9 +463,7 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
           );
 
           carousel.scrollTo({
-            left:
-              slides[currentIndex].offsetLeft -
-              carousel.offsetLeft,
+            left: slides[currentIndex].offsetLeft - carousel.offsetLeft,
             behavior: "smooth",
           });
         };
@@ -501,3 +479,37 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
     </script>
   </div>
 </section>
+
+<style>
+  .shows-visual-frame {
+    transform: translateX(-50%);
+  }
+
+  /*
+    901 × 697: široký desktop, ale ne dost široký landscape.
+    Fotku posuneme výš, aby modrá obloha zůstala nad horním
+    gradientem a do záběru šla rovnou betonová zeď.
+  */
+  @media (min-aspect-ratio: 5/4) and (max-aspect-ratio: 1499/1000) {
+    .shows-visual-frame {
+      top: 0 !important;
+      transform: translate(-50%, -25%);
+    }
+  }
+
+  /*
+    Skutečně široké landscape obrazovky, například 1295 × 675.
+    Spodní okraj fotografie, tráva a navázaný gradient zůstanou
+    uvnitř viditelné kompozice.
+  */
+  @media (min-aspect-ratio: 3/2) {
+    #shows {
+      min-height: 100svh;
+    }
+
+    .shows-visual-frame {
+      top: 0 !important;
+      transform: translate(-50%, calc(100svh - 100%));
+    }
+  }
+</style>

@@ -4,9 +4,10 @@ import { Icon } from "astro-icon/components";
 
 interface Props {
   settings: CollectionEntry<"settings">;
+  showImmediately?: boolean;
 }
 
-const { settings } = Astro.props;
+const { settings, showImmediately } = Astro.props;
 
 const emailSubject = encodeURIComponent(`
 Booking request
@@ -27,19 +28,12 @@ const mailtoUrl = `mailto:${settings.data.bookingEmail}?subject=${emailSubject}&
 
 <div
   id="sticky-cta"
-  class="
-    fixed
-    right-4
-    bottom-4
-    z-50
-    flex
-    flex-col
-    items-center
-    gap-4
-    opacity-0
-    transition-opacity
-    duration-300
-  "
+  class:list={[
+    "fixed right-4 bottom-4 z-50 flex flex-col items-center gap-4 transition-opacity duration-300",
+    showImmediately
+      ? "opacity-100 pointer-events-auto"
+      : "opacity-0 pointer-events-none",
+  ]}
 >
   {/* Book Me */}
   {settings.data.bookingEmail && (
@@ -160,11 +154,10 @@ const mailtoUrl = `mailto:${settings.data.bookingEmail}?subject=${emailSubject}&
 
         cta.classList.toggle("opacity-0", !shouldShow);
         cta.classList.toggle("opacity-100", shouldShow);
-      },
-      {
-        threshold: 0,
-      },
-    );
+
+        cta.classList.toggle("pointer-events-none", !shouldShow);
+        cta.classList.toggle("pointer-events-auto", shouldShow);
+      });
 
     observer.observe(heroEnd);
   }
