@@ -1,3 +1,4 @@
+
 ---
 import type { CollectionEntry } from "astro:content";
 import { render } from "astro:content";
@@ -15,23 +16,35 @@ const { clips } = Astro.props;
 >
   <div class="mx-auto max-w-7xl">
 
+    {/* Heading */}
     <div class="mb-(--space-md)">
       <h2 class="text-center text-2xl font-semibold md:text-3xl">
         Videoklipy
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 items-start gap-3 md:gap-(--space-md) md:grid-cols-2">
+    {/* Clips grid */}
+    <div class="grid grid-cols-1 items-start gap-3 md:grid-cols-2 md:gap-(--space-md)">
       {await Promise.all(
-        clips.map(async (clip, index) => {
+        clips.map(async (clip) => {
           const { Content } = await render(clip);
-          const clipId = `clip-${index}`;
 
           return (
             <article
-              class="mx-auto w-[85%] self-start overflow-hidden text-justify leading-relaxed rounded-xl border border-(--text-primary)/10 md:w-full"
+              class="
+                mx-auto
+                w-[85%]
+                self-start
+                overflow-hidden
+                rounded-xl
+                border
+                border-(--text-primary)/10
+                text-justify
+                leading-relaxed
+                md:w-full
+              "
             >
-              <!-- YouTube video -->
+              {/* YouTube video */}
               <div class="aspect-video">
                 <iframe
                   src={`https://www.youtube.com/embed/${clip.data.videoID}`}
@@ -43,25 +56,25 @@ const { clips } = Astro.props;
                 ></iframe>
               </div>
 
-              <!-- Lyrics -->
-              <div class="p-(--space-sm) [&_p+p]:mt-4">
-                <div class="flex items-start gap-3">
-                  <div
-                    data-lyrics
-                    data-expanded="false"
-                    class="min-w-0 flex-1 max-h-[3.5em] overflow-hidden text-sm leading-relaxed text-(--text-muted)"
-                  >
-                    <Content />
-                  </div>
-
-                  <button
-                    type="button"
-                    aria-expanded="false"
-                    data-lyrics-toggle
-                    class="shrink-0 text-right text-sm font-medium text-(--text-primary) transition hover:text-(--color-accent-hover)"
-                  >
-                    Zobrazit celý text
-                  </button>
+              {/* Lyrics */}
+              <div class="p-(--space-sm)">
+                <div
+                  data-lyrics
+                  tabindex="0"
+                  aria-label={`Text písně ${clip.data.title}`}
+                  class="
+                    h-28
+                    overflow-y-auto
+                    overscroll-contain
+                    pr-2
+                    text-justify
+                    text-sm
+                    leading-relaxed
+                    text-(--text-muted)
+                    scroll-smooth
+                  "
+                >
+                  <Content />
                 </div>
               </div>
             </article>
@@ -73,23 +86,23 @@ const { clips } = Astro.props;
   </div>
 </section>
 
-<script>
-  document.querySelectorAll("[data-lyrics-toggle]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const wrapper = button.parentElement;
-      const lyrics = wrapper?.querySelector("[data-lyrics]");
+<style>
+  [data-lyrics] {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-accent) transparent;
+    -webkit-overflow-scrolling: touch;
+  }
 
-      if (!lyrics) return;
+  [data-lyrics]::-webkit-scrollbar {
+    width: 4px;
+  }
 
-      const isExpanded = button.getAttribute("aria-expanded") === "true";
+  [data-lyrics]::-webkit-scrollbar-track {
+    background: transparent;
+  }
 
-      lyrics.classList.toggle("max-h-[3.5em]", isExpanded);
-      lyrics.classList.toggle("max-h-none", !isExpanded);
-
-      button.setAttribute("aria-expanded", String(!isExpanded));
-      button.textContent = isExpanded
-        ? "Zobrazit celý text"
-        : "Skrýt text";
-    });
-  });
-</script>
+  [data-lyrics]::-webkit-scrollbar-thumb {
+    background: var(--color-accent);
+    border-radius: 10px;
+  }
+</style>

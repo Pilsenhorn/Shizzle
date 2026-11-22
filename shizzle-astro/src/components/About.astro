@@ -1,3 +1,4 @@
+
 ---
 import { render, type CollectionEntry } from "astro:content";
 
@@ -11,115 +12,114 @@ const { Content } = await render(content);
 
 <section
   id="about"
-  class="px-(--space-sm) py-(--space-lg) md:px-(--space-md) lg:px-(--space-lg)"
+  class="
+    px-(--space-sm)
+    py-(--space-lg)
+    md:px-(--space-md)
+    lg:px-(--space-lg)
+  "
 >
   <div class="mx-auto max-w-7xl">
 
-    <div
-      class="
-        rounded-2xl
-        border
-        border-(--text-primary)/10
-        bg-(--color-surface)
-        p-(--space-sm)
-        md:p-(--space-md)
-        lg:p-(--space-lg)
-      "
-    >
-        <!-- Title z content.data.title v pages/about.md, 
-          pokud budeš chtít, aby se zobrazoval, odkomentuj níže - 
-          smaž speciální znaky < ! -- a -- >, aby se kód odkomentoval
-
-          Pak doplnit do pages/about.md frontmatter title: 
-          "O mně" nebo jiný text, který chceš zobrazit jako nadpis
-          mezi --- a --- 
-              
-        <h2 
-          class="
-            mb-(--space-sm) 
-            text-2xl 
-            text-center 
-            font-bold 
-            md:text-3xl 
-            lg:text-4xl">
-          {content.data.title}
-        </h2>
-    
-    -->
-
+    {/* Heading */}
+    <div class="mb-(--space-md) text-center">
+      <h2
+        class="
+          text-2xl
+          font-semibold
+          text-(--color-accent)
+          md:text-3xl
+        "
+      >
+        O mně
+      </h2>
 
       <div
         class="
-          about-content
           mx-auto
-          max-w-4xl
-          text-justify
-          leading-relaxed
-          text-(--text-muted)
-          md:text-lg
-          lg:text-xl
+          mt-4
+          h-px
+          w-12
+          bg-(--color-accent)
         "
-      >
-        <Content />
-      </div>
-
+      ></div>
     </div>
 
+    {/* Markdown content */}
+    <article
+      class="
+        about-content
+        mx-auto
+        max-w-3xl
+        text-left
+        text-base
+        leading-relaxed
+        text-(--text-primary)
+        md:text-lg
+      "
+    >
+      <Content />
+    </article>
+
   </div>
-
-  <style>
-    .about-content p {
-      margin-bottom: 1rem;
-    }
-
-    .about-content strong {
-      font-weight: 700;
-      color: var(--text-primary);
-    }
-
-    .about-content em {
-      font-style: italic;
-    }
-
-    .about-content h2 {
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
-
-    .about-content h3 {
-      margin-top: 1.5rem;
-      margin-bottom: 0.75rem;
-      font-size: 1.25rem;
-      font-weight: 600;
-    }
-
-    .about-content ul {
-      margin: 1rem 0;
-      padding-left: 1.5rem;
-      list-style-type: disc;
-    }
-
-    .about-content ol {
-      margin: 1rem 0;
-      padding-left: 1.5rem;
-      list-style-type: decimal;
-    }
-
-    .about-content li {
-      margin-bottom: 0.5rem;
-    }
-
-    .about-content a {
-      text-underline-offset: 3px;
-    }
-
-    .about-content blockquote {
-      margin: 1.5rem 0;
-      padding-left: 1rem;
-      border-left: 2px solid var(--color-accent);
-      font-style: italic;
-    }
-  </style>
 </section>
+
+<style>
+  .about-content :global(p) {
+    margin-bottom: 1.25rem;
+  }
+
+  .about-content :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .about-content :global(strong) {
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  .about-content :global(em) {
+    font-style: italic;
+  }
+
+  .about-content :global(h2) {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .about-content :global(h3) {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .about-content :global(ul) {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+    list-style-type: disc;
+  }
+
+  .about-content :global(ol) {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+    list-style-type: decimal;
+  }
+
+  .about-content :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .about-content :global(a) {
+    text-underline-offset: 3px;
+  }
+
+  .about-content :global(blockquote) {
+    margin: 1.5rem 0;
+    padding-left: 1rem;
+    border-left: 2px solid var(--color-accent);
+    font-style: italic;
+  }
+</style>
