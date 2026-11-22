@@ -7,7 +7,7 @@ interface Props {
 
 const { concerts } = Astro.props;
 
-const backgroundImage = "/pictures/Koncerty/1_wall.png";
+const backgroundImage = "/pictures/Koncerty/1_Wall2.png";
 const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
 ---
 
@@ -16,201 +16,126 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
   class="
     relative
     isolate
-    overflow-hidden
-
-    min-h-[75svh]
+    min-h-[100svh]
+    overflow-x-clip
     px-(--space-sm)
     py-(--space-lg)
-    landscape:min-h-0
 
-    sm:min-h-[85svh]
-    sm:landscape:min-h-[65svh]
-
-    md:min-h-[85svh]
     md:px-(--space-md)
-    md:landscape:min-h-[85svh]
 
-    lg:min-h-[75svh]
     lg:px-(--space-lg)
-    lg:landscape:min-h-[75svh]
-
-    xl:min-h-[90svh]
-    xl:landscape:min-h-[90svh]
   "
 >
-  {/* =========================================================
-      OBRAZOVÁ KOMPOZICE
-      ========================================================= */}
+  {/* FOTOGRAFIE – CELÁ, BEZ OŘEZU */}
 
   <div
     class="
       shows-visual-frame
-      pointer-events-none
-      absolute
-      left-1/2
-      -top-[8svh]
-      z-0
-      aspect-2048/1477
-      w-screen
-
-      landscape:-top-[5svh]
-
-      sm:-top-[12svh]
-      sm:landscape:-top-[12svh]
-
-      md:-top-[12svh]
-      md:landscape:-top-[12svh]
-
-      lg:-top-[15svh]
-      lg:landscape:-top-[15svh]
-
-      xl:-top-[20svh]
-      xl:landscape:-top-[20svh]
-    "
-  >
-    <img
-      src={backgroundImage}
-      alt=""
-      aria-hidden="true"
-      class="block h-full w-full object-contain"
-    />
-
-    {/* Gradient je pevně navázaný na spodní hranu fotografie. */}
-    <div
-      class="
-        pointer-events-none
-        absolute
-        inset-x-0
-        bottom-0
-        z-10
-        h-[22%]
-        bg-linear-to-t
-        from-(--color-background)
-        to-transparent
-      "
-    ></div>
-
-    <img
-      src={foregroundImage}
-      alt=""
-      aria-hidden="true"
-      class="
-        absolute
-        right-[2%]
-        top-[35%]
-        z-20
-        h-auto
-        w-[28%]
-        max-w-none
-      "
-    />
-  </div>
-
-  {/* =========================================================
-      ŠIPKY – STEJNÝ POMĚR A POZICE JAKO FOTOGRAFIE
-      ========================================================= */}
-
-  <div
-    class="
-      shows-visual-frame
-      pointer-events-none
-      absolute
-      left-1/2
-      -top-[8svh]
-      z-0
-      aspect-2048/1477
-      w-screen
-
-      landscape:-top-[5svh]
-
-      sm:-top-[12svh]
-      sm:landscape:-top-[12svh]
-
-      md:-top-[12svh]
-      md:landscape:-top-[12svh]
-
-      lg:-top-[15svh]
-      lg:landscape:-top-[15svh]
-
-      xl:-top-[20svh]
-      xl:landscape:-top-[20svh]
-    "
-  >
-    <button
-      id="concert-prev"
-      type="button"
-      aria-label="Předchozí koncert"
-      class="
-        pointer-events-auto
-        absolute
-        hidden
-        lg:block
-
-        lg:left-2
-        lg:top-1/2
-        lg:-translate-y-1/2
-
-        xl:left-4
-        2xl:left-8
-      "
-    >
-      <img
-        src="/pictures/Koncerty/2_leva_sipka.png"
-        alt=""
-        aria-hidden="true"
-        class="h-16 w-auto lg:h-18 xl:h-20 2xl:h-26"
-      />
-    </button>
-
-    <button
-      id="concert-next"
-      type="button"
-      aria-label="Další koncert"
-      class="
-        pointer-events-auto
-        absolute
-        hidden
-        lg:block
-
-        lg:right-2
-        lg:top-1/2
-        lg:-translate-y-1/2
-
-        xl:right-4
-        2xl:right-8
-      "
-    >
-      <img
-        src="/pictures/Koncerty/2_prava_sipka.png"
-        alt=""
-        aria-hidden="true"
-        class="h-16 w-auto lg:h-18 xl:h-20 2xl:h-26"
-      />
-    </button>
-  </div>
-
-  {/* =========================================================
-      HORNÍ GRADIENT
-      ========================================================= */}
-
-  <div
-    class="
       pointer-events-none
       absolute
       inset-x-0
       top-0
-      z-20
-      h-32
-      bg-linear-to-b
-      from-(--color-background)
-      to-transparent
-      md:h-32
+      z-0
     "
-  ></div>
+  >
+    <div class="shows-photo-frame">
+<img
+  src={backgroundImage}
+  alt=""
+  aria-hidden="true"
+  class="block h-full w-full object-cover"
+/>
 
-  {/* =========================================================
-      OBSAH KONCERTŮ
-      ========================================================= */}
+{/* Horní prolnutí do barvy pozadí */}
+<div
+  aria-hidden="true"
+  class="
+    pointer-events-none
+    absolute
+    inset-x-0
+    top-0
+    z-10
+    h-16
+    bg-linear-to-b
+    from-(--color-background)
+    to-transparent
+  "
+></div>
+
+{/* Spodní prolnutí do barvy pozadí */}
+<div
+  aria-hidden="true"
+  class="
+    pointer-events-none
+    absolute
+    inset-x-0
+    bottom-0
+    z-10
+    h-16
+    bg-linear-to-t
+    from-(--color-background)
+    to-transparent
+    landscape:h-48
+  "
+></div>
+
+      {/* ŠIPKY */}
+
+      <button
+        id="concert-prev"
+        type="button"
+        aria-label="Předchozí koncert"
+        class="
+          pointer-events-auto
+          absolute
+          hidden
+          lg:block
+
+          lg:left-2
+          lg:top-1/2
+          lg:-translate-y-1/2
+
+          xl:left-4
+          2xl:left-8
+        "
+      >
+        <img
+          src="/pictures/Koncerty/2_leva_sipka.png"
+          alt=""
+          aria-hidden="true"
+          class="h-16 w-auto lg:h-18 xl:h-20 2xl:h-26"
+        />
+      </button>
+
+      <button
+        id="concert-next"
+        type="button"
+        aria-label="Další koncert"
+        class="
+          pointer-events-auto
+          absolute
+          hidden
+          lg:block
+
+          lg:right-2
+          lg:top-1/2
+          lg:-translate-y-1/2
+
+          xl:right-4
+          2xl:right-8
+        "
+      >
+        <img
+          src="/pictures/Koncerty/2_prava_sipka.png"
+          alt=""
+          aria-hidden="true"
+          class="h-16 w-auto lg:h-18 xl:h-20 2xl:h-26"
+        />
+      </button>
+    </div>
+  </div>
+
+  {/* OBSAH KONCERTŮ */}
 
   <div
     class="
@@ -228,9 +153,9 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
       <h2
         class="
           text-center
-          text-2xl
           font-semibold
           uppercase
+          text-xl
           md:text-4xl
           lg:text-5xl
           xl:text-6xl
@@ -239,7 +164,15 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
         co na srdci, to na jazyku...
       </h2>
 
-      <p class="mt-(--space-xs) text-center leading-wide text-sm text-white md:text-base lg:text-lg xl:text-xl">
+      <p class="
+        mt-(--space-xs) 
+        text-center 
+        leading-wide
+        text-white
+        text-sm 
+        md:text-xl 
+        lg:text-2xl
+        xl:text-3xl">
         ...živě, bez filtru
       </p>
     </div>
@@ -252,7 +185,6 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
           w-full
           snap-x
           snap-mandatory
-          gap-4
           overflow-x-auto
           overflow-y-hidden
           scroll-smooth
@@ -262,7 +194,16 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
           [-ms-overflow-style:none]
           [&::-webkit-scrollbar]:hidden
 
+          lg:py-12
+          lg:gap-4
+          lg:landscape:gap-2
           lg:px-0
+
+          
+          xl:max-w-[120%]
+          xl:gap-4
+          xl:landscape:gap-10
+          xl:px-0
         "
       >
         {concerts.map((show, index) => {
@@ -294,14 +235,17 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
                 hover:z-40
                 hover:scale-105
 
-                w-[72vw]
-                min-w-[72vw]
+                w-[64vw]
+                min-w-[64vw]
 
-                md:w-[58vw]
-                md:min-w-[58vw]
+                md:w-[52vw]
+                md:min-w-[52vw]
 
                 lg:w-[44%]
                 lg:min-w-[44%]
+
+                xl:w-[62%]
+                xl:min-w-[62%]
 
                 ${index === 0 ? "lg:-translate-y-2" : ""}
                 ${index === 1 ? "lg:translate-y-12" : ""}
@@ -312,21 +256,35 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
                 src={show.data.image}
                 alt=""
                 aria-hidden="true"
-                class="pointer-events-none block h-auto w-full"
+                class="
+                pointer-events-none 
+                block 
+                h-auto
+                w-full
+                max-sm:w-[90%]
+                max-sm:py-[30%]
+                sm:landscape:w-[70%]
+                xl:landscape:w-full
+                "
                 loading="lazy"
               />
 
               <div
                 class="
                   absolute
-                  inset-0
+                  inset-x-[4%]
+                  inset-y-[4%]
                   flex
                   flex-col
                   items-center
                   justify-center
                   px-[18%]
                   py-[16%]
+                  scale-90
                   text-center
+                  md:scale-100
+                  md:inset-0
+                
                 "
               >
                 <p
@@ -463,7 +421,9 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
           );
 
           carousel.scrollTo({
-            left: slides[currentIndex].offsetLeft - carousel.offsetLeft,
+            left:
+              slides[currentIndex].offsetLeft -
+              carousel.offsetLeft,
             behavior: "smooth",
           });
         };
@@ -481,35 +441,24 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
 </section>
 
 <style>
-  .shows-visual-frame {
+  #shows {
+    min-height: max(100svh, 72.12vw);
+  }
+
+  #shows .shows-visual-frame {
+    top: 0;
+    left: 50%;
+    width: 100vw;
+    height: max(100svh, 72.12vw);
     transform: translateX(-50%);
   }
 
-  /*
-    901 × 697: široký desktop, ale ne dost široký landscape.
-    Fotku posuneme výš, aby modrá obloha zůstala nad horním
-    gradientem a do záběru šla rovnou betonová zeď.
-  */
-  @media (min-aspect-ratio: 5/4) and (max-aspect-ratio: 1499/1000) {
-    .shows-visual-frame {
-      top: 0 !important;
-      transform: translate(-50%, -25%);
-    }
-  }
-
-  /*
-    Skutečně široké landscape obrazovky, například 1295 × 675.
-    Spodní okraj fotografie, tráva a navázaný gradient zůstanou
-    uvnitř viditelné kompozice.
-  */
-  @media (min-aspect-ratio: 3/2) {
-    #shows {
-      min-height: 100svh;
-    }
-
-    .shows-visual-frame {
-      top: 0 !important;
-      transform: translate(-50%, calc(100svh - 100%));
-    }
+  #shows .shows-photo-frame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    aspect-ratio: 2048 / 1477;
+    transform: translate(-50%, -50%);
   }
 </style>

@@ -1,5 +1,5 @@
 ---
-date: "2026-10-08"
+date: "2026-12-08"
 city: "Brno"
 venue: "Metro music bar"
 image: /pictures/Koncerty/2_white.png

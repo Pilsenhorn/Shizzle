@@ -1,5 +1,5 @@
 ---
-date: "2026-10-12"
+date: "2026-12-12"
 city: "Těnovice"
 venue: "TFENEKUTE - Festival nezávislé kultury"
 image: /pictures/Koncerty/2_dark_orange.png
