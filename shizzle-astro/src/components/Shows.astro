@@ -147,18 +147,23 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
       max-w-360
       flex-col
       items-center
+      translate-y-[clamp(1rem,8svh,5rem)]
     "
   >
-    <div class="mb-(--space-md)">
+    <div class="shows-heading
+        mb-(--space-sm)
+         
+    ">
       <h2
         class="
           text-center
           font-semibold
           uppercase
           text-xl
-          md:text-4xl
-          lg:text-5xl
+          md:text-2xl
+          lg:text-4xl
           xl:text-6xl
+          
         "
       >
         co na srdci, to na jazyku...
@@ -168,11 +173,11 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
         mt-(--space-xs) 
         text-center 
         leading-wide
-        text-white
+        text-white 
         text-sm 
-        md:text-xl 
-        lg:text-2xl
-        xl:text-3xl">
+        md:text-md
+        lg:text-lg
+        xl:text-2xl">
         ...živě, bez filtru
       </p>
     </div>
@@ -441,6 +446,19 @@ const foregroundImage = "/pictures/Koncerty/3_wall_spray.png";
 </section>
 
 <style>
+  #shows .shows-heading {
+    transform: translateY(
+      calc(
+        max(0px, calc(50svh - 36.06vw)) +
+          6.13vw -
+          var(--space-xs) -
+          var(--space-lg) -
+          100% -
+          clamp(2.5rem, 6svh, 4.5rem)
+      )
+    );
+  }
+
   #shows {
     min-height: max(100svh, 72.12vw);
   }

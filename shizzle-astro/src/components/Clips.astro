@@ -21,7 +21,7 @@ const { clips } = Astro.props;
       </h2>
     </div>
 
-    <div class="grid grid-cols-2 items-start gap-3 md:gap-(--space-md)">
+    <div class="grid grid-cols-1 items-start gap-3 md:gap-(--space-md) md:grid-cols-2">
       {await Promise.all(
         clips.map(async (clip, index) => {
           const { Content } = await render(clip);

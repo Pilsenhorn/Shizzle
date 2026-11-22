@@ -23,10 +23,23 @@ const { albums } = Astro.props;
 
     {/* Carousel */}
     <div
-      class="flex justify-center gap-4 overflow-x-auto overflow-y-visible overscroll-x-contain snap-x snap-mandatory px-2 py-4 scrollbar-none">
+      class="
+          grid
+          grid-cols-1
+          justify-items-center
+          md:grid-cols-2
+          gap-4
+          overflow-x-auto
+          overflow-y-visible
+          overscroll-x-contain
+          snap-x
+          snap-mandatory
+          px-2
+          py-4
+          scrollbar-none">
       {albums.map((album) => (
         <div
-          class="w-[44%] shrink-0 snap-start sm:min-w-70 lg:min-w-90">
+          class="w-full max-w-70 snap-start lg:max-w-90">
           <article
             class="group w-full overflow-hidden rounded-xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02]">
 
